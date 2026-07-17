@@ -1,0 +1,6 @@
+{
+  "name": "e2e-seo | CLI & TUI Auditing Suite",
+  "description": "High-concurrency Rust crawler combined with a TypeScript auditing suite for CI/CD and technical SEO.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
