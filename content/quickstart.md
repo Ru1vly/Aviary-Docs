@@ -42,7 +42,7 @@ npm install -g .
 
 ---
 
-## Quick Start
+## Quick start
 
 Analyze any URL directly from your shell.
 
@@ -95,7 +95,7 @@ runAudit();
 
 ---
 
-## Command Line Options
+## Command line options
 
 The command-line interface supports the following parameters:
 
@@ -157,7 +157,7 @@ async function exportReport() {
 
 ---
 
-## Project Structure
+## Project structure
 
 ```
 Aviary/
@@ -176,7 +176,7 @@ Aviary/
 
 ---
 
-## Development Setup
+## Development setup
 
 To build and test the tool locally:
 

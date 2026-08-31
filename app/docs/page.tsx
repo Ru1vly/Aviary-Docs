@@ -54,7 +54,14 @@ export default async function DocsPage({ searchParams }: PageProps) {
     markdownContent = fs.readFileSync(filePath, 'utf8');
   } catch (err) {
     console.error(`Error reading doc file ${filePath}:`, err);
-    markdownContent = `# Error\nCould not load the document "${activePage.title}".`;
+    markdownContent = [
+      '# This page couldn\'t load',
+      '',
+      `We couldn't find the content for "${activePage.title}" in this build.`,
+      '',
+      '- [Go to Quick start](/docs)',
+      `- [Report this on GitHub](${GITHUB_URL}/issues)`,
+    ].join('\n');
   }
 
   const headingRegex = /^(#{2,3})\s+(.+)$/gm;

@@ -10,24 +10,24 @@ This document provides transparency about the aviary tool's accuracy limitations
 
 ---
 
-## 1. Previously Fixed Issues
+## 1. Previously fixed issues
 
-### 1.1 Previously Disabled Checks ✅ FIXED
+### 1.1 Previously disabled checks (fixed)
 
 The following checks were disabled in earlier versions but have been re-enabled:
 
 | Check | Location | Status | Description |
 |-------|----------|--------|-------------|
-| **Response Code Validation** | Technical Checker | ✅ Fixed | Now properly checks HTTP status codes (200, 404, 500, etc.) |
-| **Compression Detection** | Technical Checker | ✅ Fixed | Detects gzip, brotli, and deflate compression |
-| **Security Headers** | Security Checker | ✅ Fixed | Validates HSTS, X-Frame-Options, CSP, X-Content-Type-Options |
-| **Cache Headers** | Core Web Vitals | ✅ Fixed | Checks Cache-Control, ETag, Expires headers |
+| **Response Code Validation** | Technical Checker | Fixed | Now properly checks HTTP status codes (200, 404, 500, etc.) |
+| **Compression Detection** | Technical Checker | Fixed | Detects gzip, brotli, and deflate compression |
+| **Security Headers** | Security Checker | Fixed | Validates HSTS, X-Frame-Options, CSP, X-Content-Type-Options |
+| **Cache Headers** | Core Web Vitals | Fixed | Checks Cache-Control, ETag, Expires headers |
 
 **Previous Behavior:** These checks always returned `passed: true` even when issues existed.
 
 **Fix:** The tool now captures the initial HTTP response during navigation and passes it to all checkers that need HTTP headers, eliminating the execution context destruction issue.
 
-### 1.2 Image Format Parsing Bug ✅ FIXED
+### 1.2 Image format parsing bug (fixed)
 
 **Previous Issue:** Image format detection showed invalid formats like:
 - `co/67x84/d2df5b/656f10`
@@ -41,7 +41,7 @@ These were from placeholder/data URLs that weren't properly filtered.
 3. Detect WebP, AVIF, and other modern formats
 4. Fallback to MIME type when extension unavailable
 
-### 1.3 Hidden Text Detection Improvements ✅ PARTIALLY FIXED
+### 1.3 Hidden text detection improvements (partially fixed)
 
 **Previous Issue:** Legitimate content was flagged as "hidden text spam":
 - Collapsed accordions
@@ -57,11 +57,11 @@ These were from placeholder/data URLs that weren't properly filtered.
 
 ---
 
-## 2. Inherent Limitations & Code Bugs (Heuristic-Based)
+## 2. Inherent limitations & code bugs (heuristic-based)
 
 These checks use statistical models or heuristics that cannot be 100% accurate, or contain specific implementation bugs:
 
-### 2.1 Readability Scores (~85% accurate)
+### 2.1 Readability scores (~85% accurate)
 
 **Check:** Content Readability (Flesch-Kincaid, Gunning Fog)
 
@@ -73,7 +73,7 @@ These checks use statistical models or heuristics that cannot be 100% accurate, 
 
 **Recommendation:** Use as a guideline, not absolute rule. Consider your target audience's education level.
 
-### 2.2 Spam Detection (~60% accurate)
+### 2.2 Spam detection (~60% accurate)
 
 **Check:** Spam Patterns, Keyword Stuffing, Hidden Text
 
@@ -92,7 +92,7 @@ These checks use statistical models or heuristics that cannot be 100% accurate, 
 
 **Recommendation:** Manually review flagged items. High spam scores (>70%) are more reliable.
 
-### 2.3 Content Quality Assessment (~70% accurate)
+### 2.3 Content quality assessment (~70% accurate)
 
 **Check:** Content Depth, Uniqueness, Structure
 
@@ -102,17 +102,17 @@ These checks use statistical models or heuristics that cannot be 100% accurate, 
 - **Regulatory Auditing Omission Gap:** In `legalCompliance.ts`, the checks for GDPR and CCPA return `passed: true` if their respective compliance terms are missing. This means if a site completely lacks a privacy policy or regulatory statements, the checker still passes instead of warning or failing.
 
 **What It Can Detect:**
-- ✅ Thin content (word count)
-- ✅ Poor structure (headings)
-- ✅ Missing key elements
+- Thin content (word count)
+- Poor structure (headings)
+- Missing key elements
 
 **What It Cannot Detect:**
-- ❌ Plagiarism from other sites
-- ❌ Factual errors
-- ❌ Content relevance to search intent
-- ❌ E-A-T signals (Expertise, Authority, Trust)
+- Plagiarism from other sites
+- Factual errors
+- Content relevance to search intent
+- E-A-T signals (Expertise, Authority, Trust)
 
-### 2.4 Mobile Usability & Heatmaps (~75% accurate)
+### 2.4 Mobile usability & heatmaps (~75% accurate)
 
 **Check:** Tap Target Size, Viewport Configuration, Scroll Depth
 
@@ -125,11 +125,11 @@ These checks use statistical models or heuristics that cannot be 100% accurate, 
 
 ---
 
-## 3. Client-Side Architectural Limitations
+## 3. Client-side architectural limitations
 
 These limitations stem from the tool running in a browser context:
 
-### 3.1 Network Timing Variability
+### 3.1 Network timing variability
 
 **Limitation:**
 - Performance metrics vary per run
@@ -140,20 +140,20 @@ These limitations stem from the tool running in a browser context:
 - Run multiple checks and average results
 - Use dedicated performance tools (Lighthouse, WebPageTest) for detailed analysis
 
-### 3.2 JavaScript Execution Required
+### 3.2 JavaScript execution required
 
 **Limitation:**
 - Only sees what JavaScript renders
 - Cannot test "JavaScript disabled" experience
 - May miss noscript content
 
-### 3.3 Cannot Verify Actual Indexing
+### 3.3 Cannot verify actual indexing
 
 **Limitation:**
 - Tool checks *if* page is indexable, not if it's *indexed*
 - Cannot verify Google's actual index status
 
-### 3.4 Core Web Vitals Measurement Approximations
+### 3.4 Core Web Vitals measurement approximations
 
 The **Core Web Vitals** category (`coreWebVitals`) measures real LCP, CLS, FCP, and TTFB via the standard `web-vitals` library, injected into the page before navigation so its observers can see load-time entries. Two disclosed approximations follow directly from running as an unattended, single-shot audit rather than a real browser session:
 
@@ -162,43 +162,43 @@ The **Core Web Vitals** category (`coreWebVitals`) measures real LCP, CLS, FCP, 
 
 ---
 
-## 4. Missing Production Features & Hidden Behaviors
+## 4. Missing production features & hidden behaviors
 
 Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
-- ❌ **Parallel URL checking** (checking multiple URLs in one run)
-- ❌ **Caching mechanisms** (reusing results from previous runs)
-- ❌ **Lighthouse integration** (Google's official tool)
-- ❌ **Google Search Console API integration**
-- ❌ **Historical data tracking and trend analysis**
+- **Parallel URL checking** (checking multiple URLs in one run)
+- **Caching mechanisms** (reusing results from previous runs)
+- **Lighthouse integration** (Google's official tool)
+- **Google Search Console API integration**
+- **Historical data tracking and trend analysis**
 
-### 4.1 Missing OpenAI Provider in Rust Engine
+### 4.1 Missing OpenAI provider in Rust engine
 
 - `.env.example` lists `openai` as a valid value for `AVIARY_LLM_PROVIDER`, but `engine/src/semantic/factory.rs` only implements `ollama` and `stub`. Setting the provider to `openai` silently falls back to the `StubAnalyzer` rather than erroring.
 
-### 4.2 Prometheus Metrics Server Starts on Import
+### 4.2 Prometheus metrics server starts on import
 
 - Importing the CLI registers and starts a Prometheus metrics server (`prom-client`), configurable via `AVIARY_METRICS_PORT` (default `9090`). It starts silently in the background as a side effect of import rather than an explicit opt-in, which can surprise anything embedding `src/cli.ts` as a library and may conflict with another local service already on that port.
 
 ---
 
-## 5. Known False Positives by Category
+## 5. Known false positives by category
 
-### 5.1 Meta Tags & SEO Basics (95% accurate)
+### 5.1 Meta tags & SEO basics (95% accurate)
 
 **Rare False Positives:**
 - Brand information in non-standard meta tags
 - Alternative meta tag implementations (custom CMS)
 - Structured data in non-JSON-LD formats
 
-### 5.2 Structured Data (90% accurate)
+### 5.2 Structured data (90% accurate)
 
 **Known Issues:**
 - May flag valid but uncommon schema types
 - Nested schema validation can be overly strict
 - Custom schema extensions may not validate
 
-### 5.3 Performance Metrics (85% accurate)
+### 5.3 Performance metrics (85% accurate)
 
 **Known Issues:**
 - Network timing varies ±20% per run; a single-run measurement may not represent typical performance
@@ -219,13 +219,13 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
 **Recommendation:** Supplement with manual testing using an actual screen reader and keyboard-only navigation.
 
-### 5.5 Image Optimization (75% accurate)
+### 5.5 Image optimization (75% accurate)
 
 **Known Issues:**
 - Cannot verify actual compression quality
 - **CDN Format Detection Limit:** CDNs like Cloudinary are not automatically recognized as `'dynamic'` in the TS `cdnPatterns` array (`src/checkers/advancedImages.ts`). Only common placeholder sites (e.g. `placehold.co`, `dummyimage.com`) are correctly categorized as dynamic placeholders. Other CDNs fall back to raw file extensions or are marked as `'unknown'`.
 
-### 5.6 Spam Detection (60% accurate)
+### 5.6 Spam detection (60% accurate)
 
 **High False Positive Rate:**
 - Product descriptions with natural keyword density
@@ -235,7 +235,7 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
 ---
 
-## 6. Accuracy Estimates by Check Type
+## 6. Accuracy estimates by check type
 
 | Check Category | Accuracy | Confidence Level | Notes |
 |---------------|----------|------------------|-------|
@@ -255,48 +255,48 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
 ---
 
-## 7. Best Practices for Using This Tool
+## 7. Best practices for using this tool
 
-### 7.1 Interpretation Guidelines
+### 7.1 Interpretation guidelines
 
 1. **Errors (Red):** Address these - likely real issues
 2. **Warnings (Yellow):** Review manually - may be false positives
 3. **Info (Blue):** Suggestions - consider for optimization
 
-### 7.2 Verification Workflow
+### 7.2 Verification workflow
 
 For critical findings:
 
-1. ✅ Run check 2-3 times to confirm consistency
-2. ✅ Cross-reference with official tools (Google Search Console, Rich Results Test)
-3. ✅ Manual inspection in browser DevTools
-4. ✅ Test on real devices (mobile checks)
+1. Run check 2-3 times to confirm consistency
+2. Cross-reference with official tools (Google Search Console, Rich Results Test)
+3. Manual inspection in browser DevTools
+4. Test on real devices (mobile checks)
 
-### 7.3 Priority-Based Actions
+### 7.3 Priority-based actions
 
 **High Priority (Fix Immediately):**
-- ✅ Missing title/meta description
-- ✅ Broken HTTPS/mixed content
-- ✅ 404/500 response codes
-- ✅ Mobile viewport not set
-- ✅ No robots.txt
+- Missing title/meta description
+- Broken HTTPS/mixed content
+- 404/500 response codes
+- Mobile viewport not set
+- No robots.txt
 
 **Medium Priority (Review & Fix):**
-- ⚠️ Missing structured data
-- ⚠️ Slow performance metrics
-- ⚠️ Accessibility violations
-- ⚠️ Missing alt attributes
-- ⚠️ Broken links
+- Missing structured data
+- Slow performance metrics
+- Accessibility violations
+- Missing alt attributes
+- Broken links
 
 **Low Priority (Consider Optimization):**
-- ℹ️ Image format suggestions
-- ℹ️ Readability improvements
-- ℹ️ Additional schema markup
-- ℹ️ Content length recommendations
+- Image format suggestions
+- Readability improvements
+- Additional schema markup
+- Content length recommendations
 
 ---
 
-## 8. Reporting Issues
+## 8. Reporting issues
 
 If you encounter false positives or inaccurate checks:
 
@@ -310,18 +310,18 @@ If you encounter false positives or inaccurate checks:
 ## 9. Conclusion
 
 **The aviary tool is most accurate for:**
-- ✅ Technical SEO fundamentals (meta tags, headers)
-- ✅ Structural issues (headings, links)
-- ✅ Basic accessibility
-- ✅ HTTPS/security checks
-- ✅ Structured data validation
+- Technical SEO fundamentals (meta tags, headers)
+- Structural issues (headings, links)
+- Basic accessibility
+- HTTPS/security checks
+- Structured data validation
 
 **Use with caution for:**
-- ⚠️ Spam detection (shallow DOM checking)
-- ⚠️ Content quality assessment (subjective and regulatory gaps)
-- ⚠️ Performance metrics (network variability)
-- ⚠️ Readability scores (domain-dependent)
-- ⚠️ Heatmaps & Scroll depth (pages taller than viewport height)
+- Spam detection (shallow DOM checking)
+- Content quality assessment (subjective and regulatory gaps)
+- Performance metrics (network variability)
+- Readability scores (domain-dependent)
+- Heatmaps & Scroll depth (pages taller than viewport height)
 
 ---
 

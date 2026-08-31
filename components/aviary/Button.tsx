@@ -1,4 +1,6 @@
-import { ButtonHTMLAttributes, CSSProperties } from 'react';
+'use client';
+
+import { ButtonHTMLAttributes, CSSProperties, useState } from 'react';
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';
@@ -16,6 +18,20 @@ const VARIANTS: Record<Variant, CSSProperties> = {
   danger: { background: 'transparent', color: 'var(--verdict-fail)', border: '1px solid var(--verdict-fail)' },
 };
 
+const HOVER_VARIANTS: Record<Variant, CSSProperties> = {
+  primary: { background: 'var(--bone-200)', borderColor: 'var(--bone-200)' },
+  secondary: { background: 'var(--surface-hover)', borderColor: 'var(--line-strong)' },
+  ghost: { background: 'var(--surface-hover)', color: 'var(--text-primary)' },
+  danger: { background: 'var(--verdict-fail-bg)' },
+};
+
+const ACTIVE_VARIANTS: Record<Variant, CSSProperties> = {
+  primary: { background: 'var(--bone-300)', borderColor: 'var(--bone-300)' },
+  secondary: { background: 'var(--surface-active)', borderColor: 'var(--line-strong)' },
+  ghost: { background: 'var(--surface-active)', color: 'var(--text-primary)' },
+  danger: { background: 'var(--verdict-fail-bg)', borderColor: 'var(--verdict-fail)', color: 'var(--verdict-fail)' },
+};
+
 interface AviaryButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'style'> {
   variant?: Variant;
   size?: Size;
@@ -30,13 +46,28 @@ export default function Button({
   fullWidth,
   children,
   style,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseDown,
+  onMouseUp,
+  onKeyDown,
+  onKeyUp,
   ...rest
 }: AviaryButtonProps) {
   const s = SIZES[size];
+  const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
+
   return (
     <button
       type="button"
       disabled={disabled}
+      onMouseEnter={(e) => { setHovered(true); onMouseEnter?.(e); }}
+      onMouseLeave={(e) => { setHovered(false); setActive(false); onMouseLeave?.(e); }}
+      onMouseDown={(e) => { setActive(true); onMouseDown?.(e); }}
+      onMouseUp={(e) => { setActive(false); onMouseUp?.(e); }}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActive(true); onKeyDown?.(e); }}
+      onKeyUp={(e) => { if (e.key === 'Enter' || e.key === ' ') setActive(false); onKeyUp?.(e); }}
       {...rest}
       style={{
         display: fullWidth ? 'flex' : 'inline-flex',
@@ -57,6 +88,8 @@ export default function Button({
         transition: 'var(--transition-ui)',
         whiteSpace: 'nowrap',
         ...VARIANTS[variant],
+        ...(!disabled && hovered ? HOVER_VARIANTS[variant] : null),
+        ...(!disabled && active ? ACTIVE_VARIANTS[variant] : null),
         ...style,
       }}
     >

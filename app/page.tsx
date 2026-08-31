@@ -204,6 +204,8 @@ export default function AviaryHome() {
   const [tab, setTab] = useState('cli');
   const [copied, setCopied] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
+  const [installBtnState, setInstallBtnState] = useState<'idle' | 'hover' | 'active'>('idle');
+  const [codeBtnState, setCodeBtnState] = useState<'idle' | 'hover' | 'active'>('idle');
   const [tick, setTick] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -344,10 +346,16 @@ export default function AviaryHome() {
                 type="button"
                 onClick={copyInstall}
                 aria-label="Copy install command"
+                onMouseEnter={() => setInstallBtnState('hover')}
+                onMouseLeave={() => setInstallBtnState('idle')}
+                onMouseDown={() => setInstallBtnState('active')}
+                onMouseUp={() => setInstallBtnState('hover')}
                 style={{
-                  background: 'none', border: '1px solid var(--line-strong)', color: 'var(--text-muted)',
+                  background: installBtnState === 'active' ? 'var(--surface-active)' : installBtnState === 'hover' ? 'var(--surface-hover)' : 'none',
+                  border: `1px solid ${installBtnState === 'idle' ? 'var(--line-strong)' : 'var(--line-default)'}`,
+                  color: installBtnState === 'idle' ? 'var(--text-muted)' : 'var(--text-primary)',
                   fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase',
-                  padding: '4px 8px', borderRadius: 'var(--radius-xs)', cursor: 'pointer', transition: 'color 140ms var(--ease-standard)',
+                  padding: '4px 8px', borderRadius: 'var(--radius-xs)', cursor: 'pointer', transition: 'var(--transition-ui)',
                 }}
               >
                 {copied ? 'copied' : 'copy'}
@@ -548,7 +556,17 @@ export default function AviaryHome() {
                   <button
                     type="button"
                     onClick={copyCode}
-                    style={{ background: 'none', border: '1px solid var(--line-strong)', color: 'var(--text-muted)', fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', padding: '3px 8px', borderRadius: 'var(--radius-xs)', cursor: 'pointer' }}
+                    onMouseEnter={() => setCodeBtnState('hover')}
+                    onMouseLeave={() => setCodeBtnState('idle')}
+                    onMouseDown={() => setCodeBtnState('active')}
+                    onMouseUp={() => setCodeBtnState('hover')}
+                    style={{
+                      background: codeBtnState === 'active' ? 'var(--surface-active)' : codeBtnState === 'hover' ? 'var(--surface-hover)' : 'none',
+                      border: `1px solid ${codeBtnState === 'idle' ? 'var(--line-strong)' : 'var(--line-default)'}`,
+                      color: codeBtnState === 'idle' ? 'var(--text-muted)' : 'var(--text-primary)',
+                      fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase',
+                      padding: '3px 8px', borderRadius: 'var(--radius-xs)', cursor: 'pointer', transition: 'var(--transition-ui)',
+                    }}
                   >
                     {codeCopied ? 'copied' : 'copy'}
                   </button>

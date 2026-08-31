@@ -1,13 +1,13 @@
-# TODO: Production Readiness Checklist
+# TODO: Production readiness checklist
 
 This document outlines the remaining tasks to make the aviary checker tool production-ready.
 
-## 🐛 Known Issues / Fixes Required
+## Known issues / fixes required
 - [x] **CLI Testing**: Integration tests time out even with 120s limit (fixed by replacing slow locator auto-waits with page.evaluate).
 
-## 🎯 Core Features Enhancement
+## Core features enhancement
 
-### SEO Checkers
+### SEO checkers
 - [x] **Structured Data Validation**
   - [x] JSON-LD schema detection and validation
   - [x] Microdata and RDFa support
@@ -55,7 +55,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [x] Screen reader compatibility
   - [x] WCAG compliance levels
 
-## 🏗️ Architecture & Code Quality
+## Architecture & code quality
 
 - [x] **Testing**
   - [x] Unit tests for all checkers (Jest/Vitest)
@@ -86,7 +86,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Memory leak prevention
   - [ ] Optimization for large-scale scanning
 
-## 📊 Reporting & Output
+## Reporting & output
 
 - [ ] **Report Formats**
   - [x] JSON output
@@ -110,7 +110,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Quick wins identification
   - [ ] Competitor comparison
 
-## 🔧 Developer Experience
+## Developer experience
 
 - [ ] **CLI Tool**
   - [x] Command-line interface
@@ -142,7 +142,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Inline warnings in editor
   - [ ] Quick fix actions
 
-## 🚀 DevOps & Deployment
+## DevOps & deployment
 
 - [ ] **CI/CD**
   - [ ] GitHub Actions workflow
@@ -163,7 +163,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Performance monitoring
   - [ ] Feature usage statistics
 
-## 🔒 Security & Privacy
+## Security & privacy
 
 - [ ] **Security Scanning**
   - [ ] Dependency vulnerability scanning (npm audit)
@@ -178,7 +178,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Cookie consent detection
   - [ ] Privacy policy detection
 
-## 🌐 Multi-language & Internationalization
+## Multi-language & internationalization
 
 - [ ] **i18n Support**
   - [ ] Multi-language reports
@@ -186,7 +186,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Character encoding detection
   - [ ] RTL language support
 
-## 🔌 Integrations
+## Integrations
 
 - [ ] **Third-party Tools**
   - [ ] Google Search Console API
@@ -207,7 +207,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Bitbucket integration
   - [ ] Pre-commit hooks
 
-## 📱 Platform Support
+## Platform support
 
 - [ ] **Browser Support**
   - [ ] Firefox support
@@ -220,7 +220,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] macOS compatibility testing
   - [ ] Linux compatibility testing
 
-## 📚 Community & Ecosystem
+## Community & ecosystem
 
 - [ ] **Community Building**
   - [ ] GitHub Discussions setup
@@ -237,7 +237,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Demo videos
   - [ ] Case studies
 
-## 🎓 Advanced Features
+## Advanced features
 
 - [ ] **AI/ML Integration**
   - [ ] Content quality scoring using NLP
@@ -258,7 +258,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Link graph analysis
   - [ ] Duplicate content across pages
 
-## 🔄 Maintenance
+## Maintenance
 
 - [ ] **Dependencies**
   - [ ] Regular dependency updates
@@ -273,13 +273,13 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 
 ---
 
-## Priority Levels
+## Priority levels
 
-🔴 **High Priority** - Essential for v1.0 production release
-🟡 **Medium Priority** - Important but can be added in v1.x
-🟢 **Low Priority** - Nice to have, can be added in future versions
+**High priority** — essential for v1.0 production release
+**Medium priority** — important but can be added in v1.x
+**Low priority** — nice to have, can be added in future versions
 
-## Next Steps
+## Next steps
 
 1. Start with testing infrastructure (unit tests, integration tests)
 2. Implement CLI tool for better usability
