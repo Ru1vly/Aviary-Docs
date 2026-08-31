@@ -12,7 +12,7 @@ import DocsClientWrapper from '@/components/DocsClientWrapper';
 import Wordmark from '@/components/aviary/Wordmark';
 import Button from '@/components/aviary/Button';
 
-const GITHUB_URL = 'https://github.com/Ru1vly/e2e-seo';
+const GITHUB_URL = 'https://github.com/Ru1vly/Aviary';
 
 // Define available documentation pages
 const DOCS_PAGES = [
@@ -81,9 +81,10 @@ export default async function DocsPage({ searchParams }: PageProps) {
       <nav
         style={{
           position: 'sticky', top: 0, zIndex: 50, background: 'var(--surface-page)',
-          borderBottom: '1px solid var(--line-hairline)', padding: '0 32px', height: 52,
+          borderBottom: '1px solid var(--line-hairline)', padding: '0 20px', height: 52,
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}
+        className="sm:px-8"
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
           <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
@@ -91,7 +92,7 @@ export default async function DocsPage({ searchParams }: PageProps) {
           </Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontFamily: 'var(--font-code)', fontSize: 12, color: 'var(--text-faint)' }}>v1.1.0 · MIT</span>
+          <span className="hidden sm:inline" style={{ fontFamily: 'var(--font-code)', fontSize: 12, color: 'var(--text-faint)' }}>v1.1.0 · MIT</span>
           <a
             href={GITHUB_URL}
             target="_blank"
@@ -105,10 +106,10 @@ export default async function DocsPage({ searchParams }: PageProps) {
       </nav>
 
       {/* Page Container */}
-      <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '48px 32px', display: 'flex', gap: 48 }} className="flex-col lg:flex-row">
+      <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '32px 20px', display: 'flex', gap: 48 }} className="flex-col lg:flex-row sm:px-8">
         {/* Left Sidebar */}
-        <aside style={{ width: 236, flexShrink: 0 }} className="w-full lg:w-[236px]">
-          <div style={{ position: 'sticky', top: 100, display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <aside style={{ flexShrink: 0 }} className="w-full lg:w-[236px]">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }} className="static top-auto lg:sticky lg:top-[100px]">
             <div>
               <h3
                 style={{

@@ -106,7 +106,7 @@ const customRenderer = {
 
     return `
       <h${token.depth} id="${id}" class="scroll-mt-24 group relative">
-        <a href="#${id}" class="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-[#E0B15A] font-normal pr-2">#</a>
+        <a href="#${id}" class="hidden sm:block absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-[#E0B15A] font-normal pr-2">#</a>
         ${headingHtml}
       </h${token.depth}>
     `;

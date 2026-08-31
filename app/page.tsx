@@ -11,7 +11,7 @@ import ScoreDial from '@/components/aviary/ScoreDial';
 import Tabs from '@/components/aviary/Tabs';
 import ParticleField from '@/components/aviary/ParticleField';
 
-const GITHUB_URL = 'https://github.com/Ru1vly/e2e-seo';
+const GITHUB_URL = 'https://github.com/Ru1vly/Aviary';
 
 const HERO = [
   { name: 'Meta tags', pass: 5, total: 6 },
@@ -113,7 +113,7 @@ const TABS = [
     id: 'api', label: 'TypeScript', file: 'audit.ts',
     note: 'The same engine as a library — run it inside your own tooling and read the typed report.',
     lines: [
-      ["import { SEOChecker } from 'e2e-seo';", C.ochre], ['', C.primary],
+      ["import { SEOChecker } from 'aviary';", C.ochre], ['', C.primary],
       ['const checker = new SEOChecker({', C.body], ["  url: 'https://example.com',", C.body],
       ['  headless: true,', C.body], ['});', C.body], ['', C.primary],
       ['const report = await checker.check();', C.body], ['', C.primary],
@@ -273,14 +273,15 @@ export default function AviaryHome() {
           borderBottom: '1px solid var(--line-hairline)',
         }}
       >
-        <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '0 32px', height: 52, display: 'flex', alignItems: 'center', gap: 32 }}>
+        <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '0 20px', height: 52, display: 'flex', alignItems: 'center', gap: 20 }} className="sm:px-8 sm:gap-8">
           <Link href="#top" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
             <Wordmark size={20} />
           </Link>
           <nav
             aria-label="Primary"
+            className="hidden lg:flex"
             style={{
-              display: 'flex', alignItems: 'center', gap: 22, fontFamily: 'var(--font-ui)', fontSize: 10,
+              alignItems: 'center', gap: 22, fontFamily: 'var(--font-ui)', fontSize: 10,
               letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-muted)',
             }}
           >
@@ -292,8 +293,8 @@ export default function AviaryHome() {
           </nav>
           <div style={{ flex: 1 }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span style={{ fontFamily: 'var(--font-code)', fontSize: 12, color: 'var(--text-faint)' }}>v1.0.0 · MIT</span>
-            <a href={GITHUB_URL} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
+            <span className="hidden sm:inline" style={{ fontFamily: 'var(--font-code)', fontSize: 12, color: 'var(--text-faint)' }}>v1.0.0 · MIT</span>
+            <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hidden sm:inline-flex" style={{ textDecoration: 'none' }}>
               <Button variant="secondary" size="sm">GitHub</Button>
             </a>
             <Link href="/docs" style={{ textDecoration: 'none' }}>
@@ -312,7 +313,7 @@ export default function AviaryHome() {
         <section
           style={{
             position: 'relative', zIndex: 1, maxWidth: 'var(--page-max)', margin: '0 auto', padding: '96px 32px 128px',
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: 56, alignItems: 'start',
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(420px, 100%), 1fr))', gap: 56, alignItems: 'start',
           }}
         >
           <div>
@@ -408,7 +409,7 @@ export default function AviaryHome() {
 
         {/* 01 The problem */}
         <section style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: 64, alignItems: 'center' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(380px, 100%), 1fr))', gap: 64, alignItems: 'center' }}>
             <div>
               <div style={labelStyle}>01 — The problem</div>
               <h2 style={sectionH2}>
@@ -447,7 +448,7 @@ export default function AviaryHome() {
               We launch Chromium with Playwright, load your URL, and wait for the page to settle down. Then every check runs against the live document — so JS-rendered metadata, injected schema, lazy-loaded images, and real navigation timings are all fair game.
             </p>
 
-            <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 28, alignItems: 'stretch' }}>
+            <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 28, alignItems: 'stretch' }}>
               <div style={{ border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', background: 'var(--surface-card)', overflow: 'hidden' }}>
                 <div style={{ padding: '10px 16px', borderBottom: '1px solid var(--line-hairline)', fontFamily: 'var(--font-ui)', fontSize: 11, color: 'var(--text-muted)', letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase' }}>
                   Rendered viewport
@@ -499,7 +500,7 @@ export default function AviaryHome() {
               </p>
             </div>
 
-            <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
+            <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(210px, 100%), 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
               {CATEGORIES.map(([label, total, sample]) => (
                 <div key={label} style={{ background: 'var(--surface-page)', padding: 16, transition: 'background 140ms var(--ease-standard)' }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
@@ -517,7 +518,7 @@ export default function AviaryHome() {
         <section id="workflow" style={{ borderTop: '1px solid var(--line-hairline)' }}>
           <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
             <div style={labelStyle}>04 — How it works</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(230px, 100%), 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
               {STEPS.map((s) => (
                 <div key={s.n} style={{ background: 'var(--surface-page)', padding: '24px 20px 28px' }}>
                   <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', color: 'var(--ochre-400)' }}>{s.n}</div>
@@ -527,7 +528,7 @@ export default function AviaryHome() {
               ))}
             </div>
 
-            <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 40, alignItems: 'start' }}>
+            <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 40, alignItems: 'start' }}>
               <div>
                 <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-regular)' as unknown as number, fontSize: 'var(--display-sm)', lineHeight: 1.15, color: 'var(--text-primary)' }}>
                   One engine. Pick however you want to run it.
@@ -566,7 +567,7 @@ export default function AviaryHome() {
 
         {/* 05 Terminal dashboard */}
         <section style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 56, alignItems: 'center' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))', gap: 56, alignItems: 'center' }}>
             <div>
               <div style={labelStyle}>05 — Terminal dashboard</div>
               <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-regular)' as unknown as number, fontSize: 'var(--display-sm)', lineHeight: 1.15, color: 'var(--text-primary)', maxWidth: '22ch' }}>
@@ -650,7 +651,7 @@ export default function AviaryHome() {
                     <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)', margin: '20px 0 8px' }}>
                       Category coverage
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(84px, 1fr))', gap: 4 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(84px, 100%), 1fr))', gap: 4 }}>
                       {COVERAGE.map(([abbr, label, pctVal]) => {
                         const color = pctVal >= 90 ? C.pass : pctVal >= 70 ? C.ochre : C.fail;
                         return (
@@ -673,7 +674,7 @@ export default function AviaryHome() {
         <section style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
           <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
             <div style={labelStyle}>07 — Surfaces</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(240px, 100%), 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
               {SURFACES.map((s) => (
                 <div key={s.name} style={{ background: 'var(--surface-page)', padding: '24px 20px 28px' }}>
                   <div style={{ fontFamily: 'var(--font-ui)', fontSize: 'var(--text-md)', fontWeight: 'var(--weight-medium)' as unknown as number, color: 'var(--text-primary)' }}>{s.name}</div>
@@ -683,7 +684,7 @@ export default function AviaryHome() {
               ))}
             </div>
 
-            <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 32, alignItems: 'center' }}>
+            <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 32, alignItems: 'center' }}>
               <div>
                 <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-regular)' as unknown as number, fontSize: 'var(--display-sm)', lineHeight: 1.15, color: 'var(--text-primary)' }}>Let an agent run the audit for you</h2>
                 <p style={{ margin: '16px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', lineHeight: 'var(--leading-loose)', color: 'var(--text-muted)', maxWidth: '48ch' }}>
@@ -714,7 +715,7 @@ export default function AviaryHome() {
         <section style={{ borderTop: '1px solid var(--line-hairline)' }}>
           <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
             <div style={labelStyle}>08 — Identity &amp; responsive</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 28, alignItems: 'start' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 28, alignItems: 'start' }}>
               <div style={{ border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24, background: 'var(--surface-card)' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-end', gap: 40, flexWrap: 'wrap' }}>
                   <Wordmark size={56} tagline="Site audits" />
@@ -768,11 +769,11 @@ export default function AviaryHome() {
       </main>
 
       <footer style={{ borderTop: '1px solid var(--line-hairline)' }}>
-        <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '48px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 32 }}>
+        <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '48px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(170px, 100%), 1fr))', gap: 32 }}>
           <div>
             <Wordmark size={20} />
             <p style={{ margin: '12px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', color: 'var(--text-faint)', lineHeight: 'var(--leading-loose)', maxWidth: '28ch' }}>
-              We audit real, rendered pages in a real browser. On npm as <code style={{ fontFamily: 'var(--font-code)', fontSize: 13 }}>e2e-seo</code>.
+              We audit real, rendered pages in a real browser. On npm as <code style={{ fontFamily: 'var(--font-code)', fontSize: 13 }}>aviary</code>.
             </p>
           </div>
           <div>

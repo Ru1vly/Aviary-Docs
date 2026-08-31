@@ -259,7 +259,7 @@ a:hover { color: var(--text-link-hover); text-decoration: underline; text-decora
   padding: 2px 6px;
   border-radius: var(--radius-xs);
 }
-.aviary-doc-content table { width: 100%; border-collapse: collapse; margin: 0 0 24px; font-size: var(--text-sm); }
+.aviary-doc-content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; border-collapse: collapse; margin: 0 0 24px; font-size: var(--text-sm); }
 .aviary-doc-content th {
   text-align: left; font-family: var(--font-ui); font-weight: var(--weight-medium); color: var(--text-primary);
   padding: 8px 12px; background: var(--surface-sunken); border-bottom: 1px solid var(--line-default);
