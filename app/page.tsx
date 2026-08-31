@@ -325,10 +325,10 @@ export default function AviaryHome() {
                 color: 'var(--text-primary)', maxWidth: '18ch',
               }}
             >
-              We open your site in a real browser and tell you what&rsquo;s actually broken.
+              A real browser opens your site and tells you what&rsquo;s broken.
             </h1>
             <p style={{ margin: '24px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-md)', lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)', maxWidth: '56ch' }}>
-              SEO, performance, accessibility, security, and UX — checked on the page your visitors actually see, not the raw HTML your server hands out.
+              SEO, performance, accessibility, security, and UX, checked against the rendered page &mdash; after your JavaScript runs, not the HTML your server sends before it does.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 32 }}>
               <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="primary" size="lg">Get started</Button></Link>
@@ -413,15 +413,13 @@ export default function AviaryHome() {
             <div>
               <div style={labelStyle}>01 — The problem</div>
               <h2 style={sectionH2}>
-                Your app can work.<br />
-                Your tests can pass.<br />
-                <span style={{ color: 'var(--ochre-400)' }}>Your website can still be broken.</span>
+                End-to-end tests don&rsquo;t check what search engines and screen readers see.
               </h2>
               <p style={bodyP}>
-                Your end-to-end tests check that features work. They don&rsquo;t check whether the page has a canonical URL, labelled form inputs, valid product schema, a reachable sitemap, or a title that actually fits in a search result.
+                Your suite confirms checkout works. It won&rsquo;t catch a missing canonical URL, seven form inputs with no label, invalid product schema, an unreachable sitemap, or a title too long to fit a search result.
               </p>
               <p style={{ ...bodyP, margin: '16px 0 0', maxWidth: '54ch' }}>
-                Aviary looks at the same DOM, resources, and timings a real visitor&rsquo;s browser sees — and tells you what&rsquo;s wrong with it.
+                Aviary reads the same DOM, resources, and timings a visitor&rsquo;s browser produces, and lists exactly what&rsquo;s wrong with them.
               </p>
             </div>
             <div style={{ display: 'grid', gap: 12 }}>
@@ -443,9 +441,9 @@ export default function AviaryHome() {
         <section id="browser" style={{ borderTop: '1px solid var(--line-hairline)' }}>
           <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
             <div style={labelStyle}>02 — Real browser</div>
-            <h2 style={{ ...sectionH2, maxWidth: '24ch' }}>It&rsquo;s a browser session, not a text parser.</h2>
+            <h2 style={{ ...sectionH2, maxWidth: '24ch' }}>Every check runs against the rendered document.</h2>
             <p style={{ ...bodyP, maxWidth: 640 }}>
-              We launch Chromium with Playwright, load your URL, and wait for the page to settle down. Then every check runs against the live document — so JS-rendered metadata, injected schema, lazy-loaded images, and real navigation timings are all fair game.
+              Chromium loads your URL through Playwright and waits for the page to settle. From there, checks read the live DOM: JS-rendered metadata, injected schema, lazy-loaded images, and real navigation timings all count.
             </p>
 
             <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 28, alignItems: 'stretch' }}>
@@ -531,10 +529,10 @@ export default function AviaryHome() {
             <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 40, alignItems: 'start' }}>
               <div>
                 <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-regular)' as unknown as number, fontSize: 'var(--display-sm)', lineHeight: 1.15, color: 'var(--text-primary)' }}>
-                  One engine. Pick however you want to run it.
+                  One engine, five ways to run it.
                 </h2>
                 <p style={{ margin: '18px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', lineHeight: 'var(--leading-loose)', color: 'var(--text-muted)', maxWidth: '48ch' }}>
-                  The CLI, the TypeScript API, the terminal dashboard, and the MCP server all run the exact same checker modules underneath. We didn&rsquo;t rebuild the logic five times.
+                  The CLI, the TypeScript API, the terminal dashboard, and the MCP server all call the same checker modules. We didn&rsquo;t rewrite the logic four times.
                 </p>
                 <div style={{ marginTop: 26 }}>
                   <Tabs items={TABS.map((t) => ({ value: t.id, label: t.label }))} value={tab} onChange={setTab} />
@@ -711,46 +709,6 @@ export default function AviaryHome() {
           </div>
         </section>
 
-        {/* 08 Identity & responsive */}
-        <section style={{ borderTop: '1px solid var(--line-hairline)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
-            <div style={labelStyle}>08 — Identity &amp; responsive</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 28, alignItems: 'start' }}>
-              <div style={{ border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24, background: 'var(--surface-card)' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-end', gap: 40, flexWrap: 'wrap' }}>
-                  <Wordmark size={56} tagline="Site audits" />
-                  <Wordmark size={34} />
-                  <Wordmark size={20} />
-                </div>
-                <p style={{ margin: '24px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', lineHeight: 'var(--leading-loose)', color: 'var(--text-muted)' }}>
-                  No logo, no icon — just the name, set in Lancelot. Big on marketing pages, small in the product chrome. The particle field and the pass/fail colors handle the rest.
-                </p>
-              </div>
-
-              <div style={{ border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24, background: 'var(--surface-card)' }}>
-                <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 16 }}>
-                  375px — the story stays intact
-                </div>
-                <div style={{ width: 250, border: '1px solid var(--line-default)', borderRadius: 'var(--radius-md)', padding: 14, background: 'var(--surface-page)', margin: '0 auto' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, lineHeight: 1.15, color: 'var(--text-primary)' }}>Automated website auditing from a real browser.</div>
-                  <div style={{ marginTop: 12, border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-xs)', overflow: 'hidden' }}>
-                    <div style={{ padding: '6px 8px', borderBottom: '1px solid var(--line-hairline)', fontFamily: 'var(--font-code)', fontSize: 11, color: 'var(--text-muted)' }}>https://example.com</div>
-                    <div style={{ padding: 8, fontFamily: 'var(--font-ui)', fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', display: 'grid', gap: 6 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--text-body)' }}>Meta tags</span><span style={{ color: 'var(--verdict-warn)', fontFamily: 'var(--font-code)', fontSize: 11 }}>5/6</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--text-body)' }}>Accessibility</span><span style={{ color: 'var(--verdict-fail)', fontFamily: 'var(--font-code)', fontSize: 11 }}>2/4</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--text-body)' }}>Security</span><span style={{ color: 'var(--verdict-pass)', fontFamily: 'var(--font-code)', fontSize: 11 }}>6/6</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--line-hairline)', paddingTop: 6, marginTop: 2 }}><span style={{ color: 'var(--text-faint)' }}>Score</span><span style={{ color: 'var(--verdict-pass)', fontFamily: 'var(--font-code)', fontSize: 11 }}>91/100</span></div>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: 12 }}>
-                    <Button variant="primary" size="sm" fullWidth>Get started</Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Final CTA */}
         <section style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
           <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '96px 32px', display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'center', justifyContent: 'space-between' }}>
@@ -759,6 +717,7 @@ export default function AviaryHome() {
                 Go check the page your users are actually loading.
               </h2>
               <p style={{ margin: '12px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', color: 'var(--text-muted)' }}>MIT licensed. Runs on your machine, in CI, or behind an agent.</p>
+              <p style={{ margin: '6px 0 0', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>npx aviary -u https://example.com</p>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="primary" size="lg">Read the docs</Button></Link>
