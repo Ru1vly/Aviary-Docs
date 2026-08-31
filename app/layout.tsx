@@ -1,20 +1,45 @@
-import type {Metadata} from 'next';
-import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google';
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
-const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
-const serif = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
+const geistMono = localFont({
+  src: [
+    { path: './fonts/GeistMono-VariableFont_wght.ttf', weight: '100 900', style: 'normal' },
+    { path: './fonts/GeistMono-Italic-VariableFont_wght.ttf', weight: '100 900', style: 'italic' },
+  ],
+  variable: '--font-geist-mono',
+  display: 'swap',
+});
+
+const lancelot = localFont({
+  src: [{ path: './fonts/Lancelot-Regular.ttf', weight: '400', style: 'normal' }],
+  variable: '--font-lancelot',
+  display: 'swap',
+});
+
+const ubuntuMono = localFont({
+  src: [
+    { path: './fonts/UbuntuMono-Regular.ttf', weight: '400', style: 'normal' },
+    { path: './fonts/UbuntuMono-Italic.ttf', weight: '400', style: 'italic' },
+    { path: './fonts/UbuntuMono-Bold.ttf', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-ubuntu-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: 'Aviary | SEO Auditing Suite',
-  description: 'The SEO suite that fits directly into your development tools.',
+  title: 'Aviary | Automated website auditing',
+  description: 'We open your site in a real browser and check SEO, performance, accessibility, security, and UX — on the page your visitors actually see.',
 };
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable} ${serif.variable}`}>
-      <body className="bg-[#FAF9F6] text-[#2C2E33] font-sans antialiased selection:bg-[#0EA5E9] selection:text-white" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${geistMono.variable} ${lancelot.variable} ${ubuntuMono.variable}`}
+      style={{ scrollBehavior: 'smooth' }}
+    >
+      <body className="antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>
