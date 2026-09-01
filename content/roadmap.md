@@ -10,17 +10,18 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 ### SEO checkers
 - [x] **Structured Data Validation**
   - [x] JSON-LD schema detection and validation
-  - [x] Microdata and RDFa support
-  - [x] Schema.org vocabulary validation
-  - [x] Rich snippets preview
+  - [x] Microdata detection
+  - [ ] RDFa support — not implemented
+  - [x] Schema.org vocabulary validation — Organization, Person, Product, Article, BreadcrumbList, FAQPage, HowTo, Review, Event, LocalBusiness, WebPage, WebSite, ImageObject
+  - [ ] Rich snippets preview — not implemented
 
-- [x] **Content Analysis**
-  - [x] Keyword density analyzer
+- [ ] **Content Analysis** — partial
+  - [ ] Keyword density analyzer — not implemented
   - [x] Content readability score (Flesch-Kincaid)
-  - [x] Duplicate content detection
+  - [ ] Duplicate content detection — not implemented
   - [x] Word count and content length analysis
   - [x] Internal and external link analysis
-  - [x] Broken link detection
+  - [ ] Broken link detection — link structure is checked, but nothing crawls links to verify they resolve
 
 - [x] **Technical SEO**
   - [x] Robots.txt validation
@@ -44,16 +45,30 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 - [x] **Social Media Optimization**
   - [x] Twitter Card validation
   - [x] Facebook Open Graph validation
-  - [x] LinkedIn meta tags
-  - [x] Pinterest rich pins
-  - [x] Social share preview generation
-        
-- [x] **Accessibility (A11y)**
+  - [ ] LinkedIn meta tags — not implemented
+  - [ ] Pinterest rich pins — not implemented
+  - [ ] Social share preview generation — not implemented
+
+- [ ] **Accessibility (A11y)** — partial
   - [x] ARIA attributes validation
-  - [x] Color contrast checking
-  - [x] Keyboard navigation testing
-  - [x] Screen reader compatibility
-  - [x] WCAG compliance levels
+  - [ ] Color contrast checking — not implemented
+  - [x] Keyboard navigation testing (tab order, skip links)
+  - [ ] Screen reader compatibility — not implemented
+  - [ ] WCAG compliance levels — not implemented
+
+- [x] **Internationalization**
+  - [x] hreflang and language declaration validation
+  - [x] Character encoding / UTF-8 checks
+  - [x] RTL language support detection
+  - [x] Geo-targeting signals
+
+- [x] **E-commerce**
+  - [x] Product schema, pricing, and review markup validation
+  - [x] Checkout and shipping information checks
+
+- [x] **Legal Compliance**
+  - [x] Privacy policy, GDPR, and CCPA detection
+  - [x] Cookie consent, copyright, and disclaimer checks
 
 ## Architecture & code quality
 
@@ -114,13 +129,14 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 
 - [ ] **CLI Tool**
   - [x] Command-line interface
-  - [ ] Interactive mode
+  - [x] Interactive mode — full-screen TUI dashboard
   - [ ] Progress indicators
   - [ ] Watch mode for development
   - [ ] Glob pattern support for multiple URLs
   - [ ] CI/CD integration examples
 
 - [ ] **API**
+  - [x] MCP server (stdio) — `seo_audit`, `seo_score`, `seo_check_category` tools for AI agents
   - [ ] REST API server
   - [ ] WebSocket for real-time updates
   - [ ] API authentication
@@ -144,18 +160,18 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 
 ## DevOps & deployment
 
-- [ ] **CI/CD**
-  - [ ] GitHub Actions workflow
-  - [ ] Automated testing
-  - [ ] Automated releases
+- [x] **CI/CD**
+  - [x] GitHub Actions workflow — lint, type-check, and test on every push/PR
+  - [x] Automated testing
+  - [x] Automated releases
   - [ ] Semantic versioning
-  - [ ] Changelog generation
+  - [x] Changelog generation — auto-generated from commit history between tags
 
-- [ ] **Package Distribution**
-  - [ ] NPM package publishing
-  - [ ] Docker image
+- [x] **Package Distribution**
+  - [x] NPM package publishing
+  - [x] Docker image — built and pushed on release
   - [ ] Standalone binary (pkg/nexe)
-  - [ ] GitHub releases with artifacts
+  - [x] GitHub releases with artifacts
 
 - [ ] **Monitoring & Telemetry**
   - [ ] Anonymous usage analytics (opt-in)
@@ -165,8 +181,8 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 
 ## Security & privacy
 
-- [ ] **Security Scanning**
-  - [ ] Dependency vulnerability scanning (npm audit)
+- [ ] **Security Scanning** — partial
+  - [x] Dependency vulnerability scanning — npm/cargo audit, SBOM generation, and CodeQL static analysis in CI
   - [ ] Security headers check
   - [ ] XSS vulnerability detection
   - [ ] CORS configuration check

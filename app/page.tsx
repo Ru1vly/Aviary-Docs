@@ -15,44 +15,44 @@ const GITHUB_URL = 'https://github.com/Ru1vly/Aviary';
 
 const HERO = [
   { name: 'Meta tags', pass: 5, total: 6 },
-  { name: 'Headings', pass: 4, total: 4 },
-  { name: 'Images', pass: 3, total: 4 },
+  { name: 'Headings', pass: 3, total: 3 },
+  { name: 'Images', pass: 1, total: 2 },
   { name: 'Accessibility', pass: 2, total: 4 },
-  { name: 'Performance', pass: 2, total: 3 },
-  { name: 'Structured data', pass: 5, total: 5 },
-  { name: 'Security', pass: 6, total: 6 },
-  { name: 'Core web vitals', pass: 12, total: 14 },
+  { name: 'Performance', pass: 1, total: 2 },
+  { name: 'Structured data', pass: 3, total: 3 },
+  { name: 'Security', pass: 3, total: 3 },
+  { name: 'Core web vitals', pass: 18, total: 20 },
 ];
 
 const CATEGORIES: [string, number, string][] = [
   ['Meta Tags', 6, 'title · description · og · canonical'],
-  ['Headings', 4, 'h1 presence · hierarchy · length'],
-  ['Images', 4, 'alt text · src validity · dimensions'],
-  ['Performance', 3, 'load time · DCL · first paint'],
-  ['Robots.txt', 4, 'reachable · directives · sitemap ref'],
-  ['Sitemap', 4, 'discovery · format · entries'],
-  ['Security', 6, 'https · mixed content · headers'],
-  ['Structured Data', 5, 'JSON-LD · microdata · parsing'],
-  ['Social Media', 6, 'twitter cards · open graph'],
-  ['Content', 7, 'word count · readability · ratio'],
-  ['Links', 6, 'internal · external · nofollow'],
-  ['UI Elements', 7, 'favicon · breadcrumbs · lang'],
-  ['Technical SEO', 10, 'status · redirects · compression'],
+  ['Headings', 3, 'h1 presence · hierarchy · length'],
+  ['Images', 2, 'alt text · src validity · dimensions'],
+  ['Performance', 2, 'load time · DCL · first paint'],
+  ['Robots.txt', 2, 'reachable · directives · sitemap ref'],
+  ['Sitemap', 2, 'discovery · format · entries'],
+  ['Security', 3, 'https · mixed content · headers'],
+  ['Structured Data', 3, 'JSON-LD · microdata · parsing'],
+  ['Social Media', 3, 'twitter cards · open graph'],
+  ['Content', 4, 'word count · readability · ratio'],
+  ['Links', 3, 'internal · external · nofollow'],
+  ['UI Elements', 4, 'favicon · breadcrumbs · lang'],
+  ['Technical SEO', 4, 'status · redirects · compression'],
   ['Accessibility', 4, 'aria · form labels · tab order'],
-  ['URL Factors', 11, 'length · depth · readability'],
-  ['Spam Detection', 9, 'hidden text · stuffing · cloaking'],
-  ['Page Quality', 9, 'duplication · freshness · E-A-T'],
-  ['Advanced Images', 13, 'responsive · lazy · webp'],
-  ['Multimedia', 11, 'video · audio · captions'],
-  ['Core Web Vitals', 14, 'timings · requests · weight'],
-  ['Analytics', 12, 'GA · GTM · pixels · verification'],
-  ['Mobile UX', 10, 'tap targets · viewport · PWA'],
-  ['Schema Validation', 11, 'product · article · organization'],
-  ['Resource Optimization', 12, 'minification · CDN · fonts'],
-  ['Legal & Compliance', 11, 'privacy · GDPR · cookies'],
-  ['E-commerce', 12, 'products · pricing · checkout'],
-  ['Internationalization', 11, 'hreflang · locales · unicode'],
-  ['Heatmap & UX', 13, 'click map · scroll depth · CTA'],
+  ['URL Factors', 10, 'length · depth · readability'],
+  ['Spam Detection', 15, 'hidden text · stuffing · cloaking'],
+  ['Page Quality', 15, 'duplication · freshness · E-A-T'],
+  ['Advanced Images', 10, 'responsive · lazy · webp'],
+  ['Multimedia', 10, 'video · audio · captions'],
+  ['Core Web Vitals', 20, 'timings · requests · weight'],
+  ['Analytics', 15, 'GA · GTM · pixels · verification'],
+  ['Mobile UX', 15, 'tap targets · viewport · PWA'],
+  ['Schema Validation', 15, 'product · article · organization'],
+  ['Resource Optimization', 15, 'minification · CDN · fonts'],
+  ['Legal & Compliance', 15, 'privacy · GDPR · cookies'],
+  ['E-commerce', 15, 'products · pricing · checkout'],
+  ['Internationalization', 15, 'hreflang · locales · unicode'],
+  ['Heatmap & UX', 5, 'click map · scroll depth · CTA'],
 ];
 
 const COVERAGE: [string, string, number][] = [
@@ -330,7 +330,7 @@ export default function AviaryHome() {
               A real browser opens your site and tells you what&rsquo;s broken.
             </h1>
             <p style={{ margin: '24px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-md)', lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)', maxWidth: '56ch' }}>
-              SEO, performance, accessibility, security, and UX, checked against the rendered page &mdash; after your JavaScript runs, not the HTML your server sends before it does.
+              SEO, performance, accessibility, security, and UX — checked after your JavaScript runs, not before.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 32 }}>
               <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="primary" size="lg">Get started</Button></Link>
@@ -421,13 +421,13 @@ export default function AviaryHome() {
             <div>
               <div style={labelStyle}>01 — The problem</div>
               <h2 style={sectionH2}>
-                End-to-end tests don&rsquo;t check what search engines and screen readers see.
+                E2E tests miss what search engines and screen readers see.
               </h2>
               <p style={bodyP}>
-                Your suite confirms checkout works. It won&rsquo;t catch a missing canonical URL, seven form inputs with no label, invalid product schema, an unreachable sitemap, or a title too long to fit a search result.
+                Your suite confirms checkout works. It won&rsquo;t catch missing canonical URLs, unlabeled inputs, or broken sitemaps.
               </p>
               <p style={{ ...bodyP, margin: '16px 0 0', maxWidth: '54ch' }}>
-                Aviary reads the same DOM, resources, and timings a visitor&rsquo;s browser produces, and lists exactly what&rsquo;s wrong with them.
+                Aviary reads the same DOM, resources, and timings your visitors see — and shows what&rsquo;s wrong.
               </p>
             </div>
             <div style={{ display: 'grid', gap: 12 }}>
@@ -451,7 +451,7 @@ export default function AviaryHome() {
             <div style={labelStyle}>02 — Real browser</div>
             <h2 style={{ ...sectionH2, maxWidth: '24ch' }}>Every check runs against the rendered document.</h2>
             <p style={{ ...bodyP, maxWidth: 640 }}>
-              Chromium loads your URL through Playwright and waits for the page to settle. From there, checks read the live DOM: JS-rendered metadata, injected schema, lazy-loaded images, and real navigation timings all count.
+              Chromium loads your URL via Playwright, waits for it to settle, then reads the live DOM — JS-rendered metadata, injected schema, lazy images, real timings.
             </p>
 
             <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 28, alignItems: 'stretch' }}>
@@ -499,7 +499,7 @@ export default function AviaryHome() {
                 <h2 style={{ ...sectionH2, maxWidth: '22ch' }}>235 checks, grouped into 28 inspection categories.</h2>
               </div>
               <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', lineHeight: 'var(--leading-loose)', color: 'var(--text-muted)', maxWidth: '44ch' }}>
-                Turn any category on or off, or change how much it counts, in config. Or just grab a preset:{' '}
+                Turn categories on/off, or weight them, in config — or grab a preset:{' '}
                 <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>basic</code>,{' '}
                 <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>advanced</code> and{' '}
                 <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>strict</code>.
@@ -540,7 +540,7 @@ export default function AviaryHome() {
                   One engine, five ways to run it.
                 </h2>
                 <p style={{ margin: '18px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', lineHeight: 'var(--leading-loose)', color: 'var(--text-muted)', maxWidth: '48ch' }}>
-                  The CLI, the TypeScript API, the terminal dashboard, and the MCP server all call the same checker modules. We didn&rsquo;t rewrite the logic four times.
+                  The CLI, TypeScript API, terminal dashboard, and MCP server all call the same checker modules — no logic rewritten four times.
                 </p>
                 <div style={{ marginTop: 26 }}>
                   <Tabs items={TABS.map((t) => ({ value: t.id, label: t.label }))} value={tab} onChange={setTab} />
@@ -590,7 +590,7 @@ export default function AviaryHome() {
                 Run <code style={{ fontFamily: 'var(--font-code)', fontSize: '0.8em', color: 'var(--ochre-400)' }}>aviary</code> with no arguments and you get a dashboard.
               </h2>
               <p style={{ ...bodyP, maxWidth: '52ch' }}>
-                It&rsquo;s a full-screen TUI, written in Rust: type in a URL, pick a preset, choose where the HTML goes, and watch it run. Results land in a two-pane browser — categories on the left, checks on the right, details below — with severity filters bound to{' '}
+                A full-screen TUI written in Rust — enter a URL, pick a preset and output path, and run it. Results open in a two-pane browser: categories left, checks right, details below, with severity filters on{' '}
                 <kbd style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>A</kbd> /{' '}
                 <kbd style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>E</kbd> /{' '}
                 <kbd style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>W</kbd>.
@@ -632,7 +632,7 @@ export default function AviaryHome() {
               One HTML file. Open it, commit it, or bolt it onto a build.
             </h2>
             <p style={{ ...bodyP, maxWidth: 640 }}>
-              Score and grade up top, a ranked list of what to fix, a per-category breakdown, then every single check with its severity and the raw JSON behind it.
+              Score and grade up top, a ranked list of fixes, a per-category breakdown, then every check with its severity and raw JSON.
             </p>
 
             <div style={{ marginTop: 48, maxWidth: 640 }}>
@@ -704,10 +704,10 @@ export default function AviaryHome() {
               <div>
                 <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-regular)' as unknown as number, fontSize: 'var(--display-sm)', lineHeight: 1.15, color: 'var(--text-primary)' }}>Let an agent run the audit for you</h2>
                 <p style={{ margin: '16px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', lineHeight: 'var(--leading-loose)', color: 'var(--text-muted)', maxWidth: '48ch' }}>
-                  The MCP server hands over three tools on stdio —{' '}
+                  Three tools over stdio —{' '}
                   <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>seo_audit</code>,{' '}
-                  <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>seo_score</code> and{' '}
-                  <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>seo_check_category</code> — so an agent can audit a URL and read the structured result directly.
+                  <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>seo_score</code>,{' '}
+                  <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)' }}>seo_check_category</code> — so an agent can audit a URL and read the result directly.
                 </p>
               </div>
               <div style={{ display: 'grid', gap: 10 }}>
@@ -732,7 +732,7 @@ export default function AviaryHome() {
           <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '96px 32px', display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
               <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-regular)' as unknown as number, fontSize: 'var(--display-sm)', letterSpacing: 'var(--tracking-tight)', color: 'var(--text-primary)' }}>
-                Go check the page your users are actually loading.
+                Check the page your users are loading.
               </h2>
               <p style={{ margin: '12px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', color: 'var(--text-muted)' }}>MIT licensed. Runs on your machine, in CI, or behind an agent.</p>
               <p style={{ margin: '6px 0 0', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>npx aviary -u https://example.com</p>
@@ -750,7 +750,7 @@ export default function AviaryHome() {
           <div>
             <Wordmark size={20} />
             <p style={{ margin: '12px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', color: 'var(--text-faint)', lineHeight: 'var(--leading-loose)', maxWidth: '28ch' }}>
-              We audit real, rendered pages in a real browser. On npm as <code style={{ fontFamily: 'var(--font-code)', fontSize: 13 }}>aviary</code>.
+              Real, rendered-page audits, in a real browser. On npm as <code style={{ fontFamily: 'var(--font-code)', fontSize: 13 }}>aviary</code>.
             </p>
           </div>
           <div>
