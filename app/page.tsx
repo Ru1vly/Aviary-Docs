@@ -458,7 +458,7 @@ export default function AviaryHome() {
 
         {/* 01 The problem */}
         <section style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(380px, 100%), 1fr))', gap: 64, alignItems: 'center' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(380px, 100%), 1fr))', gap: 64, alignItems: 'center' }}>
             <div>
               <div style={labelStyle}>01 — The problem</div>
               <h2 style={sectionH2}>
@@ -488,7 +488,7 @@ export default function AviaryHome() {
 
         {/* 02 Real browser */}
         <section id="browser" style={{ borderTop: '1px solid var(--line-hairline)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px' }}>
             <div style={labelStyle}>02 — Real browser</div>
             <h2 style={{ ...sectionH2, maxWidth: '24ch' }}>Every check runs against the rendered document.</h2>
             <p style={{ ...bodyP, maxWidth: 640 }}>
@@ -564,7 +564,7 @@ export default function AviaryHome() {
 
         {/* 03 Coverage */}
         <section id="checks" style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'flex-end', justifyContent: 'space-between' }}>
               <div>
                 <div style={labelStyle}>03 — Coverage</div>
@@ -594,7 +594,7 @@ export default function AviaryHome() {
 
         {/* 04 How it works */}
         <section id="workflow" style={{ borderTop: '1px solid var(--line-hairline)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px' }}>
             <div style={labelStyle}>04 — How it works</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(230px, 100%), 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
               {STEPS.map((s) => (
@@ -657,7 +657,7 @@ export default function AviaryHome() {
 
         {/* 05 Terminal dashboard */}
         <section style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))', gap: 56, alignItems: 'center' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))', gap: 56, alignItems: 'center' }}>
             <div>
               <div style={labelStyle}>05 — Terminal dashboard</div>
               <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-regular)' as unknown as number, fontSize: 'var(--display-sm)', lineHeight: 1.15, color: 'var(--text-primary)', maxWidth: '22ch' }}>
@@ -723,7 +723,7 @@ export default function AviaryHome() {
 
         {/* 06 Reports */}
         <section id="report" style={{ borderTop: '1px solid var(--line-hairline)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px' }}>
             <div style={labelStyle}>06 — Reports</div>
             <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-regular)' as unknown as number, fontSize: 'var(--display-sm)', lineHeight: 1.15, color: 'var(--text-primary)', maxWidth: '26ch' }}>
               One HTML file. Open it, commit it, or bolt it onto a build.
@@ -785,7 +785,7 @@ export default function AviaryHome() {
 
         {/* 07 Surfaces */}
         <section style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px' }}>
             <div style={labelStyle}>07 — Surfaces</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(240px, 100%), 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
               {SURFACES.map((s) => (
@@ -826,7 +826,7 @@ export default function AviaryHome() {
 
         {/* 08 Architecture & Documentation Overview */}
         <section id="architecture" style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-page)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px' }}>
             <div style={labelStyle}>08 — Deep Technical Auditing</div>
             <h2 style={{ ...sectionH2, maxWidth: '28ch' }}>
               Built for modern web applications and static sites alike.
@@ -874,7 +874,7 @@ export default function AviaryHome() {
 
         {/* 09 Frequently Asked Questions */}
         <section id="faq" style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px' }}>
             <div style={labelStyle}>09 — Questions &amp; Answers</div>
             <h2 style={{ ...sectionH2, maxWidth: '28ch' }}>
               Frequently asked questions about technical auditing.
@@ -922,7 +922,7 @@ export default function AviaryHome() {
 
         {/* 10 Step-by-Step Audit Guide & Best Practices */}
         <section id="guide" style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-page)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '64px 32px' }}>
             <div style={labelStyle}>10 — Audit Guide &amp; Best Practices</div>
             <h2 style={{ ...sectionH2, maxWidth: '28ch' }}>
               How to audit and fix a website step by step.
