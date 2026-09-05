@@ -312,10 +312,6 @@ export default function AviaryHome() {
               letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-muted)',
             }}
           >
-            <a href="#browser" style={NAV_LINK}>Real browser</a>
-            <a href="#checks" style={NAV_LINK}>Checks</a>
-            <a href="#workflow" style={NAV_LINK}>Developers</a>
-            <a href="#report" style={NAV_LINK}>Reports</a>
             <Link href="/docs" style={NAV_LINK}>Docs</Link>
           </nav>
           <div style={{ flex: 1 }} />
