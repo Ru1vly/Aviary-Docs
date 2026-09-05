@@ -81,9 +81,9 @@
   --font-ui: var(--font-geist-mono), "SFMono-Regular", ui-monospace, monospace;
   --font-code: var(--font-ubuntu-mono), var(--font-geist-mono), ui-monospace, monospace;
 
-  --text-2xs: 10px;
-  --text-xs: 11px;
-  --text-sm: 13px;
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: 14px;
   --text-base: 16px;
   --text-md: 17px;
   --text-lg: 18px;
@@ -206,6 +206,18 @@ a:hover { color: var(--text-link-hover); text-decoration: underline; text-decora
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
+}
+
+.sr-only {
+  position: absolute;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
 }
 
 /* ——— Docs: table of contents links ——— */

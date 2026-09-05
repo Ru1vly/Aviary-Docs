@@ -6,9 +6,9 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';
 
 const SIZES: Record<Size, { height: number; padding: string; fontSize: string; gap: number }> = {
-  sm: { height: 26, padding: '0 10px', fontSize: 'var(--text-2xs)', gap: 6 },
-  md: { height: 32, padding: '0 14px', fontSize: 'var(--text-xs)', gap: 7 },
-  lg: { height: 40, padding: '0 20px', fontSize: 'var(--text-sm)', gap: 8 },
+  sm: { height: 44, padding: '0 14px', fontSize: 'var(--text-xs)', gap: 6 },
+  md: { height: 44, padding: '0 16px', fontSize: 'var(--text-sm)', gap: 7 },
+  lg: { height: 48, padding: '0 24px', fontSize: 'var(--text-sm)', gap: 8 },
 };
 
 const VARIANTS: Record<Variant, CSSProperties> = {
@@ -76,6 +76,8 @@ export default function Button({
         justifyContent: 'center',
         gap: s.gap,
         height: s.height,
+        minHeight: 44,
+        minWidth: 44,
         padding: s.padding,
         fontFamily: 'var(--font-ui)',
         fontSize: s.fontSize,

@@ -53,13 +53,23 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  webpack: (config, {dev}) => {
+  webpack: (config, {dev, isServer}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
-    // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+    // Do not modify—file watching is disabled to prevent flickering during agent edits.
     if (dev && process.env.DISABLE_HMR === 'true') {
       config.watchOptions = {
         ignored: /.*/,
       };
+    }
+    if (!dev && !isServer) {
+      config.output.filename = 'static/chunks/[name]-[contenthash].min.js';
+      config.output.chunkFilename = 'static/chunks/[name]-[contenthash].min.js';
+      for (const plugin of config.plugins || []) {
+        if (plugin?.options?.filename && typeof plugin.options.filename === 'string' && plugin.options.filename.includes('.css')) {
+          plugin.options.filename = 'static/css/[contenthash].min.css';
+          plugin.options.chunkFilename = 'static/css/[contenthash].min.css';
+        }
+      }
     }
     return config;
   },

@@ -41,8 +41,11 @@ export default function Tabs({
             style={{
               display: 'inline-flex',
               alignItems: 'center',
+              justifyContent: 'center',
+              minHeight: 44,
+              minWidth: 44,
               gap: 7,
-              padding: '0 0 9px',
+              padding: '0 12px 9px',
               background: 'none',
               border: 'none',
               borderBottom: `1px solid ${on ? (isPressed ? 'var(--ochre-400)' : 'var(--bone-100)') : (isHovered ? 'var(--line-strong)' : 'transparent')}`,

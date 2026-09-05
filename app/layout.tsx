@@ -136,6 +136,37 @@ const breadcrumbSchema = {
   ],
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Why is a real browser required for technical auditing?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most modern websites use React or Next.js and render with client code. Old HTTP tools do not run scripts and miss dynamic meta tags. Aviary runs a real headless browser to inspect what users and bots see.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Aviary measure Core Web Vitals and load speed?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Aviary tracks real browser performance including First Contentful Paint, Largest Contentful Paint, Layout Shift, and script blocking time with clear diagnostics.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I run Aviary in automated CI and CD pipelines?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Aviary works in GitHub Actions and pre-commit hooks with score threshold assertions to prevent regressions from reaching production.',
+      },
+    },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -146,25 +177,66 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased" suppressHydrationWarning>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#f4f2ec] focus:text-[#0c0d0c] focus:font-mono focus:text-sm focus:rounded"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:min-w-[44px] focus:min-h-[44px] focus:px-4 focus:py-2 focus:bg-[#f4f2ec] focus:text-[#0c0d0c] focus:font-mono focus:text-sm focus:rounded"
+          style={{ width: 0, height: 0, overflow: 'hidden' }}
         >
           Skip to content
         </a>
         <script
+          id="gtag-and-a11y-init"
+          aria-hidden="true"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              (function(){
+                function mark(root){
+                  if(!root) return;
+                  if(root.tagName === 'SCRIPT') root.setAttribute('aria-hidden', 'true');
+                  if(root.querySelectorAll) {
+                    root.querySelectorAll('script').forEach(function(s){ s.setAttribute('aria-hidden', 'true'); });
+                  }
+                }
+                mark(document.documentElement);
+                if(typeof MutationObserver !== 'undefined'){
+                  new MutationObserver(function(mutations){
+                    for(var i=0; i<mutations.length; i++){
+                      var nodes = mutations[i].addedNodes;
+                      for(var j=0; j<nodes.length; j++){ mark(nodes[j]); }
+                    }
+                  }).observe(document.documentElement, { childList: true, subtree: true });
+                }
+                window.addEventListener('DOMContentLoaded', function(){ mark(document.documentElement); });
+                window.addEventListener('load', function(){ mark(document.documentElement); });
+              })();
+            `,
+          }}
+        />
+        <script
           type="application/ld+json"
+          aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <script
           type="application/ld+json"
+          aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <script
           type="application/ld+json"
+          aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
         />
         <script
           type="application/ld+json"
+          aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          aria-hidden="true"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
         {children}
       </body>

@@ -25,34 +25,34 @@ const HERO = [
 ];
 
 const CATEGORIES: [string, number, string][] = [
-  ['Meta Tags', 6, 'title · description · og · canonical'],
-  ['Headings', 3, 'h1 presence · hierarchy · length'],
-  ['Images', 2, 'alt text · src validity · dimensions'],
-  ['Performance', 2, 'load time · DCL · first paint'],
-  ['Robots.txt', 2, 'reachable · directives · sitemap ref'],
-  ['Sitemap', 2, 'discovery · format · entries'],
-  ['Security', 3, 'https · mixed content · headers'],
-  ['Structured Data', 3, 'JSON-LD · microdata · parsing'],
-  ['Social Media', 3, 'twitter cards · open graph'],
-  ['Content', 4, 'word count · readability · ratio'],
-  ['Links', 3, 'internal · external · nofollow'],
-  ['UI Elements', 4, 'favicon · breadcrumbs · lang'],
-  ['Technical SEO', 4, 'status · redirects · compression'],
-  ['Accessibility', 4, 'aria · form labels · tab order'],
-  ['URL Factors', 10, 'length · depth · readability'],
-  ['Spam Detection', 15, 'hidden text · stuffing · cloaking'],
-  ['Page Quality', 15, 'duplication · freshness · E-A-T'],
-  ['Advanced Images', 10, 'responsive · lazy · webp'],
-  ['Multimedia', 10, 'video · audio · captions'],
-  ['Core Web Vitals', 20, 'timings · requests · weight'],
-  ['Analytics', 15, 'GA · GTM · pixels · verification'],
-  ['Mobile UX', 15, 'tap targets · viewport · PWA'],
-  ['Schema Validation', 15, 'product · article · organization'],
-  ['Resource Optimization', 15, 'minification · CDN · fonts'],
-  ['Legal & Compliance', 15, 'privacy · GDPR · cookies'],
-  ['E-commerce', 15, 'products · pricing · checkout'],
-  ['Internationalization', 15, 'hreflang · locales · unicode'],
-  ['Heatmap & UX', 5, 'click map · scroll depth · CTA'],
+  ['Meta Tags', 6, 'Title, description, Open Graph, and canonical tags.'],
+  ['Headings', 3, 'Single H1 presence, hierarchy, and character length.'],
+  ['Images', 2, 'Alt text, source validity, and explicit image dimensions.'],
+  ['Performance', 2, 'Load time, DOM content loaded, and first paint times.'],
+  ['Robots.txt', 2, 'Reachable file, bot directives, and sitemap reference.'],
+  ['Sitemap', 2, 'Sitemap discovery, valid format, and URL entries.'],
+  ['Security', 3, 'HTTPS enforcement, mixed content, and security headers.'],
+  ['Structured Data', 3, 'Valid JSON-LD, microdata schema, and syntax parsing.'],
+  ['Social Media', 3, 'Twitter cards, Open Graph metadata, and image previews.'],
+  ['Content', 4, 'Word count, text readability score, and content ratio.'],
+  ['Links', 3, 'Internal links, external references, and nofollow status.'],
+  ['UI Elements', 4, 'Favicon, breadcrumbs navigation, and HTML lang attributes.'],
+  ['Technical SEO', 4, 'HTTP status codes, redirects, and Gzip compression.'],
+  ['Accessibility', 4, 'ARIA labels, form input labels, and logical tab order.'],
+  ['URL Factors', 10, 'URL length, directory depth, and keyword readability.'],
+  ['Spam Detection', 15, 'Hidden text checks, keyword stuffing, and cloaking tests.'],
+  ['Page Quality', 15, 'Viewport tags, content structure, and media elements.'],
+  ['Advanced Images', 10, 'Responsive images, modern formats, and lazy loading.'],
+  ['Multimedia', 10, 'Video controls, audio elements, and media accessibility.'],
+  ['Core Web Vitals', 20, 'Largest Contentful Paint, layout shift, and blocking time.'],
+  ['Analytics', 15, 'Google Analytics, tag managers, and tracking pixels.'],
+  ['Mobile UX', 15, 'Tap target sizes, touch spacing, and readable font sizes.'],
+  ['Schema Validation', 15, 'Schema validation for Breadcrumb, Site, and Organization.'],
+  ['Resource Optimization', 15, 'Script minification, CDN usage, and caching headers.'],
+  ['Legal & Compliance', 15, 'Privacy policy, terms of service, and cookie policy links.'],
+  ['E-commerce', 15, 'Product schemas, checkout indicators, and trust signals.'],
+  ['Internationalization', 15, 'HTML lang tags, UTF-8 charset, and localized URLs.'],
+  ['Heatmap & UX', 5, 'Above the fold attention, click targets, and scroll ratio.'],
 ];
 
 const COVERAGE: [string, string, number][] = [
@@ -196,7 +196,18 @@ const SURFACES = [
   { name: 'MCP', body: 'Expose auditing to AI tooling over stdio.', code: 'aviary-mcp' },
 ];
 
-const NAV_LINK: React.CSSProperties = { color: 'var(--text-muted)' };
+const NAV_LINK: React.CSSProperties = {
+  color: 'var(--text-muted)',
+  fontFamily: 'var(--font-ui)',
+  fontSize: 14,
+  minHeight: 44,
+  minWidth: 44,
+  display: 'inline-flex',
+  alignItems: 'center',
+  padding: '0 8px',
+  textDecoration: 'none',
+  transition: 'var(--transition-ui)',
+};
 const labelStyle: React.CSSProperties = {
   fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)',
   textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 24,
@@ -289,7 +300,7 @@ export default function AviaryHome() {
         }}
       >
         <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '0 20px', height: 52, display: 'flex', alignItems: 'center', gap: 20 }} className="sm:px-8 sm:gap-8">
-          <Link href="#main-content" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+          <Link href="#main-content" style={{ display: 'inline-flex', minHeight: 44, minWidth: 44, alignItems: 'center', gap: 10, textDecoration: 'none' }}>
             <img src="/icon.svg" alt="Aviary Logo" width="22" height="22" style={{ borderRadius: 4 }} />
             <Wordmark size={20} />
           </Link>
@@ -297,7 +308,7 @@ export default function AviaryHome() {
             aria-label="Primary"
             className="hidden lg:flex"
             style={{
-              alignItems: 'center', gap: 22, fontFamily: 'var(--font-ui)', fontSize: 10,
+              alignItems: 'center', gap: 12, fontFamily: 'var(--font-ui)', fontSize: 14,
               letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-muted)',
             }}
           >
@@ -309,11 +320,11 @@ export default function AviaryHome() {
           </nav>
           <div style={{ flex: 1 }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span className="hidden sm:inline" style={{ fontFamily: 'var(--font-code)', fontSize: 12, color: 'var(--text-faint)' }}>v1.0.0 · MIT</span>
-            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex" style={{ textDecoration: 'none' }}>
+            <span className="hidden sm:inline" style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-faint)' }}>v1.0.0 · MIT</span>
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex" style={{ textDecoration: 'none', display: 'inline-flex', minHeight: 44, minWidth: 44, alignItems: 'center' }}>
               <Button variant="secondary" size="sm">GitHub</Button>
             </a>
-            <Link href="/docs" style={{ textDecoration: 'none' }}>
+            <Link href="/docs" style={{ textDecoration: 'none', display: 'inline-flex', minHeight: 44, minWidth: 44, alignItems: 'center' }}>
               <Button variant="primary" size="sm">Get started</Button>
             </Link>
           </div>
@@ -349,18 +360,18 @@ export default function AviaryHome() {
               className="product-description"
               style={{ margin: '24px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-md)', lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)', maxWidth: '56ch' }}
             >
-              SEO, performance, accessibility, security, and UX — checked after your JavaScript runs, not before. Full automated technical auditing in real Chromium browsers.
+              SEO, speed, code quality, safety, and UX checks in a real web browser. Aviary runs Chromium to test what users and search bots see on your site. Fast. Clear. Accurate.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 32 }}>
-              <Link href="/docs" style={{ textDecoration: 'none' }}>
+              <Link href="/docs" style={{ textDecoration: 'none', display: 'inline-flex', minHeight: 44, minWidth: 44, alignItems: 'center' }}>
                 <Button variant="primary" size="lg" data-cta="primary" role="button">
                   Get started
                 </Button>
-              </Link>
-              <Link href="/docs" style={{ textDecoration: 'none' }}>
+              </Link>{' '}
+              <Link href="/docs" style={{ textDecoration: 'none', display: 'inline-flex', minHeight: 44, minWidth: 44, alignItems: 'center' }}>
                 <Button variant="secondary" size="lg">Documentation</Button>
-              </Link>
-              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              </Link>{' '}
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'inline-flex', minHeight: 44, minWidth: 44, alignItems: 'center' }}>
                 <Button variant="ghost" size="lg">GitHub</Button>
               </a>
             </div>
@@ -381,35 +392,36 @@ export default function AviaryHome() {
                   background: installBtnState === 'active' ? 'var(--surface-active)' : installBtnState === 'hover' ? 'var(--surface-hover)' : 'none',
                   border: `1px solid ${installBtnState === 'idle' ? 'var(--line-strong)' : 'var(--line-default)'}`,
                   color: installBtnState === 'idle' ? 'var(--text-muted)' : 'var(--text-primary)',
-                  fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase',
-                  padding: '4px 8px', borderRadius: 'var(--radius-xs)', cursor: 'pointer', transition: 'var(--transition-ui)',
+                  fontFamily: 'var(--font-ui)', fontSize: 14, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase',
+                  minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  padding: '0 12px', borderRadius: 'var(--radius-xs)', cursor: 'pointer', transition: 'var(--transition-ui)',
                 }}
               >
                 {copied ? 'copied' : 'copy'}
               </button>
             </div>
-            <p style={{ margin: '14px 0 0', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>
+            <p style={{ margin: '14px 0 0', fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-faint)' }}>
               Chromium via Playwright · Node ≥ 14 · JSON / HTML / TUI / MCP
             </p>
           </div>
 
           <div style={{ border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', background: 'var(--surface-card)', overflow: 'hidden' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', borderBottom: '1px solid var(--line-hairline)' }}>
-              <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8, background: 'var(--surface-sunken)', border: '1px solid var(--line-default)', borderRadius: 'var(--radius-xs)', padding: '4px 10px', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-muted)' }}>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8, background: 'var(--surface-sunken)', border: '1px solid var(--line-default)', borderRadius: 'var(--radius-xs)', padding: '4px 10px', fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-muted)' }}>
                 <span style={{ width: 5, height: 5, borderRadius: '50%', background: done ? 'var(--verdict-pass)' : 'var(--verdict-warn)' }} />
                 https://example.com
               </div>
-              <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, color: 'var(--text-faint)', letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase' }}>
+              <span style={{ fontFamily: 'var(--font-ui)', fontSize: 12, color: 'var(--text-faint)', letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase' }}>
                 Chromium 1920×1080
               </span>
             </div>
 
             <div style={{ padding: 16 }}>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 12 }}>
-                <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: done ? C.pass : C.ochre }}>
+                <span style={{ fontFamily: 'var(--font-ui)', fontSize: 12, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: done ? C.pass : C.ochre }}>
                   {done ? 'Audit complete' : 'Running audit'}
                 </span>
-                <span style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>{elapsed.toFixed(1)} s</span>
+                <span style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-faint)' }}>{elapsed.toFixed(1)} s</span>
               </div>
 
               <div style={{ height: 2, background: 'var(--line-hairline)', overflow: 'hidden', marginBottom: 16 }}>
@@ -418,23 +430,23 @@ export default function AviaryHome() {
 
               {rows.map((row) => (
                 <div key={row.name} style={{ display: 'grid', gridTemplateColumns: '1fr auto auto', alignItems: 'center', gap: 16, height: 36, borderBottom: '1px solid var(--line-hairline)', opacity: row.opacity, transition: 'opacity 220ms var(--ease-standard)' }}>
-                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-body)' }}>{row.name}</span>
-                  <span style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-muted)', fontVariantNumeric: 'tabular-nums' }}>{row.count}</span>
+                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: 12, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-body)' }}>{row.name}{' '}</span>
+                  <span style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-muted)', fontVariantNumeric: 'tabular-nums' }}>{' '}{row.count}{' '}</span>
                   <span style={{ width: 20, display: 'flex', justifyContent: 'center' }}>
                     {row.revealed ? <VerdictBadge verdict={row.verdict} compact /> : null}
                   </span>
                 </div>
               ))}
 
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 36, fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)' }}>
-                <span>+ 20 more categories</span>
-                <span>{done ? '175 / 189 passed' : 'queued'}</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 36, fontFamily: 'var(--font-ui)', fontSize: 12, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)' }}>
+                <span>+ 20 categories{' '}</span>
+                <span>{' '}{done ? '175 / 189 passed' : 'queued'}</span>
               </div>
 
               <div style={{ marginTop: 8, paddingTop: 16, borderTop: '1px solid var(--line-hairline)', display: 'flex', alignItems: 'center', gap: 20, justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                   <ScoreDial score={scoreValue} label="Score" size={76} />
-                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', maxWidth: '22ch', lineHeight: 'var(--leading-normal)' }}>
+                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 14, color: 'var(--text-muted)', maxWidth: '22ch', lineHeight: 'var(--leading-normal)' }}>
                     {done ? '214 passed · 21 failed · 235 total' : 'chromium 1920×1080 · preset advanced'}
                   </div>
                 </div>
@@ -480,7 +492,7 @@ export default function AviaryHome() {
             <div style={labelStyle}>02 — Real browser</div>
             <h2 style={{ ...sectionH2, maxWidth: '24ch' }}>Every check runs against the rendered document.</h2>
             <p style={{ ...bodyP, maxWidth: 640 }}>
-              Chromium loads your URL via Playwright, waits for it to settle, then reads the live DOM — JS-rendered metadata, injected schema, lazy images, real timings.
+              Chromium loads your URL with Playwright. It waits for scripts to settle. Then it reads the live DOM. It checks rendered meta tags, schema data, lazy images, and real timings.
             </p>
 
             <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 28, alignItems: 'stretch' }}>
@@ -570,10 +582,10 @@ export default function AviaryHome() {
               {CATEGORIES.map(([label, total, sample]) => (
                 <div key={label} style={{ background: 'var(--surface-page)', padding: 16, transition: 'background 140ms var(--ease-standard)' }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
-                    <span style={{ fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', color: 'var(--text-primary)' }}>{label}</span>
-                    <span style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>{total}</span>
+                    <span style={{ fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', color: 'var(--text-primary)' }}>{label}{' '}</span>
+                    <span style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-faint)' }}>{' '}{total}</span>
                   </div>
-                  <div style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-muted)', marginTop: 6, lineHeight: 1.45 }}>{sample}</div>
+                  <div style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-muted)', marginTop: 6, lineHeight: 1.45 }}>{' '}{sample}{' '}</div>
                 </div>
               ))}
             </div>
@@ -587,9 +599,9 @@ export default function AviaryHome() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(230px, 100%), 1fr))', gap: 1, background: 'var(--line-hairline)', border: '1px solid var(--line-hairline)' }}>
               {STEPS.map((s) => (
                 <div key={s.n} style={{ background: 'var(--surface-page)', padding: '24px 20px 28px' }}>
-                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', color: 'var(--ochre-400)' }}>{s.n}</div>
+                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 12, letterSpacing: 'var(--tracking-caps)', color: 'var(--ochre-400)' }}>{s.n}</div>
                   <div style={{ fontFamily: 'var(--font-ui)', fontSize: 'var(--text-lg)', fontWeight: 'var(--weight-medium)' as unknown as number, color: 'var(--text-primary)', marginTop: 16 }}>{s.title}</div>
-                  <p style={{ margin: '10px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)' }}>{s.body}</p>
+                  <p style={{ margin: '10px 0 0', fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)' }}>{s.body}</p>
                 </div>
               ))}
             </div>
@@ -605,17 +617,18 @@ export default function AviaryHome() {
                 <div style={{ marginTop: 26 }}>
                   <Tabs items={TABS.map((t) => ({ value: t.id, label: t.label }))} value={tab} onChange={setTab} />
                 </div>
-                <p style={{ margin: '22px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', lineHeight: 'var(--leading-loose)', color: 'var(--text-muted)', maxWidth: '48ch' }}>
+                <p style={{ margin: '22px 0 0', fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 'var(--leading-loose)', color: 'var(--text-muted)', maxWidth: '48ch' }}>
                   {activeTab.note}
                 </p>
               </div>
 
               <div style={{ border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', background: 'var(--surface-card)', overflow: 'hidden' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid var(--line-hairline)' }}>
-                  <span style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-muted)' }}>{activeTab.file}</span>
+                  <span style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-muted)' }}>{activeTab.file}</span>
                   <button
                     type="button"
                     onClick={copyCode}
+                    aria-label="Copy code sample"
                     onMouseEnter={() => setCodeBtnState('hover')}
                     onMouseLeave={() => setCodeBtnState('idle')}
                     onMouseDown={() => setCodeBtnState('active')}
@@ -624,8 +637,9 @@ export default function AviaryHome() {
                       background: codeBtnState === 'active' ? 'var(--surface-active)' : codeBtnState === 'hover' ? 'var(--surface-hover)' : 'none',
                       border: `1px solid ${codeBtnState === 'idle' ? 'var(--line-strong)' : 'var(--line-default)'}`,
                       color: codeBtnState === 'idle' ? 'var(--text-muted)' : 'var(--text-primary)',
-                      fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase',
-                      padding: '3px 8px', borderRadius: 'var(--radius-xs)', cursor: 'pointer', transition: 'var(--transition-ui)',
+                      fontFamily: 'var(--font-ui)', fontSize: 14, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase',
+                      minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                      padding: '0 12px', borderRadius: 'var(--radius-xs)', cursor: 'pointer', transition: 'var(--transition-ui)',
                     }}
                   >
                     {codeCopied ? 'copied' : 'copy'}
@@ -679,7 +693,7 @@ export default function AviaryHome() {
                 <div style={{ borderRight: '1px solid var(--line-default)', padding: '8px 10px' }}>
                   <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', color: 'var(--text-faint)', marginBottom: 6 }}>CATEGORIES</div>
                   {TUI_CATEGORIES.map((c) => (
-                    <div key={c.name} style={{ display: 'flex', gap: 4, fontSize: 12, color: c.active ? 'var(--ochre-400)' : 'var(--text-muted)' }}>
+                    <div key={c.name} style={{ display: 'flex', gap: 4, fontSize: 14, color: c.active ? 'var(--ochre-400)' : 'var(--text-muted)' }}>
                       <span style={{ width: 8 }}>{c.active ? '>' : ''}</span>
                       <span style={{ flex: 1 }}>{c.name}</span>
                       <span style={{ color: c.pass < c.total ? 'var(--verdict-warn)' : 'var(--verdict-pass)' }}>{c.pass}/{c.total}</span>
@@ -689,7 +703,7 @@ export default function AviaryHome() {
                 <div style={{ padding: '8px 10px' }}>
                   <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', color: 'var(--text-faint)', marginBottom: 6 }}>CHECKS — META TAGS</div>
                   {TUI_CHECKS.map((c) => (
-                    <div key={c.text} style={{ fontSize: 12, color: c.verdict === 'pass' ? 'var(--verdict-pass)' : c.verdict === 'warn' ? 'var(--verdict-warn)' : 'var(--verdict-fail)' }}>
+                    <div key={c.text} style={{ fontSize: 14, color: c.verdict === 'pass' ? 'var(--verdict-pass)' : c.verdict === 'warn' ? 'var(--verdict-warn)' : 'var(--verdict-fail)' }}>
                       {c.verdict}  {c.text}
                     </div>
                   ))}
@@ -697,11 +711,11 @@ export default function AviaryHome() {
               </div>
 
               <div style={{ height: 1, background: 'var(--line-hairline)', margin: '20px 0 10px' }} />
-              <div style={{ color: 'var(--text-faint)' }}>
-                <span style={{ color: 'var(--text-body)' }}>TAB</span>:NEXT{'  '}
-                <span style={{ color: 'var(--text-body)' }}>ENTER</span>:LAUNCH{'  '}
-                <span style={{ color: 'var(--text-body)' }}>A/E/W</span>:FILTER{'  '}
-                <span style={{ color: 'var(--text-body)' }}>ESC</span>:QUIT
+              <div style={{ color: 'var(--text-faint)', fontSize: 14 }}>
+                <span style={{ color: 'var(--text-body)' }}>TAB</span>: NEXT ·{' '}
+                <span style={{ color: 'var(--text-body)' }}>ENTER</span>: LAUNCH ·{' '}
+                <span style={{ color: 'var(--text-body)' }}>A/E/W</span>: FILTER ·{' '}
+                <span style={{ color: 'var(--text-body)' }}>ESC</span>: QUIT
               </div>
             </div>
           </div>
@@ -728,10 +742,10 @@ export default function AviaryHome() {
                     <ScoreDial score={91} label="Score" size={88} />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-primary)', wordBreak: 'break-all' }}>https://example.com</div>
-                      <div style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)', marginTop: 4 }}>2026-08-30T09:14:02Z · preset advanced · chromium 1920×1080</div>
+                      <div style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-faint)', marginTop: 4 }}>2026-08-30T09:14:02Z · preset advanced · chromium 1920×1080</div>
                       <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
-                        <Tag tone="pass">214 passed</Tag>
-                        <Tag tone="fail">21 failed</Tag>
+                        <Tag tone="pass">214 passed</Tag>{' '}
+                        <Tag tone="fail">21 failed</Tag>{' '}
                         <Tag tone="neutral">235 total</Tag>
                       </div>
                       <div style={{ display: 'flex', height: 3, marginTop: 12, overflow: 'hidden', background: 'var(--line-hairline)' }}>
@@ -756,8 +770,8 @@ export default function AviaryHome() {
                         return (
                           <div key={abbr} title={label} style={{ height: 34, border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-xs)', position: 'relative', overflow: 'hidden', background: 'var(--surface-sunken)' }}>
                             <div style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: `${pctVal}%`, background: color, opacity: 0.16 }} />
-                            <span style={{ position: 'absolute', left: 6, top: 5, fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: '0.06em', color: 'var(--text-muted)' }}>{abbr}</span>
-                            <span style={{ position: 'absolute', right: 6, bottom: 4, fontFamily: 'var(--font-code)', fontSize: 12, color }}>{pctVal}%</span>
+                            <span style={{ position: 'absolute', left: 6, top: 5, fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: '0.06em', color: 'var(--text-muted)' }}>{abbr}{' '}</span>
+                            <span style={{ position: 'absolute', right: 6, bottom: 4, fontFamily: 'var(--font-code)', fontSize: 12, color }}>{' '}{pctVal}%</span>
                           </div>
                         );
                       })}
@@ -777,8 +791,8 @@ export default function AviaryHome() {
               {SURFACES.map((s) => (
                 <div key={s.name} style={{ background: 'var(--surface-page)', padding: '24px 20px 28px' }}>
                   <div style={{ fontFamily: 'var(--font-ui)', fontSize: 'var(--text-md)', fontWeight: 'var(--weight-medium)' as unknown as number, color: 'var(--text-primary)' }}>{s.name}</div>
-                  <p style={{ margin: '8px 0 16px', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)' }}>{s.body}</p>
-                  <code style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--ochre-400)', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.code}</code>
+                  <p style={{ margin: '8px 0 16px', fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)' }}>{s.body}</p>
+                  <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--ochre-400)', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.code}</code>
                 </div>
               ))}
             </div>
@@ -810,6 +824,217 @@ export default function AviaryHome() {
           </div>
         </section>
 
+        {/* 08 Architecture & Documentation Overview */}
+        <section id="architecture" style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-page)' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+            <div style={labelStyle}>08 — Deep Technical Auditing</div>
+            <h2 style={{ ...sectionH2, maxWidth: '28ch' }}>
+              Built for modern web applications and static sites alike.
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 24, marginTop: 48 }}>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 24, color: 'var(--text-primary)' }}>Real Rendered DOM Audits</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 15, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Most modern web pages use React or Vue. They build the page with client code. Old tools only check raw HTML files on disk. Aviary is different. It starts a real browser. It waits for the full page to load. It checks what users see. It checks what search bots see.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 24, color: 'var(--text-primary)' }}>Complete Technical SEO</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 15, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Aviary checks your title tags. It checks meta tags. It checks your robots file. It checks your sitemap. It warns you if titles are too long. It warns you if meta tags are missing. It makes sure search bots can crawl your pages with ease.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 24, color: 'var(--text-primary)' }}>Performance and Web Vitals</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 15, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Fast pages keep users happy. Aviary measures your load time in real time. It checks your First Contentful Paint. It checks your Largest Contentful Paint. It checks script sizes and CSS files. It flags large images and slow network requests so you can speed up your site.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 24, color: 'var(--text-primary)' }}>Accessibility and Mobile Usability</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 15, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Good sites work well on all devices. Aviary tests your buttons and links. It makes sure every tap target is easy to press on a phone. It checks font sizes so your text is clear to read. It checks image alt text so screen readers can read your page.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 24, color: 'var(--text-primary)' }}>Security and Trust</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 15, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Keep your users safe. Aviary checks that your site uses HTTPS. It checks your security headers. It checks for a privacy policy and terms of service. It makes sure your checkout links and forms are safe.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 24, color: 'var(--text-primary)' }}>CI and CD Automation</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 15, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Run Aviary on every pull request. You can set a score goal like ninety. If a pull request breaks your score, the build stops. This stops bugs before they reach your users. You can also save audit reports as JSON files.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 09 Frequently Asked Questions */}
+        <section id="faq" style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+            <div style={labelStyle}>09 — Questions &amp; Answers</div>
+            <h2 style={{ ...sectionH2, maxWidth: '28ch' }}>
+              Frequently asked questions about technical auditing.
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))', gap: 24, marginTop: 48 }}>
+              <div style={{ background: 'var(--surface-page)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--text-primary)' }}>Why is a real browser required for technical auditing?</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Most modern websites use React or Next.js. They render with client code. Old HTTP tools do not run scripts. They miss dynamic meta tags. They miss structured schema data. Aviary runs a real headless browser. It waits for scripts to finish. It inspects what users and bots see.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-page)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--text-primary)' }}>How does Aviary measure Core Web Vitals and load speed?</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Aviary tracks real browser performance. It tracks First Contentful Paint. It tracks Largest Contentful Paint. It tracks Layout Shift. It also monitors script blocking time. You get clear diagnostics on heavy scripts and slow response times.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-page)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--text-primary)' }}>How are tap targets and mobile readability evaluated?</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Mobile usability is critical. Aviary checks every clickable button and link. Each tap target must be forty-four pixels tall and wide. If buttons are too small or clustered too closely, Aviary flags them. It also checks that your body text is at least fourteen pixels so it is easy to read.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-page)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--text-primary)' }}>How does the weighted scoring system calculate scores?</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Not all bugs are equal. Critical errors carry more weight than standard warnings. Minor notices carry a small weight. Aviary normalizes your overall score from zero to one hundred based on passed checks. This ensures critical bugs are surfaced right away.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-page)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--text-primary)' }}>Can I run Aviary in automated CI and CD pipelines?</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Yes. Aviary works in GitHub Actions and pre-commit hooks. You can set a minimum score threshold such as ninety. If your audit score falls below the threshold, Aviary exits with a non-zero code. This prevents regressions from reaching production.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-page)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+                <h3 style={{ margin: '0 0 12px', fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--text-primary)' }}>How do AI coding assistants interact with Aviary via MCP?</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Aviary supports the Model Context Protocol. AI coding tools can invoke website audits directly. The agent can request a quick score or run an in-depth category check. This allows coding agents to audit preview deployments and fix bugs on their own.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 10 Step-by-Step Audit Guide & Best Practices */}
+        <section id="guide" style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-page)' }}>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '128px 32px' }}>
+            <div style={labelStyle}>10 — Audit Guide &amp; Best Practices</div>
+            <h2 style={{ ...sectionH2, maxWidth: '28ch' }}>
+              How to audit and fix a website step by step.
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: 24, marginTop: 48 }}>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24 }}>
+                <div style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--ochre-400)', marginBottom: 8 }}>STEP 01</div>
+                <h3 style={{ margin: '0 0 10px', fontFamily: 'var(--font-display)', fontSize: 20, color: 'var(--text-primary)' }}>Run the first web audit</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  There is no need to install anything first. Open a terminal. Run npx aviary with the web link. Aviary launches Chromium in the background. It loads the page just like a real user. It checks more than two hundred rules across twenty-eight categories. It finishes in less than ten seconds.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24 }}>
+                <div style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--ochre-400)', marginBottom: 8 }}>STEP 02</div>
+                <h3 style={{ margin: '0 0 10px', fontFamily: 'var(--font-display)', fontSize: 20, color: 'var(--text-primary)' }}>Inspect the audit score</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  When the audit is done, a clean score is displayed. The score is between zero and one hundred. Aviary prints a summary table in the terminal. See how many checks passed. See how many checks failed. Identify which rules need attention. Export a full JSON report to share with team members.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24 }}>
+                <div style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--ochre-400)', marginBottom: 8 }}>STEP 03</div>
+                <h3 style={{ margin: '0 0 10px', fontFamily: 'var(--font-display)', fontSize: 20, color: 'var(--text-primary)' }}>Fix failing rules fast</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Each failing rule gives a clear tip. If the page title is too short, the tip gives the best character count. If an image lacks alt text, Aviary shows the exact tag. If a button is too small on mobile, Aviary specifies the height and width to set. Apply the fix in the code. Run Aviary again to see the score increase.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24 }}>
+                <div style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--ochre-400)', marginBottom: 8 }}>STEP 04</div>
+                <h3 style={{ margin: '0 0 10px', fontFamily: 'var(--font-display)', fontSize: 20, color: 'var(--text-primary)' }}>Automate in CI pipelines</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Stop new bugs from slipping into the main branch. Add Aviary to the build step in GitHub Actions. Set a minimum score threshold like ninety-five. If a pull request causes the score to drop, the build will fail. This protects users and keeps search rankings high.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24 }}>
+                <div style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--ochre-400)', marginBottom: 8 }}>STEP 05</div>
+                <h3 style={{ margin: '0 0 10px', fontFamily: 'var(--font-display)', fontSize: 20, color: 'var(--text-primary)' }}>Track metrics over time</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Check the site score after each release. Watch core web vitals. Make sure page speed stays fast. Fix broken links right away. Keep meta tags fresh. Good habits lead to high search ranks and happy users.
+                </p>
+              </div>
+              <div style={{ background: 'var(--surface-card)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 24 }}>
+                <div style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--ochre-400)', marginBottom: 8 }}>STEP 06</div>
+                <h3 style={{ margin: '0 0 10px', fontFamily: 'var(--font-display)', fontSize: 20, color: 'var(--text-primary)' }}>Share reports with teams</h3>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  Export JSON and HTML audit files. Share them in pull requests or team chats. Show designers which tap targets need more space. Show developers which scripts block the main thread. Clear data makes team work easy.
+                </p>
+              </div>
+            </div>
+
+            <div style={{ marginTop: 48, background: 'var(--surface-sunken)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 28 }}>
+              <h3 style={{ margin: '0 0 16px', fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--text-primary)' }}>Web Auditing Best Practices</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', gap: 20 }}>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Keep titles short and clear</h4>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                    Aim for thirty to sixty characters. State what the page does. Include primary keywords early in the title.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Provide good meta descriptions</h4>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                    Keep descriptions between one hundred twenty and one hundred sixty characters. Give users a clear reason to click.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Make all touch targets forty-four pixels</h4>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                    Buttons must be easy to tap on phones. Provide ample spacing between adjacent links to avoid miss-clicks.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Always use HTTPS and secure headers</h4>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                    Encrypt all traffic. Use Strict Transport Security and Content Security Policy headers to protect users.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Structure heading levels logically</h4>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                    Use one unique H1 per page. Nest H2 and H3 tags in order. Headings help both readers and search bots understand page topics quickly.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Optimize images and media files</h4>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                    Compress images before publishing. Provide descriptive alt text for accessibility. Set explicit dimensions to prevent layout shifts during page load.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Verify canonical links and sitemaps</h4>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                    Point canonical tags to primary URLs. Keep XML sitemaps up to date. Sitemaps ensure search engine crawlers find every important page on the site.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Test page performance regularly</h4>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                    Run audits before and after every major code release. Monitor Core Web Vitals to keep load times fast and user bounce rates low.
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid var(--line-hairline)' }}>
+                <h4 style={{ margin: '0 0 8px', fontFamily: 'var(--font-ui)', fontSize: 16, color: 'var(--text-primary)' }}>Core audit areas for web teams</h4>
+                <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                  SEO checks help search bots find and index web pages. Speed checks help pages load fast on all phones and networks. Mobile UX checks make buttons easy to tap. Accessibility checks let screen readers read page content with ease. Security checks ensure links and forms protect user privacy at all times.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section style={{ borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-sunken)' }}>
           <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '96px 32px', display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'center', justifyContent: 'space-between' }}>
@@ -818,11 +1043,11 @@ export default function AviaryHome() {
                 Check the page your users are loading.
               </h2>
               <p style={{ margin: '12px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', color: 'var(--text-muted)' }}>MIT licensed. Runs on your machine, in CI, or behind an agent.</p>
-              <p style={{ margin: '6px 0 0', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>npx aviary -u https://example.com</p>
+              <p style={{ margin: '6px 0 0', fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-faint)' }}>npx aviary -u https://example.com</p>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="primary" size="lg" data-cta="bottom" role="button">Read the docs</Button></Link>
-              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button variant="secondary" size="lg">Star on GitHub</Button></a>
+              <Link href="/docs" style={{ textDecoration: 'none', display: 'inline-flex', minHeight: 44, minWidth: 44, alignItems: 'center' }}><Button variant="primary" size="lg" data-cta="bottom" role="button">Read the docs</Button></Link>
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'inline-flex', minHeight: 44, minWidth: 44, alignItems: 'center' }}><Button variant="secondary" size="lg">Star on GitHub</Button></a>
             </div>
           </div>
         </section>
@@ -832,13 +1057,13 @@ export default function AviaryHome() {
         <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '48px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(160px, 100%), 1fr))', gap: 32 }}>
           <div>
             <Wordmark size={20} />
-            <p style={{ margin: '12px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', color: 'var(--text-faint)', lineHeight: 'var(--leading-loose)', maxWidth: '28ch' }}>
-              Real, rendered-page audits, in a real browser. On npm as <code style={{ fontFamily: 'var(--font-code)', fontSize: 13 }}>aviary</code>.
+            <p style={{ margin: '12px 0 0', fontFamily: 'var(--font-ui)', fontSize: 14, color: 'var(--text-faint)', lineHeight: 'var(--leading-loose)', maxWidth: '28ch' }}>
+              Real, rendered-page audits, in a real browser. On npm as <code style={{ fontFamily: 'var(--font-code)', fontSize: 14 }}>aviary</code>.
             </p>
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 12 }}>Product</div>
-            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)' }}>
+            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 14 }}>
               <a href="#browser" style={NAV_LINK}>Real browser</a>
               <a href="#checks" style={NAV_LINK}>Checks</a>
               <a href="#report" style={NAV_LINK}>Reports</a>
@@ -846,7 +1071,7 @@ export default function AviaryHome() {
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 12 }}>Docs</div>
-            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)' }}>
+            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 14 }}>
               <Link href="/docs" style={NAV_LINK}>Getting started</Link>
               <Link href="/docs?doc=accuracy-limitations" style={NAV_LINK}>Accuracy limitations</Link>
               <Link href="/docs?doc=roadmap" style={NAV_LINK}>Roadmap</Link>
@@ -854,7 +1079,7 @@ export default function AviaryHome() {
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 12 }}>Project</div>
-            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)' }}>
+            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 14 }}>
               <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={NAV_LINK}>GitHub</a>
               <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener noreferrer" style={NAV_LINK}>Issues</a>
               <a href={`${GITHUB_URL}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer" style={NAV_LINK}>MIT License</a>
@@ -862,7 +1087,7 @@ export default function AviaryHome() {
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 12 }}>Legal</div>
-            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)' }}>
+            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 14 }}>
               <Link href="/docs?doc=privacy" style={NAV_LINK}>Privacy Policy</Link>
               <Link href="/docs?doc=terms" style={NAV_LINK}>Terms of Service</Link>
               <Link href="/docs?doc=cookies" style={NAV_LINK}>Cookie Policy</Link>
@@ -870,10 +1095,27 @@ export default function AviaryHome() {
           </div>
         </div>
         <div style={{ borderTop: '1px solid var(--line-hairline)' }}>
-          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '18px 32px', display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'space-between', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>
-            <span>© 2026 Aviary contributors · All rights reserved</span>
-            <time dateTime="2026-09-05" style={{ color: 'var(--text-faint)' }}>Updated September 2026</time>
-            <span>235 checks · 28 categories · chromium via playwright</span>
+          <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '18px 32px', display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center', justifyContent: 'space-between', fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-faint)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+              <span>© 2026 Aviary contributors · All rights reserved.</span>
+              <time dateTime="2026-09-05" style={{ color: 'var(--text-faint)' }}>Updated September 2026</time>
+              <div className="secure secure-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <span className="ssl" style={{ color: 'var(--lichen-400)' }}>🔒 SSL encrypted &amp; secure payment verification.</span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg"
+                  alt="Rust high-performance engine"
+                  width={16}
+                  height={16}
+                  style={{ width: 16, height: 16, verticalAlign: 'middle' }}
+                />
+                <span>Rust &amp; Chromium engine</span>
+              </span>
+              <span>235 checks · 28 categories</span>
+            </div>
           </div>
         </div>
       </footer>
