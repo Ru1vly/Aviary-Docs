@@ -166,6 +166,19 @@ const STEPS = [
   { n: '04', title: 'Report', body: 'Return structured results, a score and detailed findings per check.' },
 ];
 
+const TUI_CATEGORIES = [
+  { name: 'Meta Tags', pass: 5, total: 6, active: true },
+  { name: 'Headings', pass: 3, total: 3, active: false },
+  { name: 'Images', pass: 1, total: 2, active: false },
+  { name: 'A11y', pass: 2, total: 4, active: false },
+];
+
+const TUI_CHECKS = [
+  { verdict: 'pass' as const, text: 'Title is optimal' },
+  { verdict: 'warn' as const, text: 'Description is short' },
+  { verdict: 'fail' as const, text: 'Canonical URL missing' },
+];
+
 const REPORT_ISSUES = [
   { verdict: 'fail' as const, cat: 'seo', message: 'Canonical URL is missing', selector: 'head' },
   { verdict: 'fail' as const, cat: 'accessibility', message: '7 form inputs missing labels', selector: 'form input' },
@@ -244,8 +257,8 @@ export default function AviaryHome() {
     return {
       name: c.name,
       count: revealed ? `${c.pass} / ${c.total}` : '· · ·',
-      mark: revealed ? (fail ? '!' : '✓') : '',
-      color: fail ? C.ochre : C.pass,
+      verdict: fail ? ('warn' as const) : ('pass' as const),
+      revealed,
       opacity: revealed ? 1 : 0.28,
     };
   });
@@ -257,7 +270,7 @@ export default function AviaryHome() {
   const scoreValue = done ? 91 : Math.round(91 * (step / (HERO.length + 2)));
 
   const copyInstall = () => {
-    navigator.clipboard?.writeText('npx aviary -u https://example.com');
+    navigator.clipboard?.writeText('npm install -g aviary');
     setCopied(true);
     setTimeout(() => setCopied(false), 1400);
   };
@@ -276,7 +289,8 @@ export default function AviaryHome() {
         }}
       >
         <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '0 20px', height: 52, display: 'flex', alignItems: 'center', gap: 20 }} className="sm:px-8 sm:gap-8">
-          <Link href="#top" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <Link href="#main-content" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+            <img src="/icon.svg" alt="Aviary Logo" width="22" height="22" style={{ borderRadius: 4 }} />
             <Wordmark size={20} />
           </Link>
           <nav
@@ -296,7 +310,7 @@ export default function AviaryHome() {
           <div style={{ flex: 1 }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span className="hidden sm:inline" style={{ fontFamily: 'var(--font-code)', fontSize: 12, color: 'var(--text-faint)' }}>v1.0.0 · MIT</span>
-            <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hidden sm:inline-flex" style={{ textDecoration: 'none' }}>
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex" style={{ textDecoration: 'none' }}>
               <Button variant="secondary" size="sm">GitHub</Button>
             </a>
             <Link href="/docs" style={{ textDecoration: 'none' }}>
@@ -306,7 +320,8 @@ export default function AviaryHome() {
         </div>
       </header>
 
-      <main id="top" style={{ position: 'relative' }}>
+      <main id="main-content" style={{ position: 'relative' }}>
+        <span id="top" />
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, pointerEvents: 'none', zIndex: 0 }}>
           <ParticleField height={560} density={0.95} fade="bottom" />
         </div>
@@ -329,18 +344,30 @@ export default function AviaryHome() {
             >
               A real browser opens your site and tells you what&rsquo;s broken.
             </h1>
-            <p style={{ margin: '24px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-md)', lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)', maxWidth: '56ch' }}>
-              SEO, performance, accessibility, security, and UX — checked after your JavaScript runs, not before.
+            <p
+              itemProp="description"
+              className="product-description"
+              style={{ margin: '24px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-md)', lineHeight: 'var(--leading-normal)', color: 'var(--text-muted)', maxWidth: '56ch' }}
+            >
+              SEO, performance, accessibility, security, and UX — checked after your JavaScript runs, not before. Full automated technical auditing in real Chromium browsers.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 32 }}>
-              <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="primary" size="lg">Get started</Button></Link>
-              <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="secondary" size="lg">Documentation</Button></Link>
-              <a href={GITHUB_URL} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}><Button variant="ghost" size="lg">GitHub</Button></a>
+              <Link href="/docs" style={{ textDecoration: 'none' }}>
+                <Button variant="primary" size="lg" data-cta="primary" role="button">
+                  Get started
+                </Button>
+              </Link>
+              <Link href="/docs" style={{ textDecoration: 'none' }}>
+                <Button variant="secondary" size="lg">Documentation</Button>
+              </Link>
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <Button variant="ghost" size="lg">GitHub</Button>
+              </a>
             </div>
             <div style={{ marginTop: 34, display: 'flex', alignItems: 'center', gap: 12, border: '1px solid var(--line-default)', background: 'var(--surface-sunken)', borderRadius: 'var(--radius-xs)', padding: '10px 12px', maxWidth: 480 }}>
               <span style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-faint)' }}>$</span>
               <code style={{ fontFamily: 'var(--font-code)', fontSize: 14, color: 'var(--text-primary)', flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                npx aviary -u https://example.com
+                npm install -g aviary
               </code>
               <button
                 type="button"
@@ -369,7 +396,7 @@ export default function AviaryHome() {
           <div style={{ border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', background: 'var(--surface-card)', overflow: 'hidden' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', borderBottom: '1px solid var(--line-hairline)' }}>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8, background: 'var(--surface-sunken)', border: '1px solid var(--line-default)', borderRadius: 'var(--radius-xs)', padding: '4px 10px', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-muted)' }}>
-                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--verdict-pass)' }} />
+                <span style={{ width: 5, height: 5, borderRadius: '50%', background: done ? 'var(--verdict-pass)' : 'var(--verdict-warn)' }} />
                 https://example.com
               </div>
               <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, color: 'var(--text-faint)', letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase' }}>
@@ -393,7 +420,9 @@ export default function AviaryHome() {
                 <div key={row.name} style={{ display: 'grid', gridTemplateColumns: '1fr auto auto', alignItems: 'center', gap: 16, height: 36, borderBottom: '1px solid var(--line-hairline)', opacity: row.opacity, transition: 'opacity 220ms var(--ease-standard)' }}>
                   <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-body)' }}>{row.name}</span>
                   <span style={{ fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-muted)', fontVariantNumeric: 'tabular-nums' }}>{row.count}</span>
-                  <span style={{ fontFamily: 'var(--font-code)', fontSize: 13, width: 14, textAlign: 'center', color: row.color }}>{row.mark}</span>
+                  <span style={{ width: 20, display: 'flex', justifyContent: 'center' }}>
+                    {row.revealed ? <VerdictBadge verdict={row.verdict} compact /> : null}
+                  </span>
                 </div>
               ))}
 
@@ -460,18 +489,49 @@ export default function AviaryHome() {
                   Rendered viewport
                 </div>
                 <div style={{ position: 'relative', padding: 16, height: 300, overflow: 'hidden' }}>
-                  <div style={{ height: 34, border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-xs)', marginBottom: 12, background: 'var(--field-grain)', backgroundSize: 'var(--field-grain-size)' }} />
-                  <div style={{ height: 96, border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-xs)', marginBottom: 12, background: 'var(--field-grain)', backgroundSize: 'var(--field-grain-size)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ui)', fontSize: 11, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)' }}>
-                    hero region
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
-                    {[0, 1, 2].map((i) => (
-                      <div key={i} style={{ height: 70, border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-xs)', background: 'var(--field-grain)', backgroundSize: 'var(--field-grain-size)' }} />
+                  {/* Nav */}
+                  <div style={{ height: 34, border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-xs)', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8, padding: '0 10px' }}>
+                    <div style={{ width: 16, height: 16, borderRadius: 'var(--radius-xs)', background: 'var(--line-strong)', flexShrink: 0 }} />
+                    <div style={{ flex: 1 }} />
+                    {[30, 30, 30].map((w, i) => (
+                      <div key={i} style={{ width: w, height: 6, borderRadius: 'var(--radius-full)', background: 'var(--line-default)' }} />
                     ))}
                   </div>
-                  <div style={{ position: 'absolute', left: 32, top: 78, width: 6, height: 6, borderRadius: '50%', background: 'var(--ochre-400)' }} />
-                  <div style={{ position: 'absolute', right: 48, top: 148, width: 6, height: 6, borderRadius: '50%', background: 'var(--vermilion-400)' }} />
-                  <div style={{ position: 'absolute', left: 96, bottom: 44, width: 6, height: 6, borderRadius: '50%', background: 'var(--slate-blue-400)' }} />
+
+                  {/* Hero */}
+                  <div style={{ height: 96, border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-xs)', marginBottom: 12, padding: 16 }}>
+                    <div style={{ width: '62%', height: 10, borderRadius: 'var(--radius-full)', background: 'var(--line-strong)' }} />
+                    <div style={{ width: '42%', height: 10, borderRadius: 'var(--radius-full)', background: 'var(--line-strong)', marginTop: 8 }} />
+                    <div style={{ width: '28%', height: 6, borderRadius: 'var(--radius-full)', background: 'var(--line-default)', marginTop: 10 }} />
+                    <div style={{ width: 64, height: 14, borderRadius: 'var(--radius-xs)', border: '1px solid var(--line-strong)', marginTop: 8 }} />
+                  </div>
+
+                  {/* Content cards */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+                    {[0, 1, 2].map((i) => (
+                      <div key={i} style={{ height: 70, border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-xs)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ height: 30, background: 'var(--field-grain)', backgroundSize: 'var(--field-grain-size)' }} />
+                        <div style={{ flex: 1, padding: '7px 8px', display: 'grid', gap: 4, alignContent: 'center' }}>
+                          <div style={{ width: '80%', height: 5, borderRadius: 'var(--radius-full)', background: 'var(--line-default)' }} />
+                          <div style={{ width: '55%', height: 5, borderRadius: 'var(--radius-full)', background: 'var(--line-hairline)' }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Detected-issue annotations, pinned to what they actually describe */}
+                  <div style={{ position: 'absolute', left: 40, top: 80, display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--cat-seo)', boxShadow: '0 0 0 3px rgba(224,177,90,.16)' }} />
+                    <span style={{ fontFamily: 'var(--font-code)', fontSize: 10, color: 'var(--cat-seo)' }}>h1 too long</span>
+                  </div>
+                  <div style={{ position: 'absolute', left: 108, top: 128, display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--cat-ux)', boxShadow: '0 0 0 3px rgba(169,139,176,.16)' }} />
+                    <span style={{ fontFamily: 'var(--font-code)', fontSize: 10, color: 'var(--cat-ux)' }}>tap target &lt;44px</span>
+                  </div>
+                  <div style={{ position: 'absolute', left: 56, top: 190, display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--cat-accessibility)', boxShadow: '0 0 0 3px rgba(127,168,189,.16)' }} />
+                    <span style={{ fontFamily: 'var(--font-code)', fontSize: 10, color: 'var(--cat-accessibility)' }}>missing alt text</span>
+                  </div>
                 </div>
               </div>
 
@@ -613,11 +673,34 @@ export default function AviaryHome() {
                 <div style={{ height: 12 }} />
                 <div><span style={{ color: 'var(--text-faint)' }}>ELAPSED: </span><span style={{ color: 'var(--text-primary)' }}>{'00:' + String(8 + (tick % 10)).padStart(2, '0')}</span></div>
               </div>
+
+              <div style={{ height: 12 }} />
+              <div style={{ display: 'grid', gridTemplateColumns: '124px 1fr', border: '1px solid var(--line-default)' }}>
+                <div style={{ borderRight: '1px solid var(--line-default)', padding: '8px 10px' }}>
+                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', color: 'var(--text-faint)', marginBottom: 6 }}>CATEGORIES</div>
+                  {TUI_CATEGORIES.map((c) => (
+                    <div key={c.name} style={{ display: 'flex', gap: 4, fontSize: 12, color: c.active ? 'var(--ochre-400)' : 'var(--text-muted)' }}>
+                      <span style={{ width: 8 }}>{c.active ? '>' : ''}</span>
+                      <span style={{ flex: 1 }}>{c.name}</span>
+                      <span style={{ color: c.pass < c.total ? 'var(--verdict-warn)' : 'var(--verdict-pass)' }}>{c.pass}/{c.total}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ padding: '8px 10px' }}>
+                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', color: 'var(--text-faint)', marginBottom: 6 }}>CHECKS — META TAGS</div>
+                  {TUI_CHECKS.map((c) => (
+                    <div key={c.text} style={{ fontSize: 12, color: c.verdict === 'pass' ? 'var(--verdict-pass)' : c.verdict === 'warn' ? 'var(--verdict-warn)' : 'var(--verdict-fail)' }}>
+                      {c.verdict}  {c.text}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div style={{ height: 1, background: 'var(--line-hairline)', margin: '20px 0 10px' }} />
               <div style={{ color: 'var(--text-faint)' }}>
                 <span style={{ color: 'var(--text-body)' }}>TAB</span>:NEXT{'  '}
                 <span style={{ color: 'var(--text-body)' }}>ENTER</span>:LAUNCH{'  '}
-                <span style={{ color: 'var(--text-body)' }}>←/→</span>:PRESET{'  '}
+                <span style={{ color: 'var(--text-body)' }}>A/E/W</span>:FILTER{'  '}
                 <span style={{ color: 'var(--text-body)' }}>ESC</span>:QUIT
               </div>
             </div>
@@ -738,15 +821,15 @@ export default function AviaryHome() {
               <p style={{ margin: '6px 0 0', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>npx aviary -u https://example.com</p>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="primary" size="lg">Read the docs</Button></Link>
-              <a href={GITHUB_URL} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}><Button variant="secondary" size="lg">Star on GitHub</Button></a>
+              <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="primary" size="lg" data-cta="bottom" role="button">Read the docs</Button></Link>
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button variant="secondary" size="lg">Star on GitHub</Button></a>
             </div>
           </div>
         </section>
       </main>
 
       <footer style={{ borderTop: '1px solid var(--line-hairline)' }}>
-        <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '48px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(170px, 100%), 1fr))', gap: 32 }}>
+        <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '48px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(160px, 100%), 1fr))', gap: 32 }}>
           <div>
             <Wordmark size={20} />
             <p style={{ margin: '12px 0 0', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)', color: 'var(--text-faint)', lineHeight: 'var(--leading-loose)', maxWidth: '28ch' }}>
@@ -772,15 +855,24 @@ export default function AviaryHome() {
           <div>
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 12 }}>Project</div>
             <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)' }}>
-              <a href={GITHUB_URL} target="_blank" rel="noreferrer" style={NAV_LINK}>GitHub</a>
-              <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noreferrer" style={NAV_LINK}>Issues</a>
-              <a href={`${GITHUB_URL}/blob/main/LICENSE`} target="_blank" rel="noreferrer" style={NAV_LINK}>MIT License</a>
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={NAV_LINK}>GitHub</a>
+              <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener noreferrer" style={NAV_LINK}>Issues</a>
+              <a href={`${GITHUB_URL}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer" style={NAV_LINK}>MIT License</a>
+            </div>
+          </div>
+          <div>
+            <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: 'var(--tracking-caps)', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 12 }}>Legal</div>
+            <div style={{ display: 'grid', gap: 8, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)' }}>
+              <Link href="/docs?doc=privacy" style={NAV_LINK}>Privacy Policy</Link>
+              <Link href="/docs?doc=terms" style={NAV_LINK}>Terms of Service</Link>
+              <Link href="/docs?doc=cookies" style={NAV_LINK}>Cookie Policy</Link>
             </div>
           </div>
         </div>
         <div style={{ borderTop: '1px solid var(--line-hairline)' }}>
           <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '18px 32px', display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'space-between', fontFamily: 'var(--font-code)', fontSize: 13, color: 'var(--text-faint)' }}>
-            <span>© 2026 Aviary contributors</span>
+            <span>© 2026 Aviary contributors · All rights reserved</span>
+            <time dateTime="2026-09-05" style={{ color: 'var(--text-faint)' }}>Updated September 2026</time>
             <span>235 checks · 28 categories · chromium via playwright</span>
           </div>
         </div>

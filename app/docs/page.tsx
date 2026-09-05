@@ -3,6 +3,9 @@ import {
   Shield,
   GitBranch,
   Github,
+  FileText,
+  Scale,
+  Cookie,
 } from 'lucide-react';
 import Link from 'next/link';
 import fs from 'fs';
@@ -36,6 +39,27 @@ const DOCS_PAGES = [
     description: 'What still needs work, and what we’re building next.',
     fileName: 'roadmap.md',
     icon: GitBranch,
+  },
+  {
+    id: 'privacy',
+    title: 'Privacy Policy',
+    description: 'Our principles and data handling policies.',
+    fileName: 'privacy.md',
+    icon: FileText,
+  },
+  {
+    id: 'terms',
+    title: 'Terms of Service',
+    description: 'Terms governing the use of Aviary software and sites.',
+    fileName: 'terms.md',
+    icon: Scale,
+  },
+  {
+    id: 'cookies',
+    title: 'Cookie Policy',
+    description: 'Information regarding local storage and cookie usage.',
+    fileName: 'cookies.md',
+    icon: Cookie,
   },
 ];
 
@@ -160,15 +184,48 @@ export default async function DocsPage({ searchParams }: PageProps) {
         </aside>
 
         {/* Main Content */}
-        <main style={{ flex: 1, minWidth: 0, maxWidth: 960 }}>
+        <main id="main-content" style={{ flex: 1, minWidth: 0, maxWidth: 960 }}>
           {/* Breadcrumbs */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-code)', fontSize: 'var(--text-xs)', color: 'var(--text-faint)', marginBottom: 16 }}>
-            <Link href="/" style={{ color: 'var(--text-faint)' }}>Aviary</Link>
-            <span>/</span>
-            <Link href="/docs" style={{ color: 'var(--text-faint)' }}>Docs</Link>
-            <span>/</span>
-            <span style={{ color: 'var(--text-primary)' }}>{activePage.title}</span>
-          </div>
+          <nav
+            aria-label="Breadcrumbs"
+            className="breadcrumb"
+            style={{ marginBottom: 16 }}
+          >
+            <ol
+              itemScope
+              itemType="https://schema.org/BreadcrumbList"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                margin: 0,
+                padding: 0,
+                listStyle: 'none',
+                fontFamily: 'var(--font-code)',
+                fontSize: 'var(--text-xs)',
+                color: 'var(--text-faint)',
+              }}
+            >
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <Link href="/" itemProp="item" style={{ color: 'var(--text-faint)' }}>
+                  <span itemProp="name">Aviary</span>
+                </Link>
+                <meta itemProp="position" content="1" />
+              </li>
+              <li aria-hidden="true">/</li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <Link href="/docs" itemProp="item" style={{ color: 'var(--text-faint)' }}>
+                  <span itemProp="name">Docs</span>
+                </Link>
+                <meta itemProp="position" content="2" />
+              </li>
+              <li aria-hidden="true">/</li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <span itemProp="name" style={{ color: 'var(--text-primary)' }}>{activePage.title}</span>
+                <meta itemProp="position" content="3" />
+              </li>
+            </ol>
+          </nav>
 
           {/* Section Header */}
           <div style={{ marginBottom: 40, paddingBottom: 32, borderBottom: '1px solid var(--line-hairline)' }}>

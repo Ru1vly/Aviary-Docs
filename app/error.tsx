@@ -63,7 +63,7 @@ export default function ErrorPage({
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
         <Button variant="primary" size="lg" onClick={() => reset()}>Try again</Button>
         <Link href="/" style={{ textDecoration: 'none' }}><Button variant="secondary" size="lg">Back home</Button></Link>
-        <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
+        <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
           <Button variant="ghost" size="lg">Report this</Button>
         </a>
       </div>

@@ -45,7 +45,7 @@ export default function NotFound() {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
         <Link href="/" style={{ textDecoration: 'none' }}><Button variant="primary" size="lg">Back home</Button></Link>
         <Link href="/docs" style={{ textDecoration: 'none' }}><Button variant="secondary" size="lg">Read the docs</Button></Link>
-        <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
+        <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
           <Button variant="ghost" size="lg">Report a broken link</Button>
         </a>
       </div>
