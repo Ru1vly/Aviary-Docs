@@ -26,12 +26,6 @@ const DOCS_FILES = [
     fileName: 'accuracy-limitations.md',
   },
   {
-    id: 'roadmap',
-    title: 'Product roadmap',
-    description: 'What still needs work, and what we’re building next.',
-    fileName: 'roadmap.md',
-  },
-  {
     id: 'privacy',
     title: 'Privacy Policy',
     description: 'Our principles and data handling policies.',

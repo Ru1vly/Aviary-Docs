@@ -144,9 +144,9 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] API documentation (OpenAPI/Swagger)
 
 - [ ] **Documentation**
-  - [ ] Comprehensive README
-  - [ ] API reference
-  - [ ] Configuration guide
+  - [x] Comprehensive README
+  - [x] API reference
+  - [x] Configuration guide
   - [ ] Best practices guide
   - [ ] Troubleshooting guide
   - [ ] Contributing guidelines
@@ -292,18 +292,14 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 ## Priority levels
 
 **High priority** — essential for v1.0 production release
-**Medium priority** — important but can be added in v1.x
-**Low priority** — nice to have, can be added in future versions
+**Medium priority** — important features for subsequent minor releases
+**Low priority** — nice-to-have optimizations and exploratory integrations
 
 ## Next steps
 
-1. Start with testing infrastructure (unit tests, integration tests)
-2. Implement CLI tool for better usability
-3. Add configuration file support
-4. Enhance reporting with HTML/PDF output
-5. Add heatmap functionality (core feature)
-6. Implement content analysis features
-7. Add structured data validation
-8. Build documentation and examples
-9. Set up CI/CD pipeline
-10. Publish to NPM
+1. Resolve npm authentication / bypass 2FA to complete initial package bootstrapping on npm
+2. Release `@ru1vly/aviary@0.1.0` and verify zero-install `npx @ru1vly/aviary` usage
+3. Verify cross-platform smoke tests across Linux, macOS, and Windows runners
+4. Implement parallel multi-URL scanning and browser resource pooling
+5. Implement deep link resolution crawler for broken link detection
+6. Add historical trend tracking and diff reporting between audits

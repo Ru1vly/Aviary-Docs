@@ -6,7 +6,6 @@ import Link from 'next/link';
 import {
   Terminal,
   Shield,
-  GitBranch,
   Github,
   FileText,
   Scale,
@@ -34,7 +33,6 @@ export interface DocsViewProps {
 const DOCS_NAV = [
   { id: 'quickstart', title: 'Quick start', icon: Terminal },
   { id: 'accuracy-limitations', title: 'Accuracy limitations', icon: Shield },
-  { id: 'roadmap', title: 'Product roadmap', icon: GitBranch },
   { id: 'privacy', title: 'Privacy Policy', icon: FileText },
   { id: 'terms', title: 'Terms of Service', icon: Scale },
   { id: 'cookies', title: 'Cookie Policy', icon: Cookie },
@@ -69,7 +67,7 @@ export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsView
           </Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span className="hidden sm:inline" style={{ fontFamily: 'var(--font-code)', fontSize: 12, color: 'var(--text-faint)' }}>v1.1.0 · MIT</span>
+          <span className="hidden sm:inline" style={{ fontFamily: 'var(--font-code)', fontSize: 12, color: 'var(--text-faint)' }}>v0.1.1 · MIT</span>
           <a
             href={GITHUB_URL}
             target="_blank"
@@ -83,7 +81,7 @@ export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsView
       </nav>
 
       {/* Page Container */}
-      <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto', padding: '32px 20px', display: 'flex', gap: 48 }} className="flex-col lg:flex-row sm:px-8">
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 24px 120px', display: 'flex', gap: 64 }} className="flex-col lg:flex-row sm:px-8">
         {/* Left Sidebar */}
         <aside style={{ flexShrink: 0 }} className="w-full lg:w-[236px]">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }} className="static top-auto lg:sticky lg:top-[100px]">
@@ -130,7 +128,7 @@ export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsView
         </aside>
 
         {/* Main Content */}
-        <main id="main-content" style={{ flex: 1, minWidth: 0, maxWidth: 960 }}>
+        <main id="main-content" style={{ flex: 1, minWidth: 0, maxWidth: 720 }}>
           {/* Breadcrumbs */}
           <nav
             aria-label="Breadcrumbs"
@@ -174,17 +172,17 @@ export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsView
           </nav>
 
           {/* Section Header */}
-          <div style={{ marginBottom: 40, paddingBottom: 32, borderBottom: '1px solid var(--line-hairline)' }}>
+          <div style={{ marginBottom: 56, paddingBottom: 40, borderBottom: '1px solid var(--line-hairline)' }}>
             <h1
               style={{
                 margin: '0 0 16px', fontFamily: 'var(--font-display)', fontWeight: 400,
-                fontSize: 'clamp(32px, 4vw, 44px)', lineHeight: 1.1, letterSpacing: 'var(--tracking-tight)',
+                fontSize: 'clamp(38px, 4vw, 52px)', lineHeight: 1.06, letterSpacing: 'var(--tracking-tight)',
                 color: 'var(--text-primary)',
               }}
             >
               {activeDoc.title}
             </h1>
-            <p style={{ margin: 0, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 'var(--leading-normal)' }}>
+            <p style={{ margin: 0, maxWidth: 580, fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)', color: 'var(--text-muted)', lineHeight: 'var(--leading-loose)' }}>
               {activeDoc.description}
             </p>
           </div>
@@ -200,7 +198,7 @@ export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsView
 
         {/* Right Sidebar - On this page (TOC) */}
         {activeDoc.headings.length > 0 && (
-          <aside className="hidden xl:block" style={{ width: 236, flexShrink: 0 }}>
+          <aside className="hidden xl:block" style={{ width: 196, flexShrink: 0 }}>
             <div style={{ position: 'sticky', top: 100, paddingLeft: 24, borderLeft: '1px solid var(--line-hairline)' }}>
               <h3
                 style={{

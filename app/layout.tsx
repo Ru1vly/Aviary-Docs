@@ -136,37 +136,6 @@ const breadcrumbSchema = {
   ],
 };
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'Why is a real browser required for technical auditing?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Most modern websites use React or Next.js and render with client code. Old HTTP tools do not run scripts and miss dynamic meta tags. Aviary runs a real headless browser to inspect what users and bots see.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How does Aviary measure Core Web Vitals and load speed?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Aviary tracks real browser performance including First Contentful Paint, Largest Contentful Paint, Layout Shift, and script blocking time with clear diagnostics.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I run Aviary in automated CI and CD pipelines?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Aviary works in GitHub Actions and pre-commit hooks with score threshold assertions to prevent regressions from reaching production.',
-      },
-    },
-  ],
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -232,11 +201,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          aria-hidden="true"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
         {children}
       </body>

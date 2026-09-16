@@ -24,7 +24,7 @@ runs 235 checks across 28 categories — SEO, performance, accessibility,
 security, and UX — against what visitors actually load, not raw server HTML.
 
 The engine itself (CLI, TypeScript API, terminal dashboard, MCP server)
-lives in a separate repository, published to npm as `aviary`:
+lives in a separate repository, published to npm as `@ru1vly/aviary`:
 https://github.com/Ru1vly/Aviary
 
 This repo only builds the site that explains and documents it — a Next.js

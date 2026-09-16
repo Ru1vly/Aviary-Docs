@@ -1,6 +1,6 @@
 # SEO Checker Tool - Accuracy Limitations
 
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-06
 
 ## Overview
 
@@ -10,24 +10,24 @@ This document provides transparency about the aviary tool's accuracy limitations
 
 ---
 
-## 1. Previously fixed issues
+## 1. Previously Fixed Issues
 
-### 1.1 Previously disabled checks (fixed)
+### 1.1 Previously Disabled Checks ✅ FIXED
 
 The following checks were disabled in earlier versions but have been re-enabled:
 
 | Check | Location | Status | Description |
 |-------|----------|--------|-------------|
-| **Response Code Validation** | Technical Checker | Fixed | Now properly checks HTTP status codes (200, 404, 500, etc.) |
-| **Compression Detection** | Technical Checker | Fixed | Detects gzip, brotli, and deflate compression |
-| **Security Headers** | Security Checker | Fixed | Validates HSTS, X-Frame-Options, CSP, X-Content-Type-Options |
-| **Cache Headers** | Core Web Vitals | Fixed | Checks Cache-Control, ETag, Expires headers |
+| **Response Code Validation** | Technical Checker | ✅ Fixed | Now properly checks HTTP status codes (200, 404, 500, etc.) |
+| **Compression Detection** | Technical Checker | ✅ Fixed | Detects gzip, brotli, and deflate compression |
+| **Security Headers** | Security Checker | ✅ Fixed | Validates HSTS, X-Frame-Options, CSP, X-Content-Type-Options |
+| **Cache Headers** | Core Web Vitals | ✅ Fixed | Checks Cache-Control, ETag, Expires headers |
 
 **Previous Behavior:** These checks always returned `passed: true` even when issues existed.
 
 **Fix:** The tool now captures the initial HTTP response during navigation and passes it to all checkers that need HTTP headers, eliminating the execution context destruction issue.
 
-### 1.2 Image format parsing bug (fixed)
+### 1.2 Image Format Parsing Bug ✅ FIXED
 
 **Previous Issue:** Image format detection showed invalid formats like:
 - `co/67x84/d2df5b/656f10`
@@ -41,7 +41,7 @@ These were from placeholder/data URLs that weren't properly filtered.
 3. Detect WebP, AVIF, and other modern formats
 4. Fallback to MIME type when extension unavailable
 
-### 1.3 Hidden text detection improvements (partially fixed)
+### 1.3 Hidden Text Detection Improvements ✅ PARTIALLY FIXED
 
 **Previous Issue:** Legitimate content was flagged as "hidden text spam":
 - Collapsed accordions
@@ -55,13 +55,49 @@ These were from placeholder/data URLs that weren't properly filtered.
 3. Reduce false positives for content overflow
 4. Only flag truly suspicious hiding techniques
 
+### 1.4 Trust-of-Analysis Bug Sweep (2026-09-06) ✅ FIXED
+
+Found by empirically running the tool against real sites (books.toscrape.com, demo.vercel.store) and hand-verifying flagged results against the raw DOM, then sweeping the rest of the codebase for the same two bug shapes:
+
+**Duplicated detection logic that had drifted out of sync** (the same underlying fact re-derived independently by two checks, with no shared source of truth):
+
+| Facts | Checks involved | Was | Fix |
+|---|---|---|---|
+| Charset declaration | `internationalization.ts`: `charset-utf8`, `unicode-support-utf8` | `unicode-support-utf8` only checked `meta[charset]`, false-failing pages (confirmed on books.toscrape.com) that declare charset via the older `<meta http-equiv="Content-Type" content="...;charset=...">` form | Both call `shared/dom.ts`'s new `getCharset()` |
+| Viewport directives | `mobileUX.ts`, `uiElements.ts`, `pageQuality.ts` | `mobileUX.ts` failed on `maximum-scale` (zoom lock); `uiElements.ts` never checked for it at all, silently passing the same tag | All three parse via `shared/dom.ts`'s new `parseViewportMeta()` (each keeps its own pass/fail policy) |
+| Open Graph tags | `metaTags.ts` (`og-tags-configured`), `socialMedia.ts` (`open-graph-configured`) | Each hand-rolled its own `querySelectorAll('meta[property^="og:"]')` | Both call `shared/dom.ts`'s new `extractOgTags()` |
+| HTTPS/protocol | `ecommerce.ts`, `legalCompliance.ts` | Each duplicated `window.location.protocol === 'https:'` in a browser `evaluate()` | Both now use `shared/dom.ts`'s new `isHttpsUrl(this.page.url())`, matching `security.ts`'s existing Node-side technique |
+
+**Check-id collisions** (two checkers registering the same rule id with different pass/fail criteria — since a rule id becomes a result's `name`, this conflates two different verdicts under one label in any flat, cross-checker view of a report):
+
+| Id | Checkers | Fix |
+|---|---|---|
+| `product-schema-complete` | `schemaValidation.ts`, `ecommerce.ts` | Renamed ecommerce.ts's to `ecommerce-product-schema-complete` |
+| `dom-content-loaded-acceptable` | `performance.ts`, `coreWebVitals.ts` | Renamed coreWebVitals.ts's to `cwv-dom-content-loaded-acceptable` |
+| `page-size-acceptable` | `technical.ts` (raw HTML size), `coreWebVitals.ts` (total page weight) | Renamed coreWebVitals.ts's to `cwv-page-size-acceptable` |
+| `resource-hints-present` | `resourceOptimization.ts`, `coreWebVitals.ts` | Renamed coreWebVitals.ts's to `cwv-resource-hints-present` |
+
+A new test (`tests/unit/registry.test.ts`) now asserts no two checkers registered on `BaseChecker` share a rule id, so this bug class can't reappear silently.
+
+**Sibling/descendant text-measurement bug** (confirmed false negative): `ecommerce.ts`'s `checkProductDescription` summed `textContent.length` only over the *descendants* of elements matched by `[class*="description"]`/`[id*="description"]`. On books.toscrape.com, the matched container (`<div id="product_description">`) holds only a heading — the actual paragraph is a DOM *sibling*, not a child — so the check measured 41 characters against an actual description of several hundred, and false-failed. `shared/dom.ts`'s new `resolveDescriptiveText()` falls back to a container's siblings when its own text looks like a bare label.
+
+**`analyzeScrollDepth`'s coordinate bug** (`heatmap.ts`, previously documented below in §2.4): fixed by replacing the `elementsFromPoint` probe with a document-relative bounding-box bucketing approach — see §2.4 for what the bug was.
+
+### 1.5 Retest Findings (2026-09-06) ✅ FIXED
+
+A follow-up retest against a broader set of real sites (webscraper.io's e-commerce test catalog, en.wikipedia.org, plus re-running books.toscrape.com and demo.vercel.store) surfaced two more issues, one of them introduced by §1.4's own fix:
+
+**`resolveDescriptiveText()` over-padding a genuinely short description:** the sibling-rescue fallback added in §1.4 correctly fixed the books.toscrape.com case, but on a real product card (webscraper.io) it also pulled in a *price* and *title* element that happened to be siblings of a genuinely short (99-character) description, padding the count to 166 and passing a description that should have failed by one character. Fixed by excluding siblings that are themselves a different structured product field (detected via `itemprop` or a `price`/`title`/`name`/`sku`/`brand` naming convention) from the fallback — it now only rescues text that was actually misplaced, not any nearby text.
+
+**A serialization hazard in the same fix, caught only by manually running the CLI:** the first version of that exclusion logic used a nested helper function (`const isOtherStructuredField = (el) => {...}`) declared inside `resolveDescriptiveText`. Running the tool via `npx tsx src/cli.ts` (the dev-mode runner used throughout this project's own testing) crashed with `ReferenceError: __name is not defined` — tsx's esbuild-based transform wraps nested function declarations with a name-preservation helper call that isn't included when Playwright serializes just the outer function's source via `.toString()` for `page.evaluate()`. The crash was caught by the check's existing `try/catch` and degraded gracefully to "check skipped" rather than crashing the audit — so real-world impact was silent under-reporting, not a hard failure. **This did not affect the actual published package**: the production build (`tsc`, via `npm run build:ts`) and the Vitest test suite (a different esbuild configuration) both compile the nested closure as plain JS with no such wrapper, and neither was affected — confirmed by building and running the compiled `dist/cli.js` with the buggy version in place. Fixed by inlining the check directly rather than declaring a nested named function, matching this file's own top-of-file rule that every function passed to `page.evaluate()` must be fully self-contained. A real-browser end-to-end test (`tests/e2e/seoChecker.e2e.test.ts`'s "resolves product-description-present against a real page without crashing") now exercises this function against an actual Playwright page rather than the mock DOM every other unit test uses — closing the specific blind spot where mock-DOM tests can't validate that a function actually survives Playwright's serialization boundary. That test does not reproduce the tsx-specific wrapper (Vitest doesn't inject it either), so the real protection against *this exact* hazard going forward is the "no nested closures" code pattern, not the test.
+
 ---
 
-## 2. Inherent limitations & code bugs (heuristic-based)
+## 2. Inherent Limitations & Code Bugs (Heuristic-Based)
 
 These checks use statistical models or heuristics that cannot be 100% accurate, or contain specific implementation bugs:
 
-### 2.1 Readability scores (~85% accurate)
+### 2.1 Readability Scores (~85% accurate)
 
 **Check:** Content Readability (Flesch-Kincaid, Gunning Fog)
 
@@ -73,7 +109,7 @@ These checks use statistical models or heuristics that cannot be 100% accurate, 
 
 **Recommendation:** Use as a guideline, not absolute rule. Consider your target audience's education level.
 
-### 2.2 Spam detection (~60% accurate)
+### 2.2 Spam Detection (~60% accurate)
 
 **Check:** Spam Patterns, Keyword Stuffing, Hidden Text
 
@@ -92,7 +128,7 @@ These checks use statistical models or heuristics that cannot be 100% accurate, 
 
 **Recommendation:** Manually review flagged items. High spam scores (>70%) are more reliable.
 
-### 2.3 Content quality assessment (~70% accurate)
+### 2.3 Content Quality Assessment (~70% accurate)
 
 **Check:** Content Depth, Uniqueness, Structure
 
@@ -102,34 +138,47 @@ These checks use statistical models or heuristics that cannot be 100% accurate, 
 - **Regulatory Auditing Omission Gap:** In `legalCompliance.ts`, the checks for GDPR and CCPA return `passed: true` if their respective compliance terms are missing. This means if a site completely lacks a privacy policy or regulatory statements, the checker still passes instead of warning or failing.
 
 **What It Can Detect:**
-- Thin content (word count)
-- Poor structure (headings)
-- Missing key elements
+- ✅ Thin content (word count)
+- ✅ Poor structure (headings)
+- ✅ Missing key elements
 
 **What It Cannot Detect:**
-- Plagiarism from other sites
-- Factual errors
-- Content relevance to search intent
-- E-A-T signals (Expertise, Authority, Trust)
+- ❌ Plagiarism from other sites
+- ❌ Factual errors
+- ❌ Content relevance to search intent
+- ❌ E-A-T signals (Expertise, Authority, Trust)
 
-### 2.4 Mobile usability & heatmaps (~75% accurate)
+### 2.4 Mobile Usability & Heatmaps (~75% accurate)
 
 **Check:** Tap Target Size, Viewport Configuration, Scroll Depth
 
 **Limitation & Code Bugs:**
 - 44px tap target rule is a guideline (WCAG 2.5.5)
 - Viewport simulation vs. actual device behavior
-- **Scroll Depth Coordinate Bug:** In `heatmap.ts`, the scroll depth content density checker uses the document-relative vertical offset `yPosition` inside `document.elementsFromPoint()`. Because `elementsFromPoint` expects viewport-relative client coordinates, passing any coordinate that exceeds the viewport height (`yPosition > viewportHeight`) returns an empty array. This breaks the density scoring calculation for pages taller than the viewport height.
+- **Scroll Depth Coordinate Bug ✅ FIXED (see §1.4):** `heatmap.ts`'s scroll depth content density checker used to pass the document-relative vertical offset `yPosition` into `document.elementsFromPoint()`, which expects viewport-relative client coordinates -- since the audit never actually scrolls the page, any `yPosition` beyond one viewport height returned an empty array, zeroing the density score for nearly every depth band on a typical page. Replaced with a bounding-box bucketing approach that doesn't depend on the page having scrolled there.
 
 **Recommendation:** Test on real devices for critical pages.
 
+### 2.4a Heatmap & Click Prediction (no ground truth available)
+
+**Check:** Click Heatmap, Attention Zones (`heatmap.ts`'s `generateClickHeatmap` and `analyzeAttentionZones`)
+
+Unlike every other check in this document, these aren't measuring a DOM fact that can be right or wrong -- they assign ad-hoc weighted scores (element type, size, position, background color) modeling where a real user would click or look. **There is no ground truth available from a static crawl**: real click/attention data comes from recorded user sessions (Hotjar, Microsoft Clarity, GA4 scroll-depth), which this tool has no access to. `heatmap.ts` is the only checker in the codebase built this way.
+
+**What this means in practice:**
+- Messages are worded "predicted"/"estimated" deliberately, not decoratively -- they should never be read as measured facts the way, say, an HTTPS check result is.
+- What *can* be validated without ground truth: the relative ranking makes sense (a colored above-fold CTA should outscore a buried below-fold link) and the scoring doesn't silently drift (a regression that swapped two weight constants should be caught by a test, not ship silently). `tests/unit/heatmap.test.ts` has rank-plausibility and exact-score-pinning tests for this.
+- What can't be validated: whether the absolute scores correlate with real user behavior on any given site. That requires correlating against actual analytics on a live, operated site -- out of scope for a static audit tool.
+
+**Recommendation:** Treat heatmap scores as a heuristic prioritization aid (which elements *should* draw attention, per visual-hierarchy best practice), not as a substitute for real user analytics.
+
 ---
 
-## 3. Client-side architectural limitations
+## 3. Client-Side Architectural Limitations
 
 These limitations stem from the tool running in a browser context:
 
-### 3.1 Network timing variability
+### 3.1 Network Timing Variability
 
 **Limitation:**
 - Performance metrics vary per run
@@ -140,20 +189,20 @@ These limitations stem from the tool running in a browser context:
 - Run multiple checks and average results
 - Use dedicated performance tools (Lighthouse, WebPageTest) for detailed analysis
 
-### 3.2 JavaScript execution required
+### 3.2 JavaScript Execution Required
 
 **Limitation:**
 - Only sees what JavaScript renders
 - Cannot test "JavaScript disabled" experience
 - May miss noscript content
 
-### 3.3 Cannot verify actual indexing
+### 3.3 Cannot Verify Actual Indexing
 
 **Limitation:**
 - Tool checks *if* page is indexable, not if it's *indexed*
 - Cannot verify Google's actual index status
 
-### 3.4 Core Web Vitals measurement approximations
+### 3.4 Core Web Vitals Measurement Approximations
 
 The **Core Web Vitals** category (`coreWebVitals`) measures real LCP, CLS, FCP, and TTFB via the standard `web-vitals` library, injected into the page before navigation so its observers can see load-time entries. Two disclosed approximations follow directly from running as an unattended, single-shot audit rather than a real browser session:
 
@@ -162,43 +211,43 @@ The **Core Web Vitals** category (`coreWebVitals`) measures real LCP, CLS, FCP, 
 
 ---
 
-## 4. Missing production features & hidden behaviors
+## 4. Missing Production Features & Hidden Behaviors
 
 Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
-- **Parallel URL checking** (checking multiple URLs in one run)
-- **Caching mechanisms** (reusing results from previous runs)
-- **Lighthouse integration** (Google's official tool)
-- **Google Search Console API integration**
-- **Historical data tracking and trend analysis**
+- ❌ **Parallel URL checking** (checking multiple URLs in one run)
+- ❌ **Caching mechanisms** (reusing results from previous runs)
+- ❌ **Lighthouse integration** (Google's official tool)
+- ❌ **Google Search Console API integration**
+- ❌ **Historical data tracking and trend analysis**
 
-### 4.1 Missing OpenAI provider in Rust engine
+### 4.1 Missing OpenAI Provider in Rust Engine
 
 - `.env.example` lists `openai` as a valid value for `AVIARY_LLM_PROVIDER`, but `engine/src/semantic/factory.rs` only implements `ollama` and `stub`. Setting the provider to `openai` silently falls back to the `StubAnalyzer` rather than erroring.
 
-### 4.2 Prometheus metrics server starts on import
+### 4.2 Prometheus Metrics Server Starts on Import
 
 - Importing the CLI registers and starts a Prometheus metrics server (`prom-client`), configurable via `AVIARY_METRICS_PORT` (default `9090`). It starts silently in the background as a side effect of import rather than an explicit opt-in, which can surprise anything embedding `src/cli.ts` as a library and may conflict with another local service already on that port.
 
 ---
 
-## 5. Known false positives by category
+## 5. Known False Positives by Category
 
-### 5.1 Meta tags & SEO basics (95% accurate)
+### 5.1 Meta Tags & SEO Basics (95% accurate)
 
 **Rare False Positives:**
 - Brand information in non-standard meta tags
 - Alternative meta tag implementations (custom CMS)
 - Structured data in non-JSON-LD formats
 
-### 5.2 Structured data (90% accurate)
+### 5.2 Structured Data (90% accurate)
 
 **Known Issues:**
 - May flag valid but uncommon schema types
 - Nested schema validation can be overly strict
 - Custom schema extensions may not validate
 
-### 5.3 Performance metrics (85% accurate)
+### 5.3 Performance Metrics (85% accurate)
 
 **Known Issues:**
 - Network timing varies ±20% per run; a single-run measurement may not represent typical performance
@@ -219,13 +268,13 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
 **Recommendation:** Supplement with manual testing using an actual screen reader and keyboard-only navigation.
 
-### 5.5 Image optimization (75% accurate)
+### 5.5 Image Optimization (75% accurate)
 
 **Known Issues:**
 - Cannot verify actual compression quality
 - **CDN Format Detection Limit:** CDNs like Cloudinary are not automatically recognized as `'dynamic'` in the TS `cdnPatterns` array (`src/checkers/advancedImages.ts`). Only common placeholder sites (e.g. `placehold.co`, `dummyimage.com`) are correctly categorized as dynamic placeholders. Other CDNs fall back to raw file extensions or are marked as `'unknown'`.
 
-### 5.6 Spam detection (60% accurate)
+### 5.6 Spam Detection (60% accurate)
 
 **High False Positive Rate:**
 - Product descriptions with natural keyword density
@@ -235,7 +284,7 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
 ---
 
-## 6. Accuracy estimates by check type
+## 6. Accuracy Estimates by Check Type
 
 | Check Category | Accuracy | Confidence Level | Notes |
 |---------------|----------|------------------|-------|
@@ -255,48 +304,48 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
 ---
 
-## 7. Best practices for using this tool
+## 7. Best Practices for Using This Tool
 
-### 7.1 Interpretation guidelines
+### 7.1 Interpretation Guidelines
 
 1. **Errors (Red):** Address these - likely real issues
 2. **Warnings (Yellow):** Review manually - may be false positives
 3. **Info (Blue):** Suggestions - consider for optimization
 
-### 7.2 Verification workflow
+### 7.2 Verification Workflow
 
 For critical findings:
 
-1. Run check 2-3 times to confirm consistency
-2. Cross-reference with official tools (Google Search Console, Rich Results Test)
-3. Manual inspection in browser DevTools
-4. Test on real devices (mobile checks)
+1. ✅ Run check 2-3 times to confirm consistency
+2. ✅ Cross-reference with official tools (Google Search Console, Rich Results Test)
+3. ✅ Manual inspection in browser DevTools
+4. ✅ Test on real devices (mobile checks)
 
-### 7.3 Priority-based actions
+### 7.3 Priority-Based Actions
 
 **High Priority (Fix Immediately):**
-- Missing title/meta description
-- Broken HTTPS/mixed content
-- 404/500 response codes
-- Mobile viewport not set
-- No robots.txt
+- ✅ Missing title/meta description
+- ✅ Broken HTTPS/mixed content
+- ✅ 404/500 response codes
+- ✅ Mobile viewport not set
+- ✅ No robots.txt
 
 **Medium Priority (Review & Fix):**
-- Missing structured data
-- Slow performance metrics
-- Accessibility violations
-- Missing alt attributes
-- Broken links
+- ⚠️ Missing structured data
+- ⚠️ Slow performance metrics
+- ⚠️ Accessibility violations
+- ⚠️ Missing alt attributes
+- ⚠️ Broken links
 
 **Low Priority (Consider Optimization):**
-- Image format suggestions
-- Readability improvements
-- Additional schema markup
-- Content length recommendations
+- ℹ️ Image format suggestions
+- ℹ️ Readability improvements
+- ℹ️ Additional schema markup
+- ℹ️ Content length recommendations
 
 ---
 
-## 8. Reporting issues
+## 8. Reporting Issues
 
 If you encounter false positives or inaccurate checks:
 
@@ -310,18 +359,18 @@ If you encounter false positives or inaccurate checks:
 ## 9. Conclusion
 
 **The aviary tool is most accurate for:**
-- Technical SEO fundamentals (meta tags, headers)
-- Structural issues (headings, links)
-- Basic accessibility
-- HTTPS/security checks
-- Structured data validation
+- ✅ Technical SEO fundamentals (meta tags, headers)
+- ✅ Structural issues (headings, links)
+- ✅ Basic accessibility
+- ✅ HTTPS/security checks
+- ✅ Structured data validation
 
 **Use with caution for:**
-- Spam detection (shallow DOM checking)
-- Content quality assessment (subjective and regulatory gaps)
-- Performance metrics (network variability)
-- Readability scores (domain-dependent)
-- Heatmaps & Scroll depth (pages taller than viewport height)
+- ⚠️ Spam detection (shallow DOM checking)
+- ⚠️ Content quality assessment (subjective and regulatory gaps)
+- ⚠️ Performance metrics (network variability)
+- ⚠️ Readability scores (domain-dependent)
+- ⚠️ Heatmaps & Scroll depth (pages taller than viewport height)
 
 ---
 
