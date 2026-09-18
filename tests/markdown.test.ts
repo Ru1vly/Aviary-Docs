@@ -120,26 +120,57 @@ describe("markdown utilities", () => {
     });
 
     it("converts markdown doc links to /docs?doc= URLs", () => {
-      const md = "[Quick Start](quickstart.md) and [Contributing](contributing.md#code)";
-      const html = parseMarkdownToHtml(md);
-      expect(html).toContain("href=\"/docs?doc=quickstart\"");
-      expect(html).toContain("href=\"/docs?doc=contributing#code\"");
+      const prevEnv = {
+        GITHUB_ACTIONS: process.env.GITHUB_ACTIONS,
+        BASE_PATH: process.env.BASE_PATH,
+        NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
+      };
+      try {
+        delete process.env.GITHUB_ACTIONS;
+        delete process.env.BASE_PATH;
+        delete process.env.NEXT_PUBLIC_BASE_PATH;
+
+        const md = "[Quick Start](quickstart.md) and [Contributing](contributing.md#code)";
+        const html = parseMarkdownToHtml(md);
+        expect(html).toContain("href=\"/docs?doc=quickstart\"");
+        expect(html).toContain("href=\"/docs?doc=contributing#code\"");
+      } finally {
+        if (prevEnv.GITHUB_ACTIONS !== undefined) process.env.GITHUB_ACTIONS = prevEnv.GITHUB_ACTIONS;
+        else delete process.env.GITHUB_ACTIONS;
+        if (prevEnv.BASE_PATH !== undefined) process.env.BASE_PATH = prevEnv.BASE_PATH;
+        else delete process.env.BASE_PATH;
+        if (prevEnv.NEXT_PUBLIC_BASE_PATH !== undefined) process.env.NEXT_PUBLIC_BASE_PATH = prevEnv.NEXT_PUBLIC_BASE_PATH;
+        else delete process.env.NEXT_PUBLIC_BASE_PATH;
+      }
     });
 
     it("prepends basePath when NEXT_PUBLIC_BASE_PATH is configured", () => {
-      const originalEnv = process.env.NEXT_PUBLIC_BASE_PATH;
+      const prevEnv = {
+        GITHUB_ACTIONS: process.env.GITHUB_ACTIONS,
+        BASE_PATH: process.env.BASE_PATH,
+        NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
+      };
       try {
+        delete process.env.GITHUB_ACTIONS;
+        delete process.env.BASE_PATH;
         process.env.NEXT_PUBLIC_BASE_PATH = "/Aviary-Docs";
         const md = "[Quick Start](quickstart.md)";
         const html = parseMarkdownToHtml(md);
         expect(html).toContain("href=\"/Aviary-Docs/docs?doc=quickstart\"");
       } finally {
-        if (originalEnv !== undefined) {
-          process.env.NEXT_PUBLIC_BASE_PATH = originalEnv;
-        } else {
-          delete process.env.NEXT_PUBLIC_BASE_PATH;
-        }
+        if (prevEnv.GITHUB_ACTIONS !== undefined) process.env.GITHUB_ACTIONS = prevEnv.GITHUB_ACTIONS;
+        else delete process.env.GITHUB_ACTIONS;
+        if (prevEnv.BASE_PATH !== undefined) process.env.BASE_PATH = prevEnv.BASE_PATH;
+        else delete process.env.BASE_PATH;
+        if (prevEnv.NEXT_PUBLIC_BASE_PATH !== undefined) process.env.NEXT_PUBLIC_BASE_PATH = prevEnv.NEXT_PUBLIC_BASE_PATH;
+        else delete process.env.NEXT_PUBLIC_BASE_PATH;
       }
+    });
+
+    it("prepends customBasePath when passed as argument to parseMarkdownToHtml", () => {
+      const md = "[Quick Start](quickstart.md)";
+      const html = parseMarkdownToHtml(md, "/Custom-Path");
+      expect(html).toContain("href=\"/Custom-Path/docs?doc=quickstart\"");
     });
 
     it("adds accessible keyboard focus styling to heading anchors", () => {

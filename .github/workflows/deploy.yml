@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
@@ -36,11 +36,11 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Run unit tests
-        run: npm test
-
       - name: Build static site
         run: npm run build
+
+      - name: Run unit tests
+        run: npm test
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'

@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${basePath}/icon.svg`,
+        url: '/icon.svg',
         width: 512,
         height: 512,
         alt: 'Aviary Logo',
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aviary | Automated website auditing',
     description: 'We open your site in a real browser and check SEO, performance, accessibility, security, and UX — on the page your visitors actually see.',
-    images: [`${basePath}/icon.svg`],
+    images: ['/icon.svg'],
     creator: '@aviary',
   },
   icons: {
@@ -102,7 +102,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'Aviary',
   url: siteUrl,
-  logo: `${siteUrl}${basePath}/icon.svg`,
+  logo: `${siteUrl}/icon.svg`,
   sameAs: ['https://github.com/Ru1vly/Aviary'],
 };
 

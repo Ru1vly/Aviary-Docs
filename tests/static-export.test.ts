@@ -76,5 +76,6 @@ describe("static export output validation", () => {
     expect(fs.existsSync(path.join(outDir, "icon.svg"))).toBe(true);
     expect(fs.existsSync(path.join(outDir, "favicon.ico"))).toBe(true);
     expect(fs.existsSync(path.join(outDir, "apple-touch-icon.png"))).toBe(true);
+    expect(fs.existsSync(path.join(outDir, ".nojekyll")), "out/.nojekyll should exist for GitHub Pages static hosting").toBe(true);
   });
 });

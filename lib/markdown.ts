@@ -122,7 +122,7 @@ export function sanitizeDangerousHtml(html: string): string {
 }
 
 // Custom renderer factory matching the new typescript types in marked v12+
-export function createCustomRenderer(slugCounts?: Map<string, number>) {
+export function createCustomRenderer(slugCounts?: Map<string, number>, customBasePath?: string) {
   const localSlugCounts = slugCounts ?? new Map<string, number>();
 
   return {
@@ -250,7 +250,7 @@ export function createCustomRenderer(slugCounts?: Map<string, number>) {
       let finalHref = rawHref;
 
       if (!isExternal && !finalHref.startsWith('#') && !finalHref.startsWith('mailto:')) {
-        const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE_PATH || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? '/Aviary-Docs' : '');
+        const rawBasePath = customBasePath !== undefined ? customBasePath : (process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE_PATH || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? '/Aviary-Docs' : ''));
         const basePath = rawBasePath.replace(/\/+$/, '');
 
         const mdMatch = finalHref.match(/^\.?\/?([a-zA-Z0-9_-]+)\.md(#.*)?$/);
@@ -290,11 +290,11 @@ marked.use({
   breaks: true
 });
 
-export function parseMarkdownToHtml(markdown: string): string {
+export function parseMarkdownToHtml(markdown: string, customBasePath?: string): string {
   const preSanitized = sanitizeDangerousHtml(markdown);
   const slugCounts = new Map<string, number>();
   const instance = new Marked({
-    renderer: createCustomRenderer(slugCounts),
+    renderer: createCustomRenderer(slugCounts, customBasePath),
     useNewRenderer: true,
     gfm: true,
     breaks: true

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Documentation | Aviary',
     description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
-    url: 'https://aviary-docs.vercel.app/docs',
+    url: '/docs',
     type: 'article',
     images: [{ url: '/icon.svg', width: 512, height: 512, alt: 'Aviary Documentation' }],
   },
