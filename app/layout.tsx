@@ -63,10 +63,18 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/icon.svg',
-        width: 512,
-        height: 512,
-        alt: 'Aviary Logo',
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        type: 'image/png',
+        alt: 'Aviary — Automated Real-Browser Website Auditing',
+      },
+      {
+        url: '/og-square.png',
+        width: 600,
+        height: 600,
+        type: 'image/png',
+        alt: 'Aviary Logo & Audit Suite',
       },
     ],
   },
@@ -74,7 +82,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aviary | Automated website auditing',
     description: 'We open your site in a real browser and check SEO, performance, accessibility, security, and UX — on the page your visitors actually see.',
-    images: ['/icon.svg'],
+    images: ['/og-image.png'],
     creator: '@aviary',
   },
   icons: {

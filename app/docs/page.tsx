@@ -18,13 +18,21 @@ export const metadata: Metadata = {
     description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
     url: '/docs',
     type: 'article',
-    images: [{ url: '/icon.svg', width: 512, height: 512, alt: 'Aviary Documentation' }],
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        type: 'image/png',
+        alt: 'Aviary Documentation — Automated Real-Browser Website Auditing',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Documentation | Aviary',
     description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
-    images: ['/icon.svg'],
+    images: ['/og-image.png'],
   },
 };
 

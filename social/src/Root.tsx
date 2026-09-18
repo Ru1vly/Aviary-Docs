@@ -9,11 +9,14 @@ import { Post2Grid } from './posts/Post2Grid';
 import { Post3Install } from './posts/Post3Install';
 import { Post4Surfaces } from './posts/Post4Surfaces';
 import { Post5Position } from './posts/Post5Position';
+import { OgImage } from './posts/OgImage';
 
 const FPS = 30;
 const WIDTH = 1080;
 const HEIGHT = 1920;
 const POST_SIZE = 1080;
+const OG_WIDTH = 1200;
+const OG_HEIGHT = 630;
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -106,6 +109,14 @@ export const RemotionRoot: React.FC = () => {
           fps={FPS}
           width={POST_SIZE}
           height={POST_SIZE}
+        />
+        <Composition
+          id="OgImage"
+          component={OgImage}
+          durationInFrames={30}
+          fps={FPS}
+          width={OG_WIDTH}
+          height={OG_HEIGHT}
         />
       </Folder>
     </>
