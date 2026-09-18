@@ -252,8 +252,10 @@ body {
 .home-links a:hover { color: var(--text-primary); text-decoration: none; }
 
 .home-hero {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  min-height: 720px;
+  min-height: max(720px, 90vh);
   padding: 136px 48px 128px;
   display: grid;
   grid-template-columns: 1fr;
@@ -261,6 +263,8 @@ body {
 }
 
 .hero-copy {
+  position: relative;
+  z-index: 1;
   width: min(100%, 920px);
   margin: 0 auto;
   text-align: center;

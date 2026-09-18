@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ArrowRight, Check, Copy, Github, Heart, Package } from 'lucide-react';
 import Button from '@/components/aviary/Button';
 import Wordmark from '@/components/aviary/Wordmark';
+import HeroBackground from '@/components/HeroBackground';
 
 const GITHUB_URL = 'https://github.com/Ru1vly/Aviary';
 const NPM_URL = 'https://www.npmjs.com/package/@ru1vly/aviary';
@@ -101,6 +102,7 @@ export default function AviaryHome() {
 
       <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <section className="home-hero">
+          <HeroBackground />
           <div className="hero-copy">
             <h1>See your site<br />the way browsers do.</h1>
             <p className="hero-lede">
