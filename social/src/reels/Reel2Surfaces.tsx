@@ -40,7 +40,7 @@ const CLI_LINES: CliLine[] = [
 ];
 
 const TS_LINES: CliLine[] = [
-  { text: "import { SEOChecker } from 'aviary';", tone: 'ochre' },
+  { text: "import { SEOChecker } from '@ru1vly/aviary';", tone: 'ochre' },
   { text: '', tone: 'muted' },
   { text: 'const checker = new SEOChecker({', tone: 'body' },
   { text: "  url: 'https://example.com',", tone: 'body' },

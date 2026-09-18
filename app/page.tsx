@@ -3,11 +3,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Check, Copy, Github } from 'lucide-react';
+import { ArrowRight, Check, Copy, Github, Heart, Package } from 'lucide-react';
 import Button from '@/components/aviary/Button';
 import Wordmark from '@/components/aviary/Wordmark';
 
 const GITHUB_URL = 'https://github.com/Ru1vly/Aviary';
+const NPM_URL = 'https://www.npmjs.com/package/@ru1vly/aviary';
+const SPONSORS_URL = 'https://github.com/sponsors/Ru1vly';
+const BUYMEACOFFEE_URL = 'https://buymeacoffee.com/ru1vly';
+const ISSUES_URL = 'https://github.com/Ru1vly/Aviary/issues';
 const GLOBAL_INSTALL_COMMAND = 'npm install -g @ru1vly/aviary';
 const AUDIT_COMMAND = 'npx @ru1vly/aviary -u https://example.com';
 
@@ -26,6 +30,39 @@ const CHECK_GROUPS = [
     number: '03',
     title: 'Fix what matters',
     body: 'A scored report ranks every issue and points to the element that caused it.',
+  },
+];
+
+const SUPPORT_PATHWAYS = [
+  {
+    number: '01',
+    category: 'Code & Architecture',
+    title: 'Contributing by Coding',
+    body: 'Finding and fixing bugs, writing new browser audit checks for @ru1vly/aviary, improving TypeScript definitions, submitting PRs to GitHub, and enhancing documentation.',
+    actionLabel: 'Read code guide',
+    actionHref: '/docs?doc=contributing#1-contributing-by-coding',
+    external: false,
+    tag: 'PRs Welcome',
+  },
+  {
+    number: '02',
+    category: 'Infrastructure & Testing',
+    title: 'Contributing Financially',
+    body: 'Sponsoring the project (GitHub Sponsors / Buy Me a Coffee), supporting test-runner server costs and browser testing infrastructure.',
+    actionLabel: 'Sponsor on GitHub',
+    actionHref: SPONSORS_URL,
+    external: true,
+    tag: 'Infrastructure',
+  },
+  {
+    number: '03',
+    category: 'Ecosystem & Outreach',
+    title: 'Content & Outreach',
+    body: 'Starring the repo on GitHub, sharing audit reports and scores on social media (X/Twitter, LinkedIn), reporting issues on GitHub, and writing articles/tutorials on web auditing.',
+    actionLabel: 'Star repository',
+    actionHref: GITHUB_URL,
+    external: true,
+    tag: 'Community',
   },
 ];
 
@@ -49,6 +86,11 @@ export default function AviaryHome() {
 
           <nav className="home-links" aria-label="Primary navigation">
             <Link href="/docs">Docs</Link>
+            <a href="#support">Supporting</a>
+            <a href={NPM_URL} target="_blank" rel="noopener noreferrer">
+              <Package size={14} aria-hidden="true" />
+              npm
+            </a>
             <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
               <Github size={15} aria-hidden="true" />
               GitHub
@@ -57,7 +99,7 @@ export default function AviaryHome() {
         </div>
       </header>
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <section className="home-hero">
           <div className="hero-copy">
             <h1>See your site<br />the way browsers do.</h1>
@@ -127,6 +169,70 @@ export default function AviaryHome() {
           </div>
         </section>
 
+        <section className="home-section support-section" id="support">
+          <div className="section-intro">
+            <div>
+              <p className="eyebrow">Community & Sustainability</p>
+              <h2>Supporting<br />Aviary.</h2>
+            </div>
+            <p className="support-intro-lead">
+              Aviary is an independent, 100% open-source auditing suite. Sustaining 235 browser checks across evolving web standards takes continuous testing, server resources, and active community maintenance. Here is how you can support the project.
+            </p>
+          </div>
+
+          <div className="support-grid">
+            {SUPPORT_PATHWAYS.map((pathway) => (
+              <article key={pathway.number} className="support-card">
+                <div>
+                  <div className="support-card-meta">
+                    <span className="support-card-num">{pathway.number}</span>
+                    <span className="support-card-tag">{pathway.tag}</span>
+                  </div>
+                  <h3>{pathway.title}</h3>
+                  <p>{pathway.body}</p>
+                </div>
+                <div>
+                  {pathway.external ? (
+                    <a
+                      href={pathway.actionHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="support-action-link"
+                    >
+                      {pathway.actionLabel}
+                      <ArrowRight size={13} aria-hidden="true" />
+                    </a>
+                  ) : (
+                    <Link href={pathway.actionHref} className="support-action-link">
+                      {pathway.actionLabel}
+                      <ArrowRight size={13} aria-hidden="true" />
+                    </Link>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="support-banner">
+            <div className="support-banner-copy">
+              <strong>Need custom audit checks or enterprise CI assistance?</strong>
+              <span>Explore our open documentation or start a discussion on GitHub.</span>
+            </div>
+            <div className="support-banner-actions">
+              <Link href="/docs?doc=contributing">
+                <Button variant="secondary" size="md">
+                  Contribution guide <ArrowRight size={14} />
+                </Button>
+              </Link>
+              <a href={SPONSORS_URL} target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="md">
+                  <Heart size={14} className="support-heart-icon" aria-hidden="true" /> Sponsor
+                </Button>
+              </a>
+            </div>
+          </div>
+        </section>
+
         <section className="home-cta">
           <p className="eyebrow">MIT licensed · Runs locally</p>
           <h2>Make the invisible<br />problems visible.</h2>
@@ -136,10 +242,16 @@ export default function AviaryHome() {
 
       <footer className="home-footer">
         <Wordmark size={20} />
-        <p>Real-browser website audits.</p>
+        <p>Real-browser website audits · 235 automated checks</p>
         <div>
           <Link href="/docs">Docs</Link>
+          <Link href="/docs?doc=contributing">Contributing</Link>
+          <Link href="/docs?doc=roadmap">Roadmap</Link>
+          <a href={NPM_URL} target="_blank" rel="noopener noreferrer">npm</a>
           <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={ISSUES_URL} target="_blank" rel="noopener noreferrer">Issues</a>
+          <a href={SPONSORS_URL} target="_blank" rel="noopener noreferrer">Sponsor</a>
+          <a href={BUYMEACOFFEE_URL} target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
           <span>© 2026</span>
         </div>
       </footer>

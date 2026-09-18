@@ -6,7 +6,8 @@
 
 This document provides transparency about the aviary tool's accuracy limitations, known issues, and areas where manual verification is recommended.
 
-**Important:** This tool is designed to identify *potential* SEO issues. Not all findings indicate actual problems, and the tool cannot catch every SEO issue. Always apply professional judgment when interpreting results.
+> [!IMPORTANT]
+> This tool is designed to identify *potential* SEO issues. Not all findings indicate actual problems, and the tool cannot catch every SEO issue. Always apply professional judgment when interpreting results.
 
 ---
 
@@ -163,7 +164,8 @@ These checks use statistical models or heuristics that cannot be 100% accurate, 
 
 **Check:** Click Heatmap, Attention Zones (`heatmap.ts`'s `generateClickHeatmap` and `analyzeAttentionZones`)
 
-Unlike every other check in this document, these aren't measuring a DOM fact that can be right or wrong -- they assign ad-hoc weighted scores (element type, size, position, background color) modeling where a real user would click or look. **There is no ground truth available from a static crawl**: real click/attention data comes from recorded user sessions (Hotjar, Microsoft Clarity, GA4 scroll-depth), which this tool has no access to. `heatmap.ts` is the only checker in the codebase built this way.
+> [!NOTE]
+> Unlike every other check in this document, these aren't measuring a DOM fact that can be right or wrong -- they assign ad-hoc weighted scores (element type, size, position, background color) modeling where a real user would click or look. **There is no ground truth available from a static crawl**: real click/attention data comes from recorded user sessions (Hotjar, Microsoft Clarity, GA4 scroll-depth), which this tool has no access to. `heatmap.ts` is the only checker in the codebase built this way.
 
 **What this means in practice:**
 - Messages are worded "predicted"/"estimated" deliberately, not decoratively -- they should never be read as measured facts the way, say, an HTTPS check result is.
@@ -171,6 +173,19 @@ Unlike every other check in this document, these aren't measuring a DOM fact tha
 - What can't be validated: whether the absolute scores correlate with real user behavior on any given site. That requires correlating against actual analytics on a live, operated site -- out of scope for a static audit tool.
 
 **Recommendation:** Treat heatmap scores as a heuristic prioritization aid (which elements *should* draw attention, per visual-hierarchy best practice), not as a substitute for real user analytics.
+
+### 2.5 Storage & Cookie Consent Verification (~65% accurate)
+
+**Check:** Cookie Consent Banner, Cookie Policy Link (`legalCompliance.ts`: `cookie-consent-present`, `cookie-policy-linked`)
+
+**Limitation & Code Bugs:**
+- **No Runtime Cookie or Storage Inspection:** The tool does not inspect actual browser cookies (`page.context().cookies()`, `document.cookie`), HTTP `Set-Cookie` response headers, or client storage APIs (`localStorage`, `sessionStorage`, `IndexedDB`).
+- **Superficial DOM Selector Matching:** `checkCookieConsent` evaluates whether DOM elements match `[class*="cookie"]`, `[id*="cookie"]`, `[class*="consent"]`, or buttons containing keywords like "accept" or "consent".
+- **False Positives on Cookieless Sites:** A static site that sets zero cookies and stores no personal data is flagged as failing if it lacks a cookie consent banner, even though cookieless sites legally require no consent mechanism under GDPR and the ePrivacy Directive.
+- **False Negatives on Non-Compliant Sites:** A site with a non-functional or decorative consent banner that drops tracking cookies prior to user opt-in will still pass because the checker only tests for the presence of DOM elements, not actual consent gating.
+
+> [!TIP]
+> Manually inspect DevTools Application/Storage tabs and network headers to verify actual cookie behavior and local storage persistence.
 
 ---
 
@@ -227,7 +242,8 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 
 ### 4.2 Prometheus Metrics Server Starts on Import
 
-- Importing the CLI registers and starts a Prometheus metrics server (`prom-client`), configurable via `AVIARY_METRICS_PORT` (default `9090`). It starts silently in the background as a side effect of import rather than an explicit opt-in, which can surprise anything embedding `src/cli.ts` as a library and may conflict with another local service already on that port.
+> [!WARNING]
+> Importing the CLI registers and starts a Prometheus metrics server (`prom-client`), configurable via `AVIARY_METRICS_PORT` (default `9090`). It starts silently in the background as a side effect of import rather than an explicit opt-in, which can surprise anything embedding `src/cli.ts` as a library and may conflict with another local service already on that port.
 
 ---
 
@@ -282,6 +298,13 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 - Legal disclaimers
 - Interactive elements inside nested container components (accordion, collapse, modal) due to shallow DOM traversal limit.
 
+### 5.7 Storage & Cookie Consent (65% accurate)
+
+**Known Issues:**
+- Cookieless sites flagged for missing consent banners (consent not required if no cookies/trackers used).
+- Custom consent management platforms (CMPs) rendered via shadow DOM or canvas unflagged.
+- Cannot inspect actual cookies, `Set-Cookie` HTTP headers, or client-side storage keys (`localStorage`, `sessionStorage`, `IndexedDB`).
+
 ---
 
 ## 6. Accuracy Estimates by Check Type
@@ -296,11 +319,13 @@ Not yet implemented, or undocumented CLI behaviors worth knowing about:
 | Compression | ~90% | High | Header presence check |
 | Performance Metrics | ~85% | Medium | Network variability |
 | Accessibility | ~80% | Medium | Complex WCAG rules |
-| Mobile Usability | ~75% | Medium | Viewport relative scroll depth bug |
+| Mobile Usability | ~75% | Medium | Viewport simulation vs real devices; tap target heuristic (WCAG 2.5.5) |
 | Image Optimization | ~75% | Medium | CDN detection limitations |
 | Content Quality | ~70% | Medium | Regulatory compliance gap |
+| Storage & Cookie Consent | ~65% | Low | Superficial DOM keyword matching; no runtime cookie or storage inspection |
 | Spam Detection | ~60% | Low | Shallow DOM check, false positives |
 | Readability | ~70% | Low | Statistical estimation |
+| Heatmap & Click Prediction | ~50% | Low | Heuristic weighting model; no live user session ground truth |
 
 ---
 
@@ -370,7 +395,8 @@ If you encounter false positives or inaccurate checks:
 - ⚠️ Content quality assessment (subjective and regulatory gaps)
 - ⚠️ Performance metrics (network variability)
 - ⚠️ Readability scores (domain-dependent)
-- ⚠️ Heatmaps & Scroll depth (pages taller than viewport height)
+- ⚠️ Heatmaps & Click prediction (predictive weighting without real user session ground truth)
+- ⚠️ Storage & Cookie consent (superficial DOM keyword matching; no runtime cookie or storage inspection)
 
 ---
 

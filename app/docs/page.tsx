@@ -2,14 +2,30 @@ import fs from 'fs';
 import path from 'path';
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { parseMarkdownToHtml } from '@/lib/markdown';
+import { parseMarkdownToHtml, extractHeadings } from '@/lib/markdown';
 import DocsView, { DocItem } from '@/components/DocsView';
 
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'Documentation — Aviary',
+  title: 'Documentation',
   description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
+  alternates: {
+    canonical: '/docs',
+  },
+  openGraph: {
+    title: 'Documentation | Aviary',
+    description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
+    url: 'https://aviary-docs.vercel.app/docs',
+    type: 'article',
+    images: [{ url: '/icon.svg', width: 512, height: 512, alt: 'Aviary Documentation' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Documentation | Aviary',
+    description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
+    images: ['/icon.svg'],
+  },
 };
 
 const DOCS_FILES = [
@@ -24,6 +40,18 @@ const DOCS_FILES = [
     title: 'Accuracy limitations',
     description: 'Where checks can get it wrong, and why — read this before you trust a score.',
     fileName: 'accuracy-limitations.md',
+  },
+  {
+    id: 'contributing',
+    title: 'Contributing & Support',
+    description: 'Guidelines for code contributions, financial sponsorship, and community outreach.',
+    fileName: 'contributing.md',
+  },
+  {
+    id: 'roadmap',
+    title: 'Roadmap & Production Readiness',
+    description: 'Architectural roadmap, completed features, and production readiness checklist.',
+    fileName: 'roadmap.md',
   },
   {
     id: 'privacy',
@@ -64,21 +92,7 @@ function loadDocs(): Record<string, DocItem> {
       ].join('\n');
     }
 
-    const headingRegex = /^(#{2,3})\s+(.+)$/gm;
-    const headings: { level: number; title: string; id: string }[] = [];
-    let match;
-    while ((match = headingRegex.exec(markdownContent)) !== null) {
-      const level = match[1].length;
-      const titleRaw = match[2].trim();
-      const title = titleRaw.replace(/\*\*|`|✅|❌/g, '').trim();
-      const id = titleRaw
-        .toLowerCase()
-        .trim()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/[\s_-]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-      headings.push({ level, title, id });
-    }
+    const headings = extractHeadings(markdownContent);
 
     docs[page.id] = {
       id: page.id,

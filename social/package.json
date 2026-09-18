@@ -1,8 +1,11 @@
 {
-  "name": "social",
+  "name": "aviary-social",
   "version": "1.0.0",
-  "description": "My Remotion video",
-  "repository": {},
+  "description": "Remotion video studio and social marketing assets for Aviary",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ru1vly/Aviary-Docs.git"
+  },
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {

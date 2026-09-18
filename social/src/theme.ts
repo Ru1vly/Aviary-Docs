@@ -36,5 +36,5 @@ export const font = {
   code: 'Ubuntu Mono',
 } as const;
 
-export const INSTALL_COMMAND = 'npm install -g aviary';
+export const INSTALL_COMMAND = 'npm install -g @ru1vly/aviary';
 export const GITHUB_URL = 'https://github.com/Ru1vly/Aviary';

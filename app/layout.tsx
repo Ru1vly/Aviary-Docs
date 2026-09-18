@@ -27,8 +27,12 @@ const ubuntuMono = localFont({
   display: 'swap',
 });
 
+const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE_PATH || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? '/Aviary-Docs' : '');
+const basePath = rawBasePath.replace(/\/+$/, '');
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? 'https://ru1vly.github.io/Aviary-Docs' : 'https://aviary-docs.vercel.app');
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://aviary-docs.vercel.app'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Aviary | Automated website auditing',
     template: '%s | Aviary',
@@ -53,13 +57,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Aviary | Automated website auditing',
     description: 'We open your site in a real browser and check SEO, performance, accessibility, security, and UX — on the page your visitors actually see.',
-    url: 'https://aviary-docs.vercel.app',
+    url: siteUrl,
     siteName: 'Aviary',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: '/icon.svg',
+        url: `${basePath}/icon.svg`,
         width: 512,
         height: 512,
         alt: 'Aviary Logo',
@@ -70,26 +74,26 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aviary | Automated website auditing',
     description: 'We open your site in a real browser and check SEO, performance, accessibility, security, and UX — on the page your visitors actually see.',
-    images: ['/icon.svg'],
+    images: [`${basePath}/icon.svg`],
     creator: '@aviary',
   },
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: `${basePath}/favicon.ico` },
+      { url: `${basePath}/icon.svg`, type: 'image/svg+xml' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png' },
+      { url: `${basePath}/apple-touch-icon.png` },
     ],
   },
-  manifest: '/manifest.webmanifest',
+  manifest: `${basePath}/manifest.webmanifest`,
 };
 
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Aviary',
-  url: 'https://aviary-docs.vercel.app',
+  url: siteUrl,
   description: 'Automated real-browser website auditing engine with 235 checks across 28 categories',
 };
 
@@ -97,8 +101,8 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Aviary',
-  url: 'https://aviary-docs.vercel.app',
-  logo: 'https://aviary-docs.vercel.app/icon.svg',
+  url: siteUrl,
+  logo: `${siteUrl}${basePath}/icon.svg`,
   sameAs: ['https://github.com/Ru1vly/Aviary'],
 };
 
@@ -114,7 +118,7 @@ const softwareSchema = {
     priceCurrency: 'USD',
   },
   description: 'Real-browser website auditing engine for SEO, performance, accessibility, security, and UX.',
-  url: 'https://aviary-docs.vercel.app',
+  url: siteUrl,
 };
 
 const breadcrumbSchema = {
@@ -125,13 +129,13 @@ const breadcrumbSchema = {
       '@type': 'ListItem',
       position: 1,
       name: 'Home',
-      item: 'https://aviary-docs.vercel.app',
+      item: siteUrl,
     },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'Docs',
-      item: 'https://aviary-docs.vercel.app/docs',
+      item: `${siteUrl}/docs`,
     },
   ],
 };
@@ -146,14 +150,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased" suppressHydrationWarning>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:min-w-[44px] focus:min-h-[44px] focus:px-4 focus:py-2 focus:bg-[#f4f2ec] focus:text-[#0c0d0c] focus:font-mono focus:text-sm focus:rounded"
-          style={{ width: 0, height: 0, overflow: 'hidden' }}
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:min-w-[44px] focus:min-h-[44px] focus:px-4 focus:py-2 focus:bg-[#f4f2ec] focus:text-[#0c0d0c] focus:font-mono focus:text-sm focus:rounded focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#E0B15A]"
         >
           Skip to content
         </a>
         <script
           id="gtag-and-a11y-init"
-          aria-hidden="true"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -184,22 +186,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           type="application/ld+json"
-          aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <script
           type="application/ld+json"
-          aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <script
           type="application/ld+json"
-          aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
         />
         <script
           type="application/ld+json"
-          aria-hidden="true"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
         {children}

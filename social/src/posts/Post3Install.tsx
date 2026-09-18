@@ -39,7 +39,7 @@ export const Post3Install: React.FC = () => {
             <CheckRow verdict="fail" label="Canonical URL is missing" appearFrame={-20} fontSize={22} />
           </div>
         </TerminalWindow>
-        <span style={{ fontFamily: font.ui, fontSize: 20, color: color.bone500 }}>npm install -g aviary</span>
+        <span style={{ fontFamily: font.ui, fontSize: 20, color: color.bone500 }}>npm install -g @ru1vly/aviary</span>
       </div>
       <PostFooter />
     </PostShell>

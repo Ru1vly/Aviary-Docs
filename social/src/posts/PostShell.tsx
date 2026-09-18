@@ -27,6 +27,6 @@ export const PostFooter: React.FC = () => (
     }}
   >
     <span style={{ fontFamily: font.display, fontSize: 30, color: color.bone100 }}>Aviary</span>
-    <span style={{ fontFamily: font.ui, fontSize: 16, color: color.bone500 }}>· npm i -g aviary</span>
+    <span style={{ fontFamily: font.ui, fontSize: 16, color: color.bone500 }}>· npm i -g @ru1vly/aviary</span>
   </div>
 );

@@ -35,12 +35,22 @@ export const CiCheckPanel: React.FC<{
   const frame = useCurrentFrame();
 
   // Precompute when each step starts and finishes.
-  let cursor = startFrame + 8;
-  const timed = STEPS.map((s) => {
-    const begin = cursor;
-    cursor += s.durationFrames;
-    return { ...s, begin, end: cursor };
-  });
+  const { timed, cursor } = React.useMemo(() => {
+    return STEPS.reduce<{
+      timed: Array<(typeof STEPS)[number] & { begin: number; end: number }>;
+      cursor: number;
+    }>(
+      (acc, s) => {
+        const begin = acc.cursor;
+        const end = begin + s.durationFrames;
+        return {
+          timed: [...acc.timed, { ...s, begin, end }],
+          cursor: end,
+        };
+      },
+      { timed: [], cursor: startFrame + 8 }
+    );
+  }, [startFrame]);
 
   const allDone = frame >= cursor;
 

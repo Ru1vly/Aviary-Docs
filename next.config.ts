@@ -24,8 +24,8 @@ const nextConfig: NextConfig = {
     ],
   },
   output: 'export',
+  trailingSlash: true,
   basePath: process.env.BASE_PATH || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? '/Aviary-Docs' : ''),
-  transpilePackages: ['motion'],
   async headers() {
     return [
       {
@@ -56,13 +56,6 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack: (config, {dev, isServer}) => {
-    // HMR is disabled in AI Studio via DISABLE_HMR env var.
-    // Do not modify—file watching is disabled to prevent flickering during agent edits.
-    if (dev && process.env.DISABLE_HMR === 'true') {
-      config.watchOptions = {
-        ignored: /.*/,
-      };
-    }
     if (!dev && !isServer) {
       config.output.filename = 'static/chunks/[name]-[contenthash].min.js';
       config.output.chunkFilename = 'static/chunks/[name]-[contenthash].min.js';

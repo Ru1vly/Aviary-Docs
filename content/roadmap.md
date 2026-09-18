@@ -1,6 +1,9 @@
-# TODO: Production readiness checklist
+# Roadmap & Production Readiness
 
-This document outlines the remaining tasks to make the aviary checker tool production-ready.
+This document outlines the architectural roadmap, feature milestones, and production readiness checklist for the Aviary auditing engine.
+
+> [!NOTE]
+> Items marked `[x]` have been completed and verified. Items marked `[ ]` are active roadmap priorities slated for upcoming releases.
 
 ## Known issues / fixes required
 - [x] **CLI Testing**: Integration tests time out even with 120s limit (fixed by replacing slow locator auto-waits with page.evaluate).
@@ -29,7 +32,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [x] SSL/HTTPS verification
   - [x] Mobile-friendliness test
   - [x] Page speed insights integration
-  - [x] Core Web Vitals (LCP, CLS) — real values via `web-vitals`'/`PerformanceObserver`, injected before navigation; plus FCP and TTFB. INP itself isn't reported (it requires a real user interaction this unattended audit never performs) — Total Blocking Time (long-task entries) is the disclosed proxy instead, same as Lighthouse. See docs/ACCURACY_LIMITATIONS.md §3.4
+  - [x] Core Web Vitals (LCP, CLS) — real values via `web-vitals`'/`PerformanceObserver`, injected before navigation; plus FCP and TTFB. INP itself isn't reported (it requires a real user interaction this unattended audit never performs) — Total Blocking Time (long-task entries) is the disclosed proxy instead, same as Lighthouse. See [Accuracy limitations](/docs?doc=accuracy-limitations) §3.4
   - [x] Server response time check
   - [x] Redirect chain detection
   - [x] 404 error detection
@@ -149,7 +152,7 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [x] Configuration guide
   - [ ] Best practices guide
   - [ ] Troubleshooting guide
-  - [ ] Contributing guidelines
+  - [x] Contributing guidelines — see [Contributing & Support](/docs?doc=contributing)
   - [ ] Example use cases
   - [ ] Video tutorials
 
@@ -164,14 +167,14 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [x] GitHub Actions workflow — lint, type-check, and test on every push/PR
   - [x] Automated testing
   - [x] Automated releases
-  - [ ] Semantic versioning
+  - [x] Semantic versioning — strict SemVer tags (`v0.1.0`, `v0.1.1`) across packages and manifests
   - [x] Changelog generation — auto-generated from commit history between tags
 
 - [x] **Package Distribution**
-  - [x] NPM package publishing
-  - [x] Docker image — built and pushed on release
-  - [ ] Standalone binary (pkg/nexe)
-  - [x] GitHub releases with artifacts
+  - [x] [NPM package publishing](https://www.npmjs.com/package/@ru1vly/aviary)
+  - [x] Docker image — built and pushed to GHCR on release
+  - [x] Standalone binary — native cross-compiled Rust binaries (`tui`, `aviary-fast`) for Linux, macOS, and Windows via platform packages and GitHub releases
+  - [x] [GitHub releases with artifacts](https://github.com/Ru1vly/Aviary/releases)
 
 - [ ] **Monitoring & Telemetry**
   - [ ] Anonymous usage analytics (opt-in)
@@ -183,24 +186,24 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 
 - [ ] **Security Scanning** — partial
   - [x] Dependency vulnerability scanning — npm/cargo audit, SBOM generation, and CodeQL static analysis in CI
-  - [ ] Security headers check
+  - [x] Security headers check — validates HSTS, X-Frame-Options, and X-Content-Type-Options
   - [ ] XSS vulnerability detection
   - [ ] CORS configuration check
-  - [ ] Content Security Policy validation
+  - [x] Content Security Policy validation — validates CSP header presence and directives
 
-- [ ] **Privacy**
-  - [ ] No data collection by default
-  - [ ] GDPR compliance
-  - [ ] Cookie consent detection
-  - [ ] Privacy policy detection
+- [x] **Privacy**
+  - [x] No data collection by default — runs entirely local unattended audits; zero telemetry transmitted (see [Privacy Policy](/docs?doc=privacy))
+  - [x] GDPR compliance — automated detection of GDPR indicators and user rights
+  - [x] Cookie consent detection — banner, modal, and consent button detection
+  - [x] Privacy policy detection — automated footer and link verification
 
 ## Multi-language & internationalization
 
-- [ ] **i18n Support**
+- [ ] **i18n Support** — partial
   - [ ] Multi-language reports
   - [ ] Language-specific SEO rules
-  - [ ] Character encoding detection
-  - [ ] RTL language support
+  - [x] Character encoding detection — UTF-8 and unicode validation
+  - [x] RTL language support — automated detection and dir="rtl" validation
 
 ## Integrations
 
@@ -231,17 +234,17 @@ This document outlines the remaining tasks to make the aviary checker tool produ
   - [ ] Edge support
   - [ ] Mobile browser testing
 
-- [ ] **Operating Systems**
-  - [ ] Windows compatibility testing
-  - [ ] macOS compatibility testing
-  - [ ] Linux compatibility testing
+- [x] **Operating Systems**
+  - [x] Windows compatibility testing — verified on Windows runners with .exe artifact builds
+  - [x] macOS compatibility testing — verified on macOS runners in release workflow
+  - [x] Linux compatibility testing — verified on Ubuntu in CI/CD matrix
 
 ## Community & ecosystem
 
 - [ ] **Community Building**
   - [ ] GitHub Discussions setup
   - [ ] Discord/Slack community
-  - [ ] Contributing guidelines
+  - [x] Contributing guidelines — see [Contributing & Support](/docs?doc=contributing)
   - [ ] Code of conduct
   - [ ] Issue templates
   - [ ] PR templates
@@ -297,9 +300,9 @@ This document outlines the remaining tasks to make the aviary checker tool produ
 
 ## Next steps
 
-1. Resolve npm authentication / bypass 2FA to complete initial package bootstrapping on npm
-2. Release `@ru1vly/aviary@0.1.0` and verify zero-install `npx @ru1vly/aviary` usage
-3. Verify cross-platform smoke tests across Linux, macOS, and Windows runners
-4. Implement parallel multi-URL scanning and browser resource pooling
-5. Implement deep link resolution crawler for broken link detection
-6. Add historical trend tracking and diff reporting between audits
+- [x] Resolve npm authentication / bypass 2FA to complete initial package bootstrapping on npm
+- [x] Release [`@ru1vly/aviary@0.1.0`](https://www.npmjs.com/package/@ru1vly/aviary) and `0.1.1` and verify zero-install `npx @ru1vly/aviary` usage
+- [x] Verify cross-platform smoke tests across Linux, macOS, and Windows runners
+- [ ] Implement parallel multi-URL scanning and browser resource pooling
+- [ ] Implement deep link resolution crawler for broken link detection
+- [ ] Add historical trend tracking and diff reporting between audits
