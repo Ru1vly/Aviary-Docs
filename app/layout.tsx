@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     default: 'Aviary | Automated website auditing',
     template: '%s | Aviary',
   },
-  description: 'Automated real-browser website auditing engine with 235 checks across 28 categories: SEO, performance, accessibility, security, and UX.',
+  description: 'Automated real-browser website auditing engine with 242 checks across 29 categories: SEO, performance, accessibility, security, and UX.',
   keywords: [
     'SEO',
     'website audit',
@@ -102,7 +102,7 @@ const websiteSchema = {
   '@type': 'WebSite',
   name: 'Aviary',
   url: siteUrl,
-  description: 'Automated real-browser website auditing engine with 235 checks across 28 categories',
+  description: 'Automated real-browser website auditing engine with 242 checks across 29 categories',
 };
 
 const organizationSchema = {

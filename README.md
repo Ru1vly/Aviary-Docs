@@ -32,7 +32,7 @@
 | **Documentation Portal** | Official marketing landing page and full documentation site | [Live Site](https://ru1vly.github.io/Aviary-Docs/) · [GitHub Repo](https://github.com/Ru1vly/Aviary-Docs) |
 | **Aviary Core Engine** | TypeScript + Playwright browser audit engine, Rust TUI & static parser | [GitHub Repo](https://github.com/Ru1vly/Aviary) · [Issues](https://github.com/Ru1vly/Aviary/issues) |
 | **npm Package** | CLI binary (`aviary`), MCP server (`aviary-mcp`), and Node.js SDK | [npm Package](https://www.npmjs.com/package/@ru1vly/aviary) (`@ru1vly/aviary`) |
-| **Sponsorship** | Open-source infrastructure and test runner sustainability | [GitHub Sponsors](https://github.com/sponsors/Ru1vly) · [Buy Me a Coffee](https://buymeacoffee.com/ru1vly) |
+| **Sponsorship** | Tiers with opt-in wall recognition (free forever, nothing gated) | [GitHub Sponsors](https://github.com/sponsors/Ru1vly) · [Buy Me a Coffee](https://buymeacoffee.com/ru1vly) |
 
 ---
 
@@ -40,12 +40,12 @@
 
 **See your site the way browsers do.**
 
-Aviary is a Playwright-driven auditing engine that opens a page in a real Chromium browser and executes **235 checks across 28 categories** — SEO, performance, accessibility, security, and UX — evaluating what visitors and search crawlers actually experience rather than raw server HTML.
+Aviary is a Playwright-driven auditing engine that opens a page in a real Chromium browser and executes **242 checks across 29 categories** — SEO, performance, accessibility, security, and UX — evaluating what visitors and search crawlers actually experience rather than raw server HTML.
 
 ### Product Facts
 
-- **235 checks**: Exhaustive validation across technical SEO, Core Web Vitals, metadata, accessibility, and security.
-- **28 categories**: Structured evaluations from heading hierarchies to predictive attention maps.
+- **242 checks**: Exhaustive validation across technical SEO, Core Web Vitals, metadata, accessibility, and security.
+- **29 categories**: Structured evaluations from heading hierarchies to predictive attention maps.
 - **1 real browser**: Powered by Playwright Chromium for genuine client-side hydration and layout rendering.
 - **Zero footprint**: No account required. No external dashboard. Your audit data remains 100% on your machine.
 
@@ -149,7 +149,7 @@ Aviary includes a built-in stdio MCP server (`aviary-mcp`) allowing AI coding ag
 
 ## Contributing & Sustainability
 
-Aviary is an independent, 100% open-source auditing suite. Maintaining 235 browser checks across evolving web standards takes continuous testing, server resources, and active community maintenance. 
+Aviary is independent, open-source, and free forever. Sponsorship sustains ongoing maintenance and development — keeping 242 browser checks accurate as web standards evolve.
 
 We welcome contributions across three key pathways:
 
@@ -164,19 +164,18 @@ We welcome contributions across three key pathways:
   4. Commit with conventional commit messages.
   5. Open a Pull Request against `main`.
 
-### 2. Infrastructure & Testing — Contributing Financially (`Infrastructure`)
-- **Where Funds Go**:
-  - Continuous Integration runners executing automated browser checks across Linux, macOS, and Windows.
-  - High-concurrency benchmark infrastructure for stress-testing parallel crawling.
-  - Global edge hosting for documentation and reference guides.
-  - Cross-browser test matrices across Chromium and WebKit release channels.
-- **Sponsorship Channels**:
+### 2. Sustainability — Contributing Financially (`Sponsors`)
+- **Tiers**: Coffee ($5 one-time via BMC, name on wall) · Sustainer ($10/mo via GitHub, name + link) · Backer ($49+/mo via GitHub, logo + link). All opt-in. Full details on the [/support](https://ru1vly.github.io/Aviary-Docs/support) page.
+- **Recognition-only**: Nothing gated, no priority triage, no roadmap votes, no SLA. Everything ships MIT to everyone.
+- **Claim your spot**: Sponsor, then comment on [GitHub Discussions](https://github.com/Ru1vly/Aviary/discussions) with your preferred name/link/logo. Removed on request or lapse.
+- **Consulting**: Scoped help is separate from sponsorship — ask via Discussions.
+- **Channels**:
   - [GitHub Sponsors](https://github.com/sponsors/Ru1vly) (Recurring or one-time)
   - [Buy Me a Coffee](https://buymeacoffee.com/ru1vly) (Individual micro-donations)
 
 ### 3. Ecosystem & Outreach — Content & Outreach (`Community`)
 - **Star the Repositories**: Star [Ru1vly/Aviary](https://github.com/Ru1vly/Aviary) and [Ru1vly/Aviary-Docs](https://github.com/Ru1vly/Aviary-Docs) on GitHub to increase open-source visibility.
-- **Share Audit Scores**: Share your terminal or HTML audit results on social platforms (X/Twitter, LinkedIn).
+- **Share Audit Scores**: Share your terminal or HTML audit results on your preferred social platforms if you like. No tagging or reshare guarantees.
 - **Write Tutorials & Report Findings**: Author guides on automated SEO pipelines or submit edge-case URLs to our [issue tracker](https://github.com/Ru1vly/Aviary/issues).
 
 > For detailed guidelines, check out the in-depth [Contributing Guide](content/contributing.md) or visit `/docs?doc=contributing`.

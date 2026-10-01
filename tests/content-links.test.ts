@@ -74,6 +74,9 @@ describe("content links and anchors integrity", () => {
 
           if (rawPath === "/docs" || rawPath === "/docs/") {
             targetDoc = "quickstart";
+          } else if (rawPath === "/support" || rawPath === "/support/") {
+            // Valid standalone app route (app/support/page.tsx) — nothing to validate here
+            continue;
           } else if (rawPath.startsWith("/docs?doc=")) {
             targetDoc = rawPath.replace("/docs?doc=", "");
           } else if (rawPath.endsWith(".md")) {

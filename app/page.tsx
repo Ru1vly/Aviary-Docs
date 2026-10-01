@@ -47,19 +47,19 @@ const SUPPORT_PATHWAYS = [
   },
   {
     number: '02',
-    category: 'Infrastructure & Testing',
+    category: 'Sustainability',
     title: 'Contributing Financially',
-    body: 'Sponsoring the project (GitHub Sponsors / Buy Me a Coffee), supporting test-runner server costs and browser testing infrastructure.',
-    actionLabel: 'Sponsor on GitHub',
-    actionHref: SPONSORS_URL,
-    external: true,
-    tag: 'Infrastructure',
+    body: 'Sponsor tiers with recognition-only perks and an opt-in sponsors wall. Aviary is independent and free forever.',
+    actionLabel: 'View support page',
+    actionHref: '/support',
+    external: false,
+    tag: 'Sponsors',
   },
   {
     number: '03',
     category: 'Ecosystem & Outreach',
     title: 'Content & Outreach',
-    body: 'Starring the repo on GitHub, sharing audit reports and scores on social media (X/Twitter, LinkedIn), reporting issues on GitHub, and writing articles/tutorials on web auditing.',
+    body: 'Starring the repo on GitHub, sharing audit reports and scores on social media, reporting issues on GitHub, and writing articles/tutorials on web auditing.',
     actionLabel: 'Star repository',
     actionHref: GITHUB_URL,
     external: true,
@@ -106,7 +106,7 @@ export default function AviaryHome() {
           <div className="hero-copy">
             <h1>See your site<br />the way browsers do.</h1>
             <p className="hero-lede">
-              Aviary opens your page in Chromium, runs 235 checks, and gives you a clear list of what to fix for better SEO.
+              Aviary opens your page in Chromium, runs 242 checks across 29 categories, and gives you a clear list of what to fix for better SEO.
             </p>
 
             <div className="hero-install">
@@ -129,8 +129,8 @@ export default function AviaryHome() {
         </section>
 
         <section className="home-proof" aria-label="Product facts">
-          <div><strong>235</strong><span>checks</span></div>
-          <div><strong>28</strong><span>categories</span></div>
+          <div><strong>242</strong><span>checks</span></div>
+          <div><strong>29</strong><span>categories</span></div>
           <div><strong>1</strong><span>real browser</span></div>
           <p>No account. No dashboard. Your audit stays on your machine.</p>
         </section>
@@ -178,7 +178,7 @@ export default function AviaryHome() {
               <h2>Supporting<br />Aviary.</h2>
             </div>
             <p className="support-intro-lead">
-              Aviary is an independent, 100% open-source auditing suite. Sustaining 235 browser checks across evolving web standards takes continuous testing, server resources, and active community maintenance. Here is how you can support the project.
+              Aviary is independent, open-source, and free forever. Sponsorship sustains ongoing maintenance and development — keeping 242 browser checks accurate as web standards evolve.
             </p>
           </div>
 
@@ -217,13 +217,13 @@ export default function AviaryHome() {
 
           <div className="support-banner">
             <div className="support-banner-copy">
-              <strong>Need custom audit checks or enterprise CI assistance?</strong>
-              <span>Explore our open documentation or start a discussion on GitHub.</span>
+              <strong>Questions about contributing or local setup?</strong>
+              <span>Explore our open documentation or start a discussion on GitHub. Community help only.</span>
             </div>
             <div className="support-banner-actions">
-              <Link href="/docs?doc=contributing">
+              <Link href="/support">
                 <Button variant="secondary" size="md">
-                  Contribution guide <ArrowRight size={14} />
+                  Support page <ArrowRight size={14} />
                 </Button>
               </Link>
               <a href={SPONSORS_URL} target="_blank" rel="noopener noreferrer">
@@ -244,9 +244,10 @@ export default function AviaryHome() {
 
       <footer className="home-footer">
         <Wordmark size={20} />
-        <p>Real-browser website audits · 235 automated checks</p>
+        <p>Real-browser website audits · 242 automated checks</p>
         <div>
           <Link href="/docs">Docs</Link>
+          <Link href="/support">Support</Link>
           <Link href="/docs?doc=contributing">Contributing</Link>
           <Link href="/docs?doc=roadmap">Roadmap</Link>
           <a href={NPM_URL} target="_blank" rel="noopener noreferrer">npm</a>

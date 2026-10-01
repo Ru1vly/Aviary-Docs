@@ -80,7 +80,7 @@ exercise. Each component is a faithful mock of something Aviary really emits:
 - `CliReport` — `aviary -u <url>` stdout, printing line by line
 - `RenderedViewport` — a wireframe of the page under test, with a scan line and
   issues pinned to the elements that caused them
-- `CoverageGrid` — all 28 categories filling to their pass rates
+- `CoverageGrid` — all 29 categories filling to their pass rates
 - `HtmlReport` — the `--html` report page inside browser chrome
 - `JsonPayload` — syntax-coloured `--output report.json`
 - `CiCheckPanel` — a deploy-preview run where the tests pass and the audit fails

@@ -16,7 +16,7 @@ An end-to-end SEO testing toolkit for websites using browser automation. Built w
 
 ## Features
 
-The library executes 235 individual checks across 28 categories. Below is an overview of the core checker modules:
+The library executes 242 individual checks across 29 categories. Below is an overview of the core checker modules:
 
 | Category | Description | Key Checks |
 |---|---|---|
@@ -209,7 +209,7 @@ The server communicates via standard I/O (`stdio`) and provides three registered
 
 | Tool | Parameters | Description |
 |---|---|---|
-| `seo_audit` | `url` (string, required)<br>`preset?` (`basic` \| `advanced` \| `strict`)<br>`categories?` (string[]) | Full SEO audit returning structured results across all 28 categories. |
+| `seo_audit` | `url` (string, required)<br>`preset?` (`basic` \| `advanced` \| `strict`)<br>`categories?` (string[]) | Full SEO audit returning structured results across all 29 categories. |
 | `seo_score` | `url` (string, required) | Quick audit returning overall score (`0-100`), letter grade (`A`-`F`), and pass/fail counts. |
 | `seo_check_category` | `url` (string, required)<br>`category` (enum, required) | Targeted audit executing checks for a single specified category (e.g. `metaTags`, `performance`). |
 

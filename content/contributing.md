@@ -2,7 +2,7 @@
 
 Aviary is an open-source, community-driven SEO and website auditing toolkit. It executes real Chromium browser sessions to evaluate JavaScript-rendered DOMs, Core Web Vitals, accessibility, and technical SEO exactly as search engine crawlers and users experience them.
 
-Maintaining 235 checks across 28 categories—and verifying them against ever-evolving browser standards—demands rigorous testing, server infrastructure, and community collaboration. Whether you write code, sponsor infrastructure costs, or share reports with fellow engineers, your support directly keeps Aviary fast, accurate, and free.
+Maintaining 242 checks across 29 categories—and verifying them against ever-evolving browser standards—demands ongoing maintenance, development, and community collaboration. Whether you write code, sponsor the project, or share reports with fellow engineers, your support keeps Aviary fast, accurate, and free.
 
 > [!IMPORTANT]
 > Aviary is free and open-source software licensed under the [MIT License](https://github.com/Ru1vly/Aviary/blob/main/LICENSE). All contributions submitted to the project will be distributed under the same terms.
@@ -106,15 +106,26 @@ Documentation is just as vital as code. You can contribute by:
 
 ## 2. Contributing Financially
 
-Aviary is 100% free software. Financial contributions allow maintainers to dedicate sustained time to feature development and cover recurring operational costs.
+Aviary is independent, open-source, and free forever. Sponsorship sustains ongoing maintenance and development — new checks, bug fixes, docs, and keeping 242 checks aligned with evolving web standards. See the full tiers, platforms, sponsors wall, and FAQ on the [support page](/support).
 
-### 2.1 Where Funds Go
+### 2.1 Sponsor Tiers
 
-Your financial support directly covers:
-- **Continuous Integration & Test Runners:** Running 235 automated browser checks on Chromium across Linux, macOS, and Windows runners for every pull request.
-- **High-Concurrency Benchmark Infrastructure:** Cloud server instances used to stress-test parallel crawling and crawler memory consumption against massive multi-page domains.
-- **Documentation & Domain Hosting:** Ensuring documentation and online reference materials remain reliably accessible with global edge acceleration.
-- **Browser Testing Matrix:** Licenses and resources for cross-browser testing automation across multiple Chromium and WebKit release channels.
+| Tier | Price | Via | Perk |
+|---|---|---|---|
+| **Coffee** | $5 one-time | [Buy Me a Coffee](https://buymeacoffee.com/ru1vly) | Name on the sponsors wall (opt-in) |
+| **Sustainer** | $10 / month | [GitHub Sponsors](https://github.com/sponsors/Ru1vly) | Name + link on the sponsors wall (opt-in) |
+| **Backer** | $49+ / month | [GitHub Sponsors](https://github.com/sponsors/Ru1vly) | Logo + link on the sponsors wall (opt-in) |
+
+All perks are recognition-only: sponsorship unlocks no features, buys no priority triage or roadmap votes, and includes no support SLA. Everything ships MIT-licensed to everyone.
+
+### 2.2 Claiming Your Wall Spot
+
+1. Sponsor via GitHub Sponsors or Buy Me a Coffee.
+2. Comment on [GitHub Discussions](https://github.com/Ru1vly/Aviary/discussions) with the name (plus link or logo for upper tiers) you want listed.
+3. Entries are added manually, are strictly opt-in, and are removed on request or when sponsorship lapses.
+
+> [!NOTE]
+> Scoped consulting (e.g. CI setup reviews) is handled separately from sponsorship — ask via [GitHub Discussions](https://github.com/Ru1vly/Aviary/discussions). Sponsorship itself is not a support contract.
 
 ### 2.2 Sponsorship Channels
 
@@ -126,15 +137,17 @@ You can sponsor Aviary through any of the following platforms:
 | **Buy Me a Coffee** | Micro-donations & Quick Tips | Individual Engineers | [buymeacoffee.com/ru1vly](https://buymeacoffee.com/ru1vly) |
 
 > [!TIP]
-> Does your company rely on Aviary in continuous integration pipelines to catch SEO regressions? Consider asking your team to sponsor Aviary as part of your company's open-source sustainability budget.
+> Does your company rely on Aviary in CI to catch SEO regressions? Backing the project is a visible way to sustain the maintenance your pipeline depends on.
 
 ### 2.3 Sponsor Recognition
 
-Sponsors receive:
-- Prominent listing in the `README.md` and docs website footer.
-- Company logo placement for organizational tiers.
-- Direct shoutouts in minor and major release announcements.
-- Priority issue triaging and direct input on roadmap planning.
+The sponsors wall is the only formal perk, and it is strictly opt-in:
+
+- **Coffee:** name listed.
+- **Sustainer:** name + link listed.
+- **Backer:** logo + link listed.
+
+No logo placement is automatic, no release shoutouts are guaranteed, and sponsorship confers no triage priority or roadmap influence. If additional perks are introduced later, they will be documented here first.
 
 ---
 
@@ -151,16 +164,13 @@ Giving the repository a star on [GitHub](https://github.com/Ru1vly/Aviary) takes
 ### 3.2 Share Reports & Audit Scores
 
 Sharing real audit outputs helps educate the broader web development community on modern SEO best practices:
-- Share screenshots of your terminal audit scores or HTML summary cards on **X / Twitter** and **LinkedIn**.
-- Tag `@ru1vly` or use the `#AviarySEO` hashtag so we can reshare and highlight your optimization successes.
-- Embed Aviary audit badges in your project repository to showcase your SEO health score.
+- Share screenshots of your terminal audit scores or HTML summary cards on your preferred platforms (e.g. X / Twitter, LinkedIn, DEV Community).
+- No tagging or hashtag required, and reshares are not guaranteed.
 
 ### 3.3 Write Articles & Tutorials
 
 Publishing technical walkthroughs accelerates adoption:
 - Write articles on DEV Community, Hashnode, Medium, or personal tech blogs explaining how you integrated `@ru1vly/aviary` into your deployment pipeline.
-- Create video tutorials demonstrating local debugging with Aviary's interactive terminal TUI.
-- Submit guest posts comparing browser-evaluated checks against simple static HTTP scrapers.
 
 ### 3.4 Report False Positives
 

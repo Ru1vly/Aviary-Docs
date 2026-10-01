@@ -558,6 +558,117 @@ body {
   color: var(--ochre-400);
 }
 
+.tier-grid {
+  margin-top: 40px;
+}
+
+.tier-price {
+  margin: 0 0 12px;
+  color: var(--text-primary);
+  font-family: var(--font-code);
+  font-size: 13px;
+}
+
+.tier-price span {
+  color: var(--text-faint);
+}
+
+.tier-perks {
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tier-perks li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font: 13px/1.6 var(--font-ui);
+}
+
+.tier-perks li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--ochre-400);
+}
+
+.sponsor-wall {
+  margin-top: 56px;
+  padding: 28px 32px;
+  border: 1px solid var(--line-hairline);
+  background: var(--surface-terminal);
+}
+
+.sponsor-wall h3 {
+  margin: 0 0 12px;
+  color: var(--text-primary);
+  font: 400 22px/1.2 var(--font-display);
+}
+
+.sponsor-wall-empty {
+  margin: 0;
+  color: var(--text-muted);
+  font: 14px/1.75 var(--font-ui);
+}
+
+.sponsor-wall-empty a,
+.support-footnote a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sponsor-wall-empty a:hover,
+.support-footnote a:hover {
+  color: var(--ochre-400);
+}
+
+.sponsor-wall-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  color: var(--text-muted);
+  font: 14px/1.75 var(--font-ui);
+}
+
+.support-faq {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.support-faq-item {
+  border: 1px solid var(--line-hairline);
+  background: var(--surface-sunken);
+  padding: 16px 20px;
+}
+
+.support-faq-item summary {
+  cursor: pointer;
+  color: var(--text-primary);
+  font: 500 14px/1.5 var(--font-ui);
+}
+
+.support-faq-item p {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font: 13px/1.75 var(--font-ui);
+}
+
+.support-footnote {
+  margin: 32px 0 0;
+  color: var(--text-faint);
+  font: 12px/1.75 var(--font-ui);
+}
+
 .home-cta {
   width: 100%;
   padding: 176px 48px;
@@ -613,6 +724,7 @@ body {
   .support-section { padding: 96px 16px; }
   .support-card { padding: 24px 20px; }
   .support-banner { padding: 20px 16px; }
+  .sponsor-wall { padding: 20px 16px; }
   .check-grid { margin-top: 72px; grid-template-columns: 1fr; gap: 56px; }
   .check-grid h3 { margin-top: 30px; }
   .install-section { padding-block: 104px; gap: 52px; }
