@@ -5,6 +5,12 @@ import { describe, it, expect, beforeAll } from "vitest";
 
 describe("static export output validation", () => {
   const outDir = path.join(process.cwd(), "out");
+  const canonicalBaseUrl = (
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN
+      ? "https://ru1vly.github.io/Aviary-Docs"
+      : "https://www.aviary-rs.com")
+  ).replace(/\/+$/, "");
 
   beforeAll(() => {
     // If out directory is not present, trigger build
@@ -68,7 +74,7 @@ describe("static export output validation", () => {
       const html = fs.readFileSync(pagePath, "utf8");
       expect(html).toContain(`<h1`);
       expect(html).toContain(title);
-      expect(html).toContain(`rel="canonical" href="https://www.aviary-rs.com/docs/${id}/"`);
+      expect(html).toContain(`rel="canonical" href="${canonicalBaseUrl}/docs/${id}/"`);
     }
   });
 
