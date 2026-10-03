@@ -32,7 +32,7 @@ This document outlines the architectural roadmap, feature milestones, and produc
   - [x] SSL/HTTPS verification
   - [x] Mobile-friendliness test
   - [x] Page speed insights integration
-  - [x] Core Web Vitals (LCP, CLS) — real values via `web-vitals`'/`PerformanceObserver`, injected before navigation; plus FCP and TTFB. INP itself isn't reported (it requires a real user interaction this unattended audit never performs) — Total Blocking Time (long-task entries) is the disclosed proxy instead, same as Lighthouse. See [Accuracy limitations](/docs?doc=accuracy-limitations) §3.4
+  - [x] Core Web Vitals (LCP, CLS) — real values via `web-vitals`'/`PerformanceObserver`, injected before navigation; plus FCP and TTFB. INP itself isn't reported (it requires a real user interaction this unattended audit never performs) — Total Blocking Time (long-task entries) is the disclosed proxy instead, same as Lighthouse. See [Accuracy limitations](/docs/accuracy-limitations/) §3.4
   - [x] Server response time check
   - [x] Redirect chain detection
   - [x] 404 error detection
@@ -152,7 +152,7 @@ This document outlines the architectural roadmap, feature milestones, and produc
   - [x] Configuration guide
   - [ ] Best practices guide
   - [ ] Troubleshooting guide
-  - [x] Contributing guidelines — see [Contributing & Support](/docs?doc=contributing)
+  - [x] Contributing guidelines — see [Contributing & Support](/docs/contributing/)
   - [ ] Example use cases
   - [ ] Video tutorials
 
@@ -192,7 +192,7 @@ This document outlines the architectural roadmap, feature milestones, and produc
   - [x] Content Security Policy validation — validates CSP header presence and directives
 
 - [x] **Privacy**
-  - [x] No data collection by default — runs entirely local unattended audits; zero telemetry transmitted (see [Privacy Policy](/docs?doc=privacy))
+  - [x] No data collection by default — runs entirely local unattended audits; zero telemetry transmitted (see [Privacy Policy](/docs/privacy/))
   - [x] GDPR compliance — automated detection of GDPR indicators and user rights
   - [x] Cookie consent detection — banner, modal, and consent button detection
   - [x] Privacy policy detection — automated footer and link verification
@@ -244,7 +244,7 @@ This document outlines the architectural roadmap, feature milestones, and produc
 - [ ] **Community Building**
   - [ ] GitHub Discussions setup
   - [ ] Discord/Slack community
-  - [x] Contributing guidelines — see [Contributing & Support](/docs?doc=contributing)
+  - [x] Contributing guidelines — see [Contributing & Support](/docs/contributing/)
   - [ ] Code of conduct
   - [ ] Issue templates
   - [ ] PR templates

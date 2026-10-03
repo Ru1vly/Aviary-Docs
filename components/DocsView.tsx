@@ -20,21 +20,15 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import DocsClientWrapper from '@/components/DocsClientWrapper';
 import Wordmark from '@/components/aviary/Wordmark';
 import Button from '@/components/aviary/Button';
+import type { DocItem } from '@/lib/docs';
 
 const GITHUB_URL = 'https://github.com/Ru1vly/Aviary';
 const NPM_URL = 'https://www.npmjs.com/package/@ru1vly/aviary';
 
-export interface DocItem {
-  id: string;
-  title: string;
-  description: string;
-  htmlContent: string;
-  headings: { level: number; title: string; id: string }[];
-}
-
 export interface DocsViewProps {
   docs: Record<string, DocItem>;
   initialDocId?: string;
+  legacyQueryRouting?: boolean;
 }
 
 const DOCS_NAV = [
@@ -47,9 +41,13 @@ const DOCS_NAV = [
   { id: 'cookies', title: 'Cookie Policy', icon: Cookie },
 ];
 
-export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsViewProps) {
+export default function DocsView({
+  docs,
+  initialDocId = 'quickstart',
+  legacyQueryRouting = true,
+}: DocsViewProps) {
   const searchParams = useSearchParams();
-  const currentDocParam = searchParams.get('doc');
+  const currentDocParam = legacyQueryRouting ? searchParams.get('doc') : null;
   const isUnknownDoc = Boolean(currentDocParam && !Object.hasOwn(docs, currentDocParam));
   const activeDocId = (currentDocParam && Object.hasOwn(docs, currentDocParam)) ? currentDocParam : initialDocId;
   const activeDoc = (Object.hasOwn(docs, activeDocId) ? docs[activeDocId] : undefined) || docs['quickstart'] || {
@@ -164,7 +162,7 @@ export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsView
                   return (
                     <li key={page.id}>
                       <Link
-                        href={`/docs?doc=${page.id}`}
+                        href={`/docs/${page.id}/`}
                         onClick={() => setMobileNavOpen(false)}
                         style={{
                           display: 'flex', alignItems: 'center', gap: 10, height: 34, padding: '0 8px',
@@ -210,7 +208,7 @@ export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsView
                   return (
                     <li key={page.id}>
                       <Link
-                        href={`/docs?doc=${page.id}`}
+                        href={`/docs/${page.id}/`}
                         style={{
                           display: 'flex', alignItems: 'center', gap: 10, height: 32, padding: '0 8px',
                           borderRadius: 'var(--radius-xs)', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-sm)',
@@ -266,7 +264,7 @@ export default function DocsView({ docs, initialDocId = 'quickstart' }: DocsView
                   </p>
                 </div>
               </div>
-              <Link href="/docs?doc=quickstart" style={{ textDecoration: 'none' }}>
+              <Link href="/docs/quickstart/" style={{ textDecoration: 'none' }}>
                 <Button variant="secondary" size="sm">Go to Quick start</Button>
               </Link>
             </div>

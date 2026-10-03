@@ -77,8 +77,8 @@ describe("content links and anchors integrity", () => {
           } else if (rawPath === "/support" || rawPath === "/support/") {
             // Valid standalone app route (app/support/page.tsx) — nothing to validate here
             continue;
-          } else if (rawPath.startsWith("/docs?doc=")) {
-            targetDoc = rawPath.replace("/docs?doc=", "");
+          } else if (rawPath.startsWith("/docs/")) {
+            targetDoc = rawPath.slice("/docs/".length).replace(/\/+$/, "");
           } else if (rawPath.endsWith(".md")) {
             targetDoc = rawPath.replace(/^\.?\/?/, "").replace(/\.md$/, "");
           } else if (rawPath === "/" || rawPath === "") {

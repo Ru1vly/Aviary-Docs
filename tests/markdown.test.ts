@@ -119,7 +119,7 @@ describe("markdown utilities", () => {
       expect(html).toContain("Hello  World");
     });
 
-    it("converts markdown doc links to /docs?doc= URLs", () => {
+    it("converts markdown doc links to pre-rendered /docs/<id>/ routes", () => {
       const prevEnv = {
         GITHUB_ACTIONS: process.env.GITHUB_ACTIONS,
         BASE_PATH: process.env.BASE_PATH,
@@ -132,8 +132,8 @@ describe("markdown utilities", () => {
 
         const md = "[Quick Start](quickstart.md) and [Contributing](contributing.md#code)";
         const html = parseMarkdownToHtml(md);
-        expect(html).toContain("href=\"/docs?doc=quickstart\"");
-        expect(html).toContain("href=\"/docs?doc=contributing#code\"");
+        expect(html).toContain("href=\"/docs/quickstart/\"");
+        expect(html).toContain("href=\"/docs/contributing/#code\"");
       } finally {
         if (prevEnv.GITHUB_ACTIONS !== undefined) process.env.GITHUB_ACTIONS = prevEnv.GITHUB_ACTIONS;
         else delete process.env.GITHUB_ACTIONS;
@@ -156,7 +156,7 @@ describe("markdown utilities", () => {
         process.env.NEXT_PUBLIC_BASE_PATH = "/Aviary-Docs";
         const md = "[Quick Start](quickstart.md)";
         const html = parseMarkdownToHtml(md);
-        expect(html).toContain("href=\"/Aviary-Docs/docs?doc=quickstart\"");
+        expect(html).toContain("href=\"/Aviary-Docs/docs/quickstart/\"");
       } finally {
         if (prevEnv.GITHUB_ACTIONS !== undefined) process.env.GITHUB_ACTIONS = prevEnv.GITHUB_ACTIONS;
         else delete process.env.GITHUB_ACTIONS;
@@ -170,7 +170,7 @@ describe("markdown utilities", () => {
     it("prepends customBasePath when passed as argument to parseMarkdownToHtml", () => {
       const md = "[Quick Start](quickstart.md)";
       const html = parseMarkdownToHtml(md, "/Custom-Path");
-      expect(html).toContain("href=\"/Custom-Path/docs?doc=quickstart\"");
+        expect(html).toContain("href=\"/Custom-Path/docs/quickstart/\"");
     });
 
     it("adds accessible keyboard focus styling to heading anchors", () => {

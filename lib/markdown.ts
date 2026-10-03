@@ -257,7 +257,7 @@ export function createCustomRenderer(slugCounts?: Map<string, number>, customBas
         if (mdMatch) {
           const docName = mdMatch[1];
           const hash = mdMatch[2] || '';
-          finalHref = `/docs?doc=${docName}${hash}`;
+          finalHref = `/docs/${docName}/${hash}`;
         }
 
         if (basePath && finalHref.startsWith('/') && !finalHref.startsWith('//')) {

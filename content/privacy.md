@@ -28,7 +28,7 @@ Aviary is engineered to run audits entirely within your own environment (local d
 When you browse our documentation website (`aviary-docs.vercel.app`):
 - **Server Access Logs**: The documentation site is statically hosted via Vercel. Like virtually all web hosts, Vercel infrastructure processes standard, transient HTTP request logs (such as requesting IP address, user agent, requested resource, and timestamp) solely to serve web traffic, mitigate DDoS attacks, and maintain edge network security.
 - **No Third-Party Trackers**: We do not load advertising pixels, behavior trackers, Google Analytics, or third-party marketing scripts.
-- **Zero Local Storage & Cookies**: The documentation site does not use cookies, `localStorage`, `sessionStorage`, or IndexedDB. We do not store theme preferences, drawer states, or any persistent client data (see our [Cookie Policy](/docs?doc=cookies)).
+- **Zero Local Storage & Cookies**: The documentation site does not use cookies, `localStorage`, `sessionStorage`, or IndexedDB. We do not store theme preferences, drawer states, or any persistent client data (see our [Cookie Policy](/docs/cookies/)).
 
 ## 4. Third-Party Services & Links
 

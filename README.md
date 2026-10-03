@@ -178,7 +178,7 @@ We welcome contributions across three key pathways:
 - **Share Audit Scores**: Share your terminal or HTML audit results on your preferred social platforms if you like. No tagging or reshare guarantees.
 - **Write Tutorials & Report Findings**: Author guides on automated SEO pipelines or submit edge-case URLs to our [issue tracker](https://github.com/Ru1vly/Aviary/issues).
 
-> For detailed guidelines, check out the in-depth [Contributing Guide](content/contributing.md) or visit `/docs?doc=contributing`.
+> For detailed guidelines, check out the in-depth [Contributing Guide](content/contributing.md) or visit `/docs/contributing/`.
 
 ---
 

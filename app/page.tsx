@@ -41,7 +41,7 @@ const SUPPORT_PATHWAYS = [
     title: 'Contributing by Coding',
     body: 'Finding and fixing bugs, writing new browser audit checks for @ru1vly/aviary, improving TypeScript definitions, submitting PRs to GitHub, and enhancing documentation.',
     actionLabel: 'Read code guide',
-    actionHref: '/docs?doc=contributing#1-contributing-by-coding',
+    actionHref: '/docs/contributing/#1-contributing-by-coding',
     external: false,
     tag: 'PRs Welcome',
   },
@@ -248,8 +248,8 @@ export default function AviaryHome() {
         <div>
           <Link href="/docs">Docs</Link>
           <Link href="/support">Support</Link>
-          <Link href="/docs?doc=contributing">Contributing</Link>
-          <Link href="/docs?doc=roadmap">Roadmap</Link>
+          <Link href="/docs/contributing/">Contributing</Link>
+          <Link href="/docs/roadmap/">Roadmap</Link>
           <a href={NPM_URL} target="_blank" rel="noopener noreferrer">npm</a>
           <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href={ISSUES_URL} target="_blank" rel="noopener noreferrer">Issues</a>

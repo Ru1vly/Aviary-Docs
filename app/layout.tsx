@@ -29,7 +29,7 @@ const ubuntuMono = localFont({
 
 const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE_PATH || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? '/Aviary-Docs' : '');
 const basePath = rawBasePath.replace(/\/+$/, '');
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? 'https://ru1vly.github.io/Aviary-Docs' : 'https://aviary-docs.vercel.app');
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? 'https://ru1vly.github.io/Aviary-Docs' : 'https://www.aviary-rs.com');
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

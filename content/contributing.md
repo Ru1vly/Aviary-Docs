@@ -214,4 +214,4 @@ npm run lint
 Have questions about contributing or want to discuss an architectural change before writing code?
 - Open a discussion on [GitHub Discussions](https://github.com/Ru1vly/Aviary/discussions).
 - Open an issue on [GitHub Issues](https://github.com/Ru1vly/Aviary/issues).
-- Check the [Roadmap](/docs?doc=roadmap) to see planned features and upcoming milestones.
+- Check the [Roadmap](/docs/roadmap/) to see planned features and upcoming milestones.

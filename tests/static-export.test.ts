@@ -40,14 +40,36 @@ describe("static export output validation", () => {
     expect(html).toContain("<!DOCTYPE html>");
   });
 
-  it("generates sitemap.xml with quickstart and docs entries", () => {
+  it("generates sitemap.xml with pre-rendered documentation routes", () => {
     const sitemapPath = path.join(outDir, "sitemap.xml");
     expect(fs.existsSync(sitemapPath), "out/sitemap.xml should exist").toBe(true);
 
     const content = fs.readFileSync(sitemapPath, "utf8");
     expect(content).toContain("<urlset");
-    expect(content).toContain("/docs?doc=quickstart");
-    expect(content).toContain("/docs");
+    expect(content).toContain("/docs/quickstart/");
+    expect(content).toContain("/docs/accuracy-limitations/");
+    expect(content).not.toContain("/docs?doc=");
+  });
+
+  it("exports each documentation page with its own initial HTML content", () => {
+    const docs = [
+      ["quickstart", "Quick start"],
+      ["accuracy-limitations", "Accuracy limitations"],
+      ["contributing", "Contributing &amp; Support"],
+      ["roadmap", "Roadmap &amp; Production Readiness"],
+      ["privacy", "Privacy Policy"],
+      ["terms", "Terms of Service"],
+      ["cookies", "Cookie Policy"],
+    ];
+
+    for (const [id, title] of docs) {
+      const pagePath = path.join(outDir, "docs", id, "index.html");
+      expect(fs.existsSync(pagePath), `out/docs/${id}/index.html should exist`).toBe(true);
+      const html = fs.readFileSync(pagePath, "utf8");
+      expect(html).toContain(`<h1`);
+      expect(html).toContain(title);
+      expect(html).toContain(`rel="canonical" href="https://www.aviary-rs.com/docs/${id}/"`);
+    }
   });
 
   it("generates robots.txt with valid directives and sitemap reference", () => {

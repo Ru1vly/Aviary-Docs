@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? 'https://ru1vly.github.io/Aviary-Docs' : 'https://aviary-docs.vercel.app');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.GITHUB_ACTIONS && !process.env.CUSTOM_DOMAIN ? 'https://ru1vly.github.io/Aviary-Docs' : 'https://www.aviary-rs.com');
   const currentDate = new Date();
 
   return [
@@ -26,43 +26,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/docs?doc=quickstart`,
+      url: `${baseUrl}/docs/quickstart/`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/docs?doc=accuracy-limitations`,
+      url: `${baseUrl}/docs/accuracy-limitations/`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/docs?doc=contributing`,
+      url: `${baseUrl}/docs/contributing/`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/docs?doc=roadmap`,
+      url: `${baseUrl}/docs/roadmap/`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/docs?doc=privacy`,
+      url: `${baseUrl}/docs/privacy/`,
       lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.4,
     },
     {
-      url: `${baseUrl}/docs?doc=terms`,
+      url: `${baseUrl}/docs/terms/`,
       lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.4,
     },
     {
-      url: `${baseUrl}/docs?doc=cookies`,
+      url: `${baseUrl}/docs/cookies/`,
       lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.4,

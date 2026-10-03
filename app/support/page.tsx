@@ -198,7 +198,7 @@ export default function SupportPage() {
               </span>
             </div>
             <div className="support-banner-actions">
-              <Link href="/docs?doc=contributing">
+              <Link href="/docs/contributing/">
                 <Button variant="secondary" size="md">
                   Contribution guide <ArrowRight size={14} />
                 </Button>
@@ -220,8 +220,8 @@ export default function SupportPage() {
         <div>
           <Link href="/docs">Docs</Link>
           <Link href="/support">Support</Link>
-          <Link href="/docs?doc=contributing">Contributing</Link>
-          <Link href="/docs?doc=roadmap">Roadmap</Link>
+          <Link href="/docs/contributing/">Contributing</Link>
+          <Link href="/docs/roadmap/">Roadmap</Link>
           <a href={NPM_URL} target="_blank" rel="noopener noreferrer">
             npm
           </a>
