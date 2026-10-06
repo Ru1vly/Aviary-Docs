@@ -62,7 +62,7 @@ describe("static export output validation", () => {
       ["quickstart", "Quick start"],
       ["accuracy-limitations", "Accuracy limitations"],
       ["contributing", "Contributing &amp; Support"],
-      ["roadmap", "Roadmap &amp; Production Readiness"],
+      ["roadmap", "Roadmap"],
       ["privacy", "Privacy Policy"],
       ["terms", "Terms of Service"],
       ["cookies", "Cookie Policy"],
