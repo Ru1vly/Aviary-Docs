@@ -23,8 +23,8 @@ export const DOCS_FILES = [
   },
   {
     id: 'roadmap',
-    title: 'Roadmap & Production Readiness',
-    description: 'Architectural roadmap, completed features, and production readiness checklist.',
+    title: 'Roadmap',
+    description: 'Available capabilities and proposed priorities for improving adoption.',
     fileName: 'roadmap.md',
   },
   {
