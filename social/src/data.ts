@@ -3,11 +3,11 @@
  * (`app/page.tsx`) so the videos never drift from what the site claims.
  */
 
-export const TOTAL_CHECKS = 235;
-export const TOTAL_CATEGORIES = 28;
+export const TOTAL_CHECKS = 242;
+export const TOTAL_CATEGORIES = 29;
 export const SAMPLE_SCORE = 91;
-export const SAMPLE_PASSED = 214;
-export const SAMPLE_FAILED = 21;
+export const SAMPLE_PASSED = 220;
+export const SAMPLE_FAILED = 22;
 
 export type Verdict = 'pass' | 'warn' | 'fail' | 'info';
 
@@ -37,7 +37,7 @@ export const CATEGORY_ROWS: { verdict: 'pass' | 'warn' | 'fail'; label: string; 
   { verdict: 'pass', label: 'Security', value: '3 / 3' },
 ];
 
-/** The 28-category coverage grid from the report's "Category coverage" panel. */
+/** The 29-category coverage grid from the report's "Category coverage" panel. */
 export const COVERAGE: { code: string; name: string; pct: number }[] = [
   { code: 'META', name: 'Meta Tags', pct: 83 },
   { code: 'HEAD', name: 'Headings', pct: 100 },
@@ -85,7 +85,7 @@ export const JSON_LINES: [string, 'punct' | 'key' | 'string' | 'number' | 'bool'
   ['  "url": "https://example.com",', 'string'],
   ['  "score": 91,', 'number'],
   ['  "grade": "A",', 'string'],
-  ['  "summary": { "total": 235, "passed": 214, "failed": 21 },', 'key'],
+  ['  "summary": { "total": 242, "passed": 220, "failed": 22 },', 'key'],
   ['  "checks": {', 'key'],
   ['    "metaTags": [', 'key'],
   ['      { "passed": false, "severity": "error",', 'bool'],

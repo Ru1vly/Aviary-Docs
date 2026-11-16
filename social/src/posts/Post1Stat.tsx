@@ -13,13 +13,13 @@ export const Post1Stat: React.FC = () => {
         <Tag>Real browser · Real results</Tag>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 24 }}>
           <span style={{ fontFamily: font.code, fontWeight: 700, fontSize: 168, color: color.ochre400, lineHeight: 1 }}>
-            235
+            242
           </span>
           <span style={{ fontFamily: font.display, fontSize: 52, color: color.bone100 }}>checks</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 24 }}>
           <span style={{ fontFamily: font.code, fontWeight: 700, fontSize: 96, color: color.bone100, lineHeight: 1 }}>
-            28
+            29
           </span>
           <span style={{ fontFamily: font.display, fontSize: 44, color: color.bone400 }}>categories</span>
         </div>
@@ -33,7 +33,7 @@ export const Post1Stat: React.FC = () => {
             lineHeight: 1.5,
           }}
         >
-          SEO · Performance · Accessibility · Security · UX
+          SEO · GEO · Performance · Accessibility · Security · UX
         </span>
       </div>
       <PostFooter />

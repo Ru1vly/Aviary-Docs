@@ -6,14 +6,14 @@ import { loadDocs } from '@/lib/docs';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'Documentation',
-  description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
+  title: 'SEO & GEO Audit Documentation',
+  description: 'Guides and reference for Aviary, the open-source real-browser SEO and GEO audit tool — quick starts, technical SEO fixes, AI crawler visibility checks, and CI workflows.',
   alternates: {
     canonical: '/docs/',
   },
   openGraph: {
-    title: 'Documentation | Aviary',
-    description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
+    title: 'SEO & GEO Audit Documentation | Aviary',
+    description: 'Guides and reference for Aviary, the open-source real-browser SEO and GEO audit tool — quick starts, technical SEO fixes, AI crawler visibility checks, and CI workflows.',
     url: '/docs/',
     type: 'article',
     images: [
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: 'image/png',
-        alt: 'Aviary Documentation — Automated Real-Browser Website Auditing',
+        alt: 'Aviary Documentation — SEO & GEO Real-Browser Audit Guides',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Documentation | Aviary',
-    description: 'Comprehensive documentation and guides for Aviary — automated real-browser website auditing.',
+    title: 'SEO & GEO Audit Documentation | Aviary',
+    description: 'Guides and reference for Aviary, the open-source real-browser SEO and GEO audit tool — quick starts, technical SEO fixes, AI crawler visibility checks, and CI workflows.',
     images: ['/og-image.png'],
   },
 };

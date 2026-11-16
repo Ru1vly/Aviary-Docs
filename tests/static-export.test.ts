@@ -93,7 +93,7 @@ describe("static export output validation", () => {
 
     const content = fs.readFileSync(manifestPath, "utf8");
     const json = JSON.parse(content);
-    expect(json.name).toBe("Aviary | Automated Website Auditing");
+    expect(json.name).toBe("Aviary | Open-Source SEO & GEO Website Auditing");
     expect(json.short_name).toBe("Aviary");
     expect(json.start_url).toBeDefined();
     expect(Array.isArray(json.icons)).toBe(true);

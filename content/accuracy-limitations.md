@@ -1,13 +1,13 @@
-# SEO Checker Tool - Accuracy Limitations
+# SEO & GEO audit accuracy limitations
 
 **Last Updated:** 2026-09-06
 
 ## Overview
 
-This document provides transparency about the aviary tool's accuracy limitations, known issues, and areas where manual verification is recommended.
+This document provides transparency about the Aviary tool's accuracy limitations, known issues, and areas where manual verification is recommended — for both SEO and GEO (generative engine optimization) checks.
 
 > [!IMPORTANT]
-> This tool is designed to identify *potential* SEO issues. Not all findings indicate actual problems, and the tool cannot catch every SEO issue. Always apply professional judgment when interpreting results.
+> This tool is designed to identify *potential* SEO and GEO issues. Not all findings indicate actual problems, and the tool cannot catch every SEO or AI visibility issue. Always apply professional judgment when interpreting results.
 
 ---
 

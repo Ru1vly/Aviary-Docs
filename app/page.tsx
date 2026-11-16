@@ -20,17 +20,17 @@ const CHECK_GROUPS = [
   {
     number: '01',
     title: 'Find what is missing',
-    body: 'Metadata, headings, alt text, labels, schema, security headers, and more.',
+    body: 'Metadata, headings, alt text, labels, schema markup, structured data, security headers, and other technical SEO basics.',
   },
   {
     number: '02',
     title: 'Measure what is slow',
-    body: 'Lab performance measurements, resources, rendering, caching, and mobile experience.',
+    body: 'Lab performance measurements, resources, rendering, caching, and mobile experience — measured against Core Web Vitals.',
   },
   {
     number: '03',
     title: 'Fix what matters',
-    body: 'Review failed checks and supporting details, then verify your changes with another audit.',
+    body: 'Review failed checks and supporting details, then verify your changes with another SEO and GEO audit.',
   },
 ];
 
@@ -104,9 +104,9 @@ export default function AviaryHome() {
         <section className="home-hero">
           <HeroBackground />
           <div className="hero-copy">
-            <h1>Catch SEO issues<br />before deployment.</h1>
+            <h1>Catch SEO &amp; GEO issues<br />before deployment.</h1>
             <p className="hero-lede">
-              Open-source SEO and AI crawler audits for developers and web agencies. Inspect rendered pages in Chromium, review readable reports, and add checks to CI.
+              Open-source SEO and GEO (generative engine optimization) audits for developers and web agencies. Inspect rendered pages in Chromium — technical SEO, Core Web Vitals, structured data, and AI crawler visibility — then review readable reports and add checks to CI.
             </p>
 
             <div className="hero-install">
@@ -137,8 +137,8 @@ export default function AviaryHome() {
 
         <section className="home-section" id="checks">
           <div className="section-intro">
-            <p className="eyebrow">A quieter way to audit</p>
-            <h2>Review findings.<br />Verify your fixes.</h2>
+            <p className="eyebrow">A quieter way to run SEO &amp; GEO audits</p>
+            <h2>Review the findings.<br />Verify your fixes.</h2>
           </div>
 
           <div className="check-grid">
@@ -156,7 +156,7 @@ export default function AviaryHome() {
           <div className="install-copy">
             <p className="eyebrow">Run it anywhere</p>
             <h2>Start with one command.</h2>
-            <p>Replace the example URL with your website. Open report.html, review a finding, make a fix, and run again. Node.js 20 or newer is required; Chromium may download on first use.</p>
+            <p>Replace the example URL with your website. Open report.html, review a finding, make a fix, and run again — the same workflow for technical SEO and GEO checks. Node.js 20 or newer is required; Chromium may download on first use.</p>
           </div>
 
           <div className="install-command">
@@ -177,7 +177,7 @@ export default function AviaryHome() {
             <h2>Make your first audit useful.</h2>
           </div>
           <div className="check-grid">
-            <article><span>01</span><h3>Inspect a finding</h3><p>For example, an unexpected noindex directive on a public landing page deserves review. This is an illustrative scenario, not a customer result.</p></article>
+            <article><span>01</span><h3>Inspect a finding</h3><p>For example, an unexpected noindex directive on a public landing page can quietly remove it from search results and AI answers. This is an illustrative scenario, not a customer result.</p></article>
             <article><span>02</span><h3>Check your intent</h3><p>Inspect the page and crawler policy before changing them. Fix the directive if the page is intended for indexing, then audit the same URL again.</p></article>
             <article><span>03</span><h3>Keep checking</h3><p>Use a scheduled GitHub Actions audit to save reports and compare against a successful baseline.</p><Link href="/docs/#run-in-github-actions">Set up GitHub Actions <ArrowRight size={13} aria-hidden="true" /></Link></article>
           </div>
@@ -257,7 +257,7 @@ export default function AviaryHome() {
 
       <footer className="home-footer">
         <Wordmark size={20} />
-        <p>Open-source SEO and AI crawler audits</p>
+        <p>Open-source SEO &amp; GEO audits</p>
         <div>
           <Link href="/docs">Docs</Link>
           <Link href="/support">Support</Link>

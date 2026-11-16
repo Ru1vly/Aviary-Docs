@@ -7,9 +7,9 @@ export default function manifest(): MetadataRoute.Manifest {
   const basePath = rawBasePath.replace(/\/+$/, '');
 
   return {
-    name: 'Aviary | Automated Website Auditing',
+    name: 'Aviary | Open-Source SEO & GEO Website Auditing',
     short_name: 'Aviary',
-    description: 'Automated real-browser website auditing engine for SEO, performance, accessibility, security, and UX.',
+    description: 'Open-source SEO and GEO (generative engine optimization) real-browser auditing engine: technical SEO, Core Web Vitals, structured data, accessibility, security, and AI crawler visibility.',
     start_url: `${basePath}/`,
     display: 'standalone',
     background_color: '#0C0D0C',

@@ -1,6 +1,6 @@
-# Contributing to Aviary
+# Contributing to Aviary, the open-source SEO & GEO audit engine
 
-Thanks for helping improve Aviary. This guide covers the local setup, the main parts of the repository, and what to include with a change.
+Thanks for helping improve Aviary — an open-source SEO and GEO (generative engine optimization) website auditing engine. This guide covers the local setup, the main parts of the repository, and what to include with a change.
 
 ## Start with a useful contribution
 

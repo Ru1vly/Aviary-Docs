@@ -2,7 +2,7 @@
 
 **Effective Date:** September 17, 2026
 
-Aviary is an open-source, local-first website auditing engine and documentation platform. We build developer tooling designed for transparency, security, and minimal data collection.
+Aviary is an open-source, local-first SEO and GEO (generative engine optimization) website auditing engine and documentation platform. We build developer tooling designed for transparency, security, and minimal data collection.
 
 > [!NOTE]
 > Aviary operates with a strict zero-telemetry policy. We do not track you, collect personal data, or exfiltrate the contents of websites you audit.

@@ -198,7 +198,7 @@ const SceneCrash: React.FC = () => {
       />
       <div style={{ opacity: anim(frame, [beat * 3, beat * 3 + 3], [0, 1], ease.snap) }}>
         <Sticker appearFrame={Math.round(beat * 3)} tone={color.fail} tilt={2} size={34}>
-          235 checks · 21 failed
+          242 checks · 22 failed
         </Sticker>
       </div>
     </GenzCenter>

@@ -75,7 +75,7 @@ export const TuiDashboard: React.FC<{
         }}
       >
         <span>aviary · https://example.com</span>
-        <span style={{ color: color.bone500 }}>preset advanced · 235 checks</span>
+        <span style={{ color: color.bone500 }}>preset advanced · 242 checks</span>
       </div>
 
       <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1.35fr', minHeight: 0 }}>

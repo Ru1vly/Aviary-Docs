@@ -19,9 +19,9 @@ const NPM_URL = 'https://www.npmjs.com/package/@ru1vly/aviary';
 const ISSUES_URL = 'https://github.com/Ru1vly/Aviary/issues';
 
 export const metadata: Metadata = {
-  title: 'Support Aviary',
+  title: 'Support the Open-Source SEO & GEO Audit Engine',
   description:
-    'Sponsor Aviary through GitHub Sponsors or Buy Me a Coffee. Recognition-only tiers with an opt-in sponsors wall — Aviary stays MIT-licensed and free forever.',
+    'Sponsor Aviary — the open-source SEO & GEO (generative engine optimization) audit engine — through GitHub Sponsors or Buy Me a Coffee. Recognition-only tiers with an opt-in sponsors wall. MIT-licensed and free forever.',
   alternates: {
     canonical: '/support',
   },
@@ -65,8 +65,8 @@ export default function SupportPage() {
             </div>
             <p className="support-intro-lead">
               Aviary is independent, open-source, and free forever. Sponsorship sustains
-              ongoing maintenance and development — keeping 242 browser checks accurate as
-              web standards evolve.
+              ongoing maintenance and development — keeping 242 SEO &amp; GEO browser checks
+              accurate as web standards evolve.
             </p>
           </div>
 
@@ -216,7 +216,7 @@ export default function SupportPage() {
 
       <footer className="home-footer">
         <Wordmark size={20} />
-        <p>Real-browser website audits · 242 automated checks</p>
+        <p>Open-source SEO &amp; GEO real-browser audits · 242 automated checks</p>
         <div>
           <Link href="/docs">Docs</Link>
           <Link href="/support">Support</Link>

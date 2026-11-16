@@ -11,7 +11,7 @@ const bandColor = (pct: number): string => {
 };
 
 /**
- * The report's "Category coverage" panel — all 28 categories, each filling to
+ * The report's "Category coverage" panel — all 29 categories, each filling to
  * its pass rate.
  *
  * The count of categories is the point here, so the tiles are deliberately

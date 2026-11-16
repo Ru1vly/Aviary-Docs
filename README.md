@@ -8,9 +8,9 @@
  /_/   \_\_/  |___/_/   \_\_| \_\|_|
 ```
 
-**Site & documentation for Aviary — automated, real-browser website auditing**
+**Site & documentation for Aviary — automated, real-browser SEO & GEO website auditing**
 
-`SEO` · `PERFORMANCE` · `ACCESSIBILITY` · `SECURITY` · `UX`
+`SEO` · `GEO` · `PERFORMANCE` · `ACCESSIBILITY` · `SECURITY` · `UX`
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@ru1vly/aviary"><img src="https://img.shields.io/npm/v/@ru1vly/aviary.svg?style=flat-square" alt="npm version" /></a>
@@ -40,11 +40,11 @@
 
 **See your site the way browsers do.**
 
-Aviary is a Playwright-driven auditing engine that opens a page in a real Chromium browser and executes **242 checks across 29 categories** — SEO, performance, accessibility, security, and UX — evaluating what visitors and search crawlers actually experience rather than raw server HTML.
+Aviary is a Playwright-driven auditing engine that opens a page in a real Chromium browser and executes **242 checks across 29 categories** — technical SEO, GEO (generative engine optimization), performance, accessibility, security, and UX — evaluating what visitors, search crawlers, and AI crawlers actually experience rather than raw server HTML. Aviary helps your site rank in search engines and surface in AI answers (AI Overviews, ChatGPT, Perplexity) with measurable, repeatable checks.
 
 ### Product Facts
 
-- **242 checks**: Exhaustive validation across technical SEO, Core Web Vitals, metadata, accessibility, and security.
+- **242 checks**: Exhaustive validation across technical SEO, GEO, Core Web Vitals, metadata, accessibility, and security — including AI crawler and structured data readiness.
 - **29 categories**: Structured evaluations from heading hierarchies to predictive attention maps.
 - **1 real browser**: Powered by Playwright Chromium for genuine client-side hydration and layout rendering.
 - **Zero footprint**: No account required. No external dashboard. Your audit data remains 100% on your machine.

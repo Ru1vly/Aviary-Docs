@@ -1,6 +1,6 @@
-# Your first Aviary audit
+# Quick start: your first Aviary SEO & GEO audit
 
-Use this guide to audit a page, review a finding, and check your fix. You need Node.js 20 or newer and a website you can inspect. A repository checkout is not required.
+Use this guide to audit a page, review a finding, and check your fix — a technical SEO and GEO (generative engine optimization) workflow powered by a real browser. You need Node.js 20 or newer and a website you can inspect. A repository checkout is not required.
 
 ## Create a report
 
@@ -33,7 +33,7 @@ To render a saved result without another audit:
 npx @ru1vly/aviary --render report.json --html saved-report.html
 ```
 
-## Check AI crawler controls
+## Check AI crawler and GEO controls
 
 Use the GEO preset for crawler controls and observed page signals:
 

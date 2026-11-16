@@ -1,6 +1,6 @@
 {
   "name": "Aviary | CLI & TUI Auditing Suite",
-  "description": "High-concurrency Rust crawler combined with a TypeScript auditing suite for CI/CD and technical SEO.",
+  "description": "High-concurrency Rust crawler combined with a TypeScript SEO and GEO (generative engine optimization) auditing suite for CI/CD, technical SEO, and AI search visibility.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }

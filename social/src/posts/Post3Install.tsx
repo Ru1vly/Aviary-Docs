@@ -33,7 +33,7 @@ export const Post3Install: React.FC = () => {
               Score: 91 / 100
             </span>
             <span style={{ fontFamily: font.code, fontSize: 20, color: color.bone500, marginBottom: 8 }}>
-              Total checks: 235 · Passed: 214 · Failed: 21
+              Total checks: 242 · Passed: 220 · Failed: 22
             </span>
             <CheckRow verdict="pass" label="Title is optimal" appearFrame={-20} fontSize={22} />
             <CheckRow verdict="fail" label="Canonical URL is missing" appearFrame={-20} fontSize={22} />

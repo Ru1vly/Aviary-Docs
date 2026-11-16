@@ -109,7 +109,7 @@ export const OgImage: React.FC = () => {
               margin: 0,
             }}
           >
-            Automated real-browser website auditing
+            Open-source SEO &amp; GEO auditing in a real browser
           </h1>
 
           {/* Description */}
@@ -122,12 +122,12 @@ export const OgImage: React.FC = () => {
               margin: 0,
             }}
           >
-            See your site the way real browsers do. <strong style={{ color: color.ochre400 }}>235 checks</strong> across 28 categories evaluating DOM hydration, layout shifts, SEO, and accessibility.
+            See your site the way real browsers do. <strong style={{ color: color.ochre400 }}>242 checks</strong> across 29 categories — technical SEO, GEO, Core Web Vitals, structured data, and AI crawler visibility.
           </p>
 
           {/* Category Chips */}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {['SEO', 'Core Web Vitals', 'Accessibility', 'Security', 'UX'].map((cat) => (
+            {['SEO', 'GEO', 'Core Web Vitals', 'Accessibility', 'Security', 'UX'].map((cat) => (
               <span
                 key={cat}
                 style={{
@@ -202,7 +202,7 @@ export const OgImage: React.FC = () => {
                 98<span style={{ fontSize: 20, color: color.bone500 }}>/100</span>
               </div>
               <div style={{ fontFamily: font.ui, fontSize: 13, color: color.bone400, marginTop: 4 }}>
-                232 of 235 checks passed
+                236 of 242 checks passed
               </div>
             </div>
 
@@ -227,6 +227,7 @@ export const OgImage: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 7, fontSize: 13, fontFamily: font.code }}>
             {[
               { label: 'Technical SEO & Metadata', result: '38/38 passed', pass: true },
+              { label: 'GEO & AI Crawler Signals', result: 'Ready', pass: true },
               { label: 'Core Web Vitals (LCP 0.8s)', result: 'Optimal', pass: true },
               { label: 'Accessibility (WCAG 2.1 AA)', result: '52/52 passed', pass: true },
               { label: 'Security & CSP Headers', result: '24/24 passed', pass: true },

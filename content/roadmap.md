@@ -1,6 +1,6 @@
-# Roadmap
+# Roadmap: SEO, GEO & AI search visibility
 
-This page summarizes current capabilities and proposed adoption priorities as of October 7, 2026. Proposals are open for feedback; they are not release commitments. See [releases](https://github.com/Ru1vly/Aviary/releases) and the [changelog](https://github.com/Ru1vly/Aviary/blob/main/CHANGELOG.md) for shipped changes.
+This page summarizes current SEO, GEO (generative engine optimization), and AI search visibility capabilities and proposed adoption priorities as of October 7, 2026. Proposals are open for feedback; they are not release commitments. See [releases](https://github.com/Ru1vly/Aviary/releases) and the [changelog](https://github.com/Ru1vly/Aviary/blob/main/CHANGELOG.md) for shipped changes.
 
 ## Available today
 

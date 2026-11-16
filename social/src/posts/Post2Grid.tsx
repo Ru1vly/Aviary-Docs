@@ -36,7 +36,7 @@ export const Post2Grid: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 44, width: '100%' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
           <span style={{ fontFamily: font.display, fontSize: 56, color: color.bone100, textAlign: 'center' }}>
-            28 categories.
+            29 categories.
           </span>
           <span style={{ fontFamily: font.display, fontSize: 56, color: color.ochre400, textAlign: 'center' }}>
             Every layer of your site.

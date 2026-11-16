@@ -95,7 +95,7 @@ export const McpExchange: React.FC<{
         <span style={{ color: color.ochre400 }}>
           {['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'][frame % 10]}
         </span>
-        browser launched · running 235 checks
+        browser launched · running 242 checks
       </div>
 
       {/* Result */}
@@ -122,7 +122,7 @@ export const McpExchange: React.FC<{
           Tool → result
         </div>
         <div style={{ fontFamily: font.code, fontSize: 30, color: color.bone200, whiteSpace: 'pre' }}>
-          {`{ "score": 91, "grade": "A",\n  "passed": 214, "failed": 21, "total": 235 }`}
+          {`{ "score": 91, "grade": "A",\n  "passed": 220, "failed": 22, "total": 242 }`}
         </div>
       </div>
     </div>
