@@ -13,7 +13,7 @@ const NPM_URL = 'https://www.npmjs.com/package/@ru1vly/aviary';
 const SPONSORS_URL = 'https://github.com/sponsors/Ru1vly';
 const BUYMEACOFFEE_URL = 'https://buymeacoffee.com/ru1vly';
 const ISSUES_URL = 'https://github.com/Ru1vly/Aviary/issues';
-const FIRST_AUDIT_COMMAND = 'npx @ru1vly/aviary -u https://example.com/';
+const INSTALL_COMMAND = 'npm install -g @ru1vly/aviary';
 const AUDIT_COMMAND = 'npx @ru1vly/aviary -u https://example.com/ --output report.json --html report.html';
 
 const CHECK_GROUPS = [
@@ -106,15 +106,15 @@ export default function AviaryHome() {
           <div className="hero-copy">
             <h1>Catch SEO &amp; GEO issues<br />before deployment.</h1>
             <p className="hero-lede">
-              Open-source SEO and GEO (generative engine optimization) audits for developers and web agencies. Inspect rendered pages in Chromium — technical SEO, Core Web Vitals, structured data, and AI crawler visibility — then review readable reports and add checks to CI.
+              Open-source SEO &amp; GEO audits in a real Chromium browser — readable reports, CI-ready checks.
             </p>
 
             <div className="hero-install">
-              <code><span>$</span> {FIRST_AUDIT_COMMAND}</code>
+              <code><span>$</span> {INSTALL_COMMAND}</code>
               <button
                 type="button"
-                onClick={() => copyCommand(FIRST_AUDIT_COMMAND, 'install')}
-                aria-label="Copy first audit command"
+                onClick={() => copyCommand(INSTALL_COMMAND, 'install')}
+                aria-label="Copy install command"
               >
                 {copied === 'install' ? <Check size={14} /> : <Copy size={14} />}
               </button>
