@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
 const geistMono = localFont({
@@ -222,6 +223,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
